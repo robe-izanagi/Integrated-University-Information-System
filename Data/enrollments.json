@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "SubjectId": 1,
+    "EnrollmentDate": "2023-06-01T00:00:00",
+    "Status": "Enrolled",
+    "Grade": 0,
+    "Remarks": ""
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "SubjectId": 2,
+    "EnrollmentDate": "2023-06-01T00:00:00",
+    "Status": "Enrolled",
+    "Grade": 0,
+    "Remarks": ""
+  }
+] 

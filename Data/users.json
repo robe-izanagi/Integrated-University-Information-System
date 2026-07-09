@@ -1,0 +1,58 @@
+[
+  {
+    "Id": 1,
+    "Username": "admin",
+    "PasswordHash": "admin123",
+    "Role": "Admin",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "Username": "registrar",
+    "PasswordHash": "reg123",
+    "Role": "Registrar",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 3,
+    "Username": "accounting",
+    "PasswordHash": "acc123",
+    "Role": "Accounting",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 4,
+    "Username": "librarian",
+    "PasswordHash": "lib123",
+    "Role": "Library",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 5,
+    "Username": "guidance",
+    "PasswordHash": "guid123",
+    "Role": "Guidance",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 6,
+    "Username": "clinic",
+    "PasswordHash": "clin123",
+    "Role": "Clinic",
+    "EmployeeId": 0,
+    "IsActive": true
+  },
+  {
+    "Id": 7,
+    "Username": "hr",
+    "PasswordHash": "hr123",
+    "Role": "HR",
+    "EmployeeId": 0,
+    "IsActive": true
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "Code": "BSIT",
+    "Name": "Bachelor of Science in Information Technology",
+    "Description": "IT Program",
+    "DurationYears": 4,
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "Code": "BSCS",
+    "Name": "Bachelor of Science in Computer Science",
+    "Description": "CS Program",
+    "DurationYears": 4,
+    "IsActive": true
+  }
+]

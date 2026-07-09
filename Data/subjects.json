@@ -1,0 +1,24 @@
+[
+  {
+    "Id": 1,
+    "Code": "IT332",
+    "Name": "Integrative Programming and Technologies",
+    "Description": "Integration of programming concepts",
+    "Units": 3,
+    "CourseId": 1,
+    "YearLevel": 3,
+    "Semester": "1st",
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "Code": "CS101",
+    "Name": "Introduction to Computer Science",
+    "Description": "Basic CS concepts",
+    "Units": 3,
+    "CourseId": 2,
+    "YearLevel": 1,
+    "Semester": "1st",
+    "IsActive": true
+  }
+]

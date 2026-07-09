@@ -1,0 +1,36 @@
+[
+  {
+    "Id": 1,
+    "StudentNumber": "2023-0001",
+    "FirstName": "Juan",
+    "LastName": "Dela Cruz",
+    "MiddleName": "Santos",
+    "BirthDate": "2000-01-15T00:00:00",
+    "Gender": "Male",
+    "ContactNumber": "09171234567",
+    "Email": "juan.delacruz@example.com",
+    "Address": "Manila",
+    "CourseId": 1,
+    "YearLevel": 3,
+    "Section": "A",
+    "EnrollmentDate": "2023-06-01T00:00:00",
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "StudentNumber": "2023-0002",
+    "FirstName": "Maria",
+    "LastName": "Santos",
+    "MiddleName": "Reyes",
+    "BirthDate": "2001-03-20T00:00:00",
+    "Gender": "Female",
+    "ContactNumber": "09181234567",
+    "Email": "maria.santos@example.com",
+    "Address": "Quezon City",
+    "CourseId": 2,
+    "YearLevel": 2,
+    "Section": "B",
+    "EnrollmentDate": "2023-06-01T00:00:00",
+    "IsActive": true
+  }
+]
