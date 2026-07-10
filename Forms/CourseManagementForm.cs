@@ -20,10 +20,13 @@ namespace IntegratedUniversityInformationSystem.Forms
         public CourseManagementForm()
         {
             InitializeComponent();
+            dgvCourses.ForeColor = Color.Black;
+            dgvCourses.DefaultCellStyle.ForeColor = Color.Black;
+            dgvCourses.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
+            dgvCourses.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgvCourses.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
             _courseRepo = new CourseRepository();
-            string path = Path.Combine(Application.StartupPath, "Data", "courses.json");
-            MessageBox.Show($"File path: {path}\nExists: {File.Exists(path)}\n\nKung may laman, ito ang ginagamit ng app.");
             LoadCourses();
         }
 

@@ -20,6 +20,12 @@ namespace IntegratedUniversityInformationSystem.Forms
         public StudentManagementForm()
         {
             InitializeComponent();
+            dgvStudents.ForeColor = Color.Black;
+            dgvStudents.DefaultCellStyle.ForeColor = Color.Black;
+            dgvStudents.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
+            dgvStudents.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
+            dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
             _studentRepo = new StudentRepository();
             _courseRepo = new CourseRepository();
             LoadStudents();

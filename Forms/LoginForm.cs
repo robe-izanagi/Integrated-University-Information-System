@@ -53,10 +53,10 @@ namespace IntegratedUniversityInformationSystem.Forms
 
                 // Hide login form, show dashboard
                 this.Hide();
-                DashboardForm dashboard = new DashboardForm(user);
-                // When dashboard closes, show login form again
-                dashboard.FormClosed += (s, args) => this.Show();
-                dashboard.Show();
+                // Login successful - open appropriate office form based on role
+                Form officeForm = GetOfficeForm(user);
+                officeForm.FormClosed += (s, args) => this.Show();
+                officeForm.Show();
             }
             catch (Exception ex)
             {
@@ -65,14 +65,55 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private Form GetOfficeForm(User user)
         {
-            Application.Exit();
+            switch (user.Role.ToLower())
+            {
+                case "registrar":
+                    return new RegistrarOfficeForm(user);
+                //case "accounting":
+                //    return new AccountingOfficeForm(user);
+                //case "librarian":
+                //case "library":
+                //    return new LibraryOfficeForm(user);
+                //case "guidance":
+                //    return new GuidanceOfficeForm(user);
+                //case "clinic":
+                //    return new ClinicOfficeForm(user);
+                //case "hr":
+                //    return new HROfficeForm(user);
+                //case "admin":
+                //    return new AdminOfficeForm(user);
+                default:
+                    MessageBox.Show("Unknown role. Please contact administrator.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return null;
+            }
         }
 
         private void LoginForm_Load_1(object sender, EventArgs e)
         {
             txtUsername.Focus();
+        }
+
+        private void togglePassword_Click(object sender, EventArgs e)
+        {
+            showPassword.Text = "Hide Password?";
+        }
+
+        private void hidePassword_Click(object sender, EventArgs e)
+        {
+            showPassword.Visible = true;
+            hidePassword.Visible = false;
+            txtPassword.PasswordChar = '•';
+        }
+
+        private void showPassword_Click(object sender, EventArgs e)
+        {
+            showPassword.Visible = false;
+            hidePassword.Visible = true;
+            txtPassword.PasswordChar = '\0';
         }
     }
 }

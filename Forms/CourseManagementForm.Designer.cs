@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblID = new System.Windows.Forms.Label();
@@ -64,19 +64,19 @@
             // 
             // panelHeader
             // 
-            this.panelHeader.BackColor = System.Drawing.Color.Gray;
-            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.BackColor = System.Drawing.Color.Transparent;
             this.panelHeader.Controls.Add(this.lblTitle);
             this.panelHeader.Location = new System.Drawing.Point(0, 0);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1186, 86);
+            this.panelHeader.Size = new System.Drawing.Size(986, 80);
             this.panelHeader.TabIndex = 1;
             // 
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(12, 43);
+            this.lblTitle.ForeColor = System.Drawing.Color.Black;
+            this.lblTitle.Location = new System.Drawing.Point(12, 26);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(229, 25);
             this.lblTitle.TabIndex = 1;
@@ -86,8 +86,8 @@
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.ForeColor = System.Drawing.Color.White;
-            this.lblID.Location = new System.Drawing.Point(46, 55);
+            this.lblID.ForeColor = System.Drawing.Color.Black;
+            this.lblID.Location = new System.Drawing.Point(20, 47);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(100, 20);
             this.lblID.TabIndex = 26;
@@ -95,30 +95,30 @@
             // 
             // txtName
             // 
-            this.txtName.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(50, 148);
+            this.txtName.Location = new System.Drawing.Point(24, 140);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(248, 26);
             this.txtName.TabIndex = 27;
             // 
             // txtID
             // 
-            this.txtID.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(170, 49);
+            this.txtID.Location = new System.Drawing.Point(144, 41);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(128, 26);
             this.txtID.TabIndex = 28;
             // 
             // txtCode
             // 
-            this.txtCode.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtCode.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.txtCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCode.Location = new System.Drawing.Point(170, 81);
+            this.txtCode.Location = new System.Drawing.Point(144, 73);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(128, 26);
             this.txtCode.TabIndex = 29;
@@ -127,8 +127,8 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(46, 125);
+            this.lblName.ForeColor = System.Drawing.Color.Black;
+            this.lblName.Location = new System.Drawing.Point(20, 117);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(122, 20);
             this.lblName.TabIndex = 30;
@@ -138,8 +138,8 @@
             // 
             this.lblCode.AutoSize = true;
             this.lblCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCode.ForeColor = System.Drawing.Color.White;
-            this.lblCode.Location = new System.Drawing.Point(46, 87);
+            this.lblCode.ForeColor = System.Drawing.Color.Black;
+            this.lblCode.Location = new System.Drawing.Point(20, 79);
             this.lblCode.Name = "lblCode";
             this.lblCode.Size = new System.Drawing.Size(118, 20);
             this.lblCode.TabIndex = 31;
@@ -149,8 +149,8 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.ForeColor = System.Drawing.Color.White;
-            this.lblDescription.Location = new System.Drawing.Point(46, 177);
+            this.lblDescription.ForeColor = System.Drawing.Color.Black;
+            this.lblDescription.Location = new System.Drawing.Point(20, 169);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(105, 20);
             this.lblDescription.TabIndex = 32;
@@ -158,10 +158,10 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtDescription.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(50, 200);
+            this.txtDescription.Location = new System.Drawing.Point(24, 192);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(248, 64);
@@ -171,8 +171,8 @@
             // 
             this.lblDuration.AutoSize = true;
             this.lblDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDuration.ForeColor = System.Drawing.Color.White;
-            this.lblDuration.Location = new System.Drawing.Point(46, 277);
+            this.lblDuration.ForeColor = System.Drawing.Color.Black;
+            this.lblDuration.Location = new System.Drawing.Point(20, 269);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(147, 20);
             this.lblDuration.TabIndex = 34;
@@ -182,7 +182,7 @@
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.ForeColor = System.Drawing.Color.White;
+            this.lblSearch.ForeColor = System.Drawing.Color.Black;
             this.lblSearch.Location = new System.Drawing.Point(19, 23);
             this.lblSearch.Name = "lblSearch";
             this.lblSearch.Size = new System.Drawing.Size(71, 20);
@@ -191,7 +191,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSearch.Location = new System.Drawing.Point(96, 17);
@@ -202,36 +202,40 @@
             // 
             // numDuration
             // 
+            this.numDuration.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.numDuration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numDuration.Location = new System.Drawing.Point(199, 271);
+            this.numDuration.Location = new System.Drawing.Point(173, 263);
             this.numDuration.Name = "numDuration";
             this.numDuration.Size = new System.Drawing.Size(99, 26);
             this.numDuration.TabIndex = 37;
             // 
             // panelInput
             // 
-            this.panelInput.BackColor = System.Drawing.Color.Gray;
+            this.panelInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.panelInput.Controls.Add(this.txtID);
             this.panelInput.Controls.Add(this.numDuration);
             this.panelInput.Controls.Add(this.lblID);
             this.panelInput.Controls.Add(this.txtName);
+            this.panelInput.Controls.Add(this.btnClear);
             this.panelInput.Controls.Add(this.txtCode);
+            this.panelInput.Controls.Add(this.btnAdd);
             this.panelInput.Controls.Add(this.lblDuration);
             this.panelInput.Controls.Add(this.lblName);
             this.panelInput.Controls.Add(this.txtDescription);
             this.panelInput.Controls.Add(this.lblCode);
             this.panelInput.Controls.Add(this.lblDescription);
-            this.panelInput.Location = new System.Drawing.Point(18, 110);
+            this.panelInput.Location = new System.Drawing.Point(18, 78);
             this.panelInput.Name = "panelInput";
-            this.panelInput.Size = new System.Drawing.Size(340, 378);
+            this.panelInput.Size = new System.Drawing.Size(298, 359);
             this.panelInput.TabIndex = 38;
             // 
             // chkActive
             // 
             this.chkActive.AutoSize = true;
+            this.chkActive.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActive.ForeColor = System.Drawing.Color.White;
-            this.chkActive.Location = new System.Drawing.Point(607, 19);
+            this.chkActive.ForeColor = System.Drawing.Color.Black;
+            this.chkActive.Location = new System.Drawing.Point(454, 19);
             this.chkActive.Name = "chkActive";
             this.chkActive.Size = new System.Drawing.Size(71, 24);
             this.chkActive.TabIndex = 39;
@@ -241,44 +245,45 @@
             // dgvCourses
             // 
             this.dgvCourses.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCourses.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCourses.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCourses.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCourses.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCourses.Location = new System.Drawing.Point(23, 49);
             this.dgvCourses.Name = "dgvCourses";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCourses.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvCourses.Size = new System.Drawing.Size(750, 308);
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCourses.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgvCourses.Size = new System.Drawing.Size(585, 240);
             this.dgvCourses.TabIndex = 44;
             this.dgvCourses.SelectionChanged += new System.EventHandler(this.dgvCourses_SelectionChanged);
             // 
             // btnClear
             // 
             this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnClear.Location = new System.Drawing.Point(178, 494);
+            this.btnClear.Location = new System.Drawing.Point(92, 314);
             this.btnClear.Name = "btnClear";
             this.btnClear.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnClear.Size = new System.Drawing.Size(87, 26);
@@ -290,10 +295,11 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Yellow;
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(271, 494);
+            this.btnAdd.Location = new System.Drawing.Point(185, 314);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnAdd.Size = new System.Drawing.Size(87, 26);
@@ -305,10 +311,11 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.Blue;
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUpdate.Location = new System.Drawing.Point(1083, 494);
+            this.btnUpdate.Location = new System.Drawing.Point(519, 314);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnUpdate.Size = new System.Drawing.Size(89, 26);
@@ -320,10 +327,11 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(988, 494);
+            this.btnDelete.Location = new System.Drawing.Point(424, 314);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnDelete.Size = new System.Drawing.Size(89, 26);
@@ -335,10 +343,11 @@
             // btnRefresh
             // 
             this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.Black;
-            this.btnRefresh.Location = new System.Drawing.Point(684, 17);
+            this.btnRefresh.Location = new System.Drawing.Point(519, 17);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRefresh.Size = new System.Drawing.Size(89, 26);
@@ -349,22 +358,26 @@
             // 
             // panelTable
             // 
-            this.panelTable.BackColor = System.Drawing.Color.Gray;
+            this.panelTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.panelTable.Controls.Add(this.lblSelectInfo);
             this.panelTable.Controls.Add(this.lblSearch);
             this.panelTable.Controls.Add(this.btnRefresh);
+            this.panelTable.Controls.Add(this.btnUpdate);
+            this.panelTable.Controls.Add(this.btnDelete);
             this.panelTable.Controls.Add(this.txtSearch);
             this.panelTable.Controls.Add(this.chkActive);
             this.panelTable.Controls.Add(this.dgvCourses);
-            this.panelTable.Location = new System.Drawing.Point(377, 110);
+            this.panelTable.Location = new System.Drawing.Point(338, 78);
             this.panelTable.Name = "panelTable";
-            this.panelTable.Size = new System.Drawing.Size(795, 378);
+            this.panelTable.Size = new System.Drawing.Size(630, 359);
             this.panelTable.TabIndex = 39;
             // 
             // lblSelectInfo
             // 
             this.lblSelectInfo.AutoSize = true;
             this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectInfo.Location = new System.Drawing.Point(779, 497);
+            this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblSelectInfo.Location = new System.Drawing.Point(215, 317);
             this.lblSelectInfo.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblSelectInfo.Name = "lblSelectInfo";
             this.lblSelectInfo.Size = new System.Drawing.Size(206, 18);
@@ -375,17 +388,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1184, 661);
-            this.Controls.Add(this.lblSelectInfo);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.ClientSize = new System.Drawing.Size(988, 636);
             this.Controls.Add(this.panelTable);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.panelInput);
             this.Controls.Add(this.panelHeader);
-            this.ForeColor = System.Drawing.Color.White;
+            this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ForeColor = System.Drawing.Color.Black;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CourseManagementForm";
             this.Text = "CourseManagementForm";
             this.Load += new System.EventHandler(this.CourseManagementForm_Load);
@@ -398,7 +408,6 @@
             this.panelTable.ResumeLayout(false);
             this.panelTable.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

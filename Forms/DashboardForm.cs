@@ -19,6 +19,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             InitializeComponent();
             _currentUser = user;
             this.Text = $"IUIS Dashboard - Welcome, {user.Username} ({user.Role})";
+            //LoadOfficeForm();
         }
 
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
