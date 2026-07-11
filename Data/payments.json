@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "Amount": 5000.00,
+    "PaymentDate": "2025-06-15T00:00:00",
+    "PaymentMethod": "Cash",
+    "ReferenceNo": "RC-001",
+    "Remarks": "Tuition payment"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "Amount": 3000.00,
+    "PaymentDate": "2025-06-20T00:00:00",
+    "PaymentMethod": "Bank Transfer",
+    "ReferenceNo": "BT-002",
+    "Remarks": "Partial payment"
+  }
+]

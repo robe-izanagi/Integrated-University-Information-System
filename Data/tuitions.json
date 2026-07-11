@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "Semester": "1st",
+    "SchoolYear": "2025-2026",
+    "TotalUnits": 15,
+    "UnitFee": 500.00,
+    "TotalAmount": 7500.00,
+    "AmountPaid": 5000.00,
+    "Balance": 2500.00,
+    "Status": "Partial"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "Semester": "1st",
+    "SchoolYear": "2025-2026",
+    "TotalUnits": 12,
+    "UnitFee": 450.00,
+    "TotalAmount": 5400.00,
+    "AmountPaid": 3000.00,
+    "Balance": 2400.00,
+    "Status": "Partial"
+  }
+]

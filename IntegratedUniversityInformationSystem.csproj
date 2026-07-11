@@ -147,6 +147,12 @@
     <Compile Include="Forms\RegistrarOfficeForm.Designer.cs">
       <DependentUpon>RegistrarOfficeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ScholarshipManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScholarshipManagementForm.Designer.cs">
+      <DependentUpon>ScholarshipManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\StudentManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,20 +165,32 @@
     <Compile Include="Forms\SubjectManagementForm.Designer.cs">
       <DependentUpon>SubjectManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TuitionManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TuitionManagementForm.Designer.cs">
+      <DependentUpon>TuitionManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Scholarship.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\Tuition.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\EnrollmentRepository.cs" />
     <Compile Include="Repositories\JsonRepository.cs" />
+    <Compile Include="Repositories\PaymentRepository.cs" />
+    <Compile Include="Repositories\ScholarshipRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
     <Compile Include="Repositories\SubjectRepository.cs" />
+    <Compile Include="Repositories\TuitionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -198,11 +216,17 @@
     <EmbeddedResource Include="Forms\RegistrarOfficeForm.resx">
       <DependentUpon>RegistrarOfficeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScholarshipManagementForm.resx">
+      <DependentUpon>ScholarshipManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\StudentManagementForm.resx">
       <DependentUpon>StudentManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SubjectManagementForm.resx">
       <DependentUpon>SubjectManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TuitionManagementForm.resx">
+      <DependentUpon>TuitionManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -222,10 +246,19 @@
     <None Include="Data\enrollments.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\payments.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\scholarships.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\students.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\subjects.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\tuitions.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\users.json">

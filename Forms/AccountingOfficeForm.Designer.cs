@@ -35,9 +35,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.pbAccount = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -54,24 +51,19 @@
             this.panelContainer4 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblMenu = new System.Windows.Forms.Label();
-            this.panelContainer3 = new System.Windows.Forms.Panel();
-            this.lblEnrollments = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panelContainer2 = new System.Windows.Forms.Panel();
-            this.lblSubjects = new System.Windows.Forms.Label();
+            this.lblTuition = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panelContainer1 = new System.Windows.Forms.Panel();
-            this.lblCourse = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblScholarship = new System.Windows.Forms.Label();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.lblStudents = new System.Windows.Forms.Label();
+            this.lblPayment = new System.Windows.Forms.Label();
             this.pbUser = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbAccount)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -82,14 +74,12 @@
             this.panelSidebar.SuspendLayout();
             this.panelContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panelContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panelContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panelContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel14
@@ -143,31 +133,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 10);
             this.panel3.TabIndex = 18;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel5);
-            this.panel4.Location = new System.Drawing.Point(6, 253);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(185, 11);
-            this.panel4.TabIndex = 17;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(0, 8);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(200, 10);
-            this.panel5.TabIndex = 17;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 10);
-            this.panel6.TabIndex = 18;
             // 
             // pbAccount
             // 
@@ -243,11 +208,13 @@
             this.lblLogout.AutoSize = true;
             this.lblLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblLogout.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogout.Location = new System.Drawing.Point(44, 12);
+            this.lblLogout.ForeColor = System.Drawing.Color.Red;
+            this.lblLogout.Location = new System.Drawing.Point(44, 14);
             this.lblLogout.Name = "lblLogout";
             this.lblLogout.Size = new System.Drawing.Size(59, 16);
             this.lblLogout.TabIndex = 1;
             this.lblLogout.Text = "Logout";
+            this.lblLogout.Click += new System.EventHandler(this.lblLogout_Click);
             // 
             // panelContent
             // 
@@ -284,12 +251,10 @@
             this.panelSidebar.Controls.Add(this.pictureBox5);
             this.panelSidebar.Controls.Add(this.panelContainer4);
             this.panelSidebar.Controls.Add(this.lblMenu);
-            this.panelSidebar.Controls.Add(this.panelContainer3);
             this.panelSidebar.Controls.Add(this.panelContainer2);
             this.panelSidebar.Controls.Add(this.panelContainer1);
             this.panelSidebar.Controls.Add(this.panelContainer);
             this.panelSidebar.Controls.Add(this.panel1);
-            this.panelSidebar.Controls.Add(this.panel4);
             this.panelSidebar.Location = new System.Drawing.Point(-1, -2);
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.Size = new System.Drawing.Size(200, 668);
@@ -297,6 +262,7 @@
             // 
             // panelContainer4
             // 
+            this.panelContainer4.BackColor = System.Drawing.Color.Transparent;
             this.panelContainer4.Controls.Add(this.lblLogout);
             this.panelContainer4.Controls.Add(this.pictureBox4);
             this.panelContainer4.Location = new System.Drawing.Point(7, 609);
@@ -307,7 +273,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox4.Location = new System.Drawing.Point(4, 6);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(34, 30);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -324,39 +290,10 @@
             this.lblMenu.TabIndex = 4;
             this.lblMenu.Text = "Menu";
             // 
-            // panelContainer3
-            // 
-            this.panelContainer3.Controls.Add(this.lblEnrollments);
-            this.panelContainer3.Controls.Add(this.pictureBox3);
-            this.panelContainer3.Location = new System.Drawing.Point(6, 222);
-            this.panelContainer3.Name = "panelContainer3";
-            this.panelContainer3.Size = new System.Drawing.Size(186, 39);
-            this.panelContainer3.TabIndex = 3;
-            // 
-            // lblEnrollments
-            // 
-            this.lblEnrollments.AutoSize = true;
-            this.lblEnrollments.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblEnrollments.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnrollments.Location = new System.Drawing.Point(44, 12);
-            this.lblEnrollments.Name = "lblEnrollments";
-            this.lblEnrollments.Size = new System.Drawing.Size(94, 16);
-            this.lblEnrollments.TabIndex = 1;
-            this.lblEnrollments.Text = "Enrollments";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 30);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 14;
-            this.pictureBox3.TabStop = false;
-            // 
             // panelContainer2
             // 
-            this.panelContainer2.Controls.Add(this.lblSubjects);
+            this.panelContainer2.BackColor = System.Drawing.Color.Transparent;
+            this.panelContainer2.Controls.Add(this.lblTuition);
             this.panelContainer2.Controls.Add(this.pictureBox2);
             this.panelContainer2.Controls.Add(this.panel13);
             this.panelContainer2.Location = new System.Drawing.Point(6, 177);
@@ -364,16 +301,17 @@
             this.panelContainer2.Size = new System.Drawing.Size(186, 39);
             this.panelContainer2.TabIndex = 2;
             // 
-            // lblSubjects
+            // lblTuition
             // 
-            this.lblSubjects.AutoSize = true;
-            this.lblSubjects.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblSubjects.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubjects.Location = new System.Drawing.Point(44, 12);
-            this.lblSubjects.Name = "lblSubjects";
-            this.lblSubjects.Size = new System.Drawing.Size(68, 16);
-            this.lblSubjects.TabIndex = 1;
-            this.lblSubjects.Text = "Subjects";
+            this.lblTuition.AutoSize = true;
+            this.lblTuition.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblTuition.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTuition.Location = new System.Drawing.Point(44, 12);
+            this.lblTuition.Name = "lblTuition";
+            this.lblTuition.Size = new System.Drawing.Size(67, 16);
+            this.lblTuition.TabIndex = 1;
+            this.lblTuition.Text = "Tuitions";
+            this.lblTuition.Click += new System.EventHandler(this.lblTuition_Click);
             // 
             // pictureBox2
             // 
@@ -387,7 +325,8 @@
             // 
             // panelContainer1
             // 
-            this.panelContainer1.Controls.Add(this.lblCourse);
+            this.panelContainer1.BackColor = System.Drawing.Color.Transparent;
+            this.panelContainer1.Controls.Add(this.lblScholarship);
             this.panelContainer1.Controls.Add(this.pictureBox1);
             this.panelContainer1.Controls.Add(this.panel10);
             this.panelContainer1.Location = new System.Drawing.Point(6, 132);
@@ -395,30 +334,22 @@
             this.panelContainer1.Size = new System.Drawing.Size(186, 39);
             this.panelContainer1.TabIndex = 1;
             // 
-            // lblCourse
+            // lblScholarship
             // 
-            this.lblCourse.AutoSize = true;
-            this.lblCourse.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCourse.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCourse.Location = new System.Drawing.Point(44, 12);
-            this.lblCourse.Name = "lblCourse";
-            this.lblCourse.Size = new System.Drawing.Size(65, 16);
-            this.lblCourse.TabIndex = 1;
-            this.lblCourse.Text = "Courses";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 30);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            this.lblScholarship.AutoSize = true;
+            this.lblScholarship.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblScholarship.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScholarship.Location = new System.Drawing.Point(44, 12);
+            this.lblScholarship.Name = "lblScholarship";
+            this.lblScholarship.Size = new System.Drawing.Size(99, 16);
+            this.lblScholarship.TabIndex = 1;
+            this.lblScholarship.Text = "Scholarships";
+            this.lblScholarship.Click += new System.EventHandler(this.lblScholarship_Click);
             // 
             // panelContainer
             // 
-            this.panelContainer.Controls.Add(this.lblStudents);
+            this.panelContainer.BackColor = System.Drawing.Color.Transparent;
+            this.panelContainer.Controls.Add(this.lblPayment);
             this.panelContainer.Controls.Add(this.pbUser);
             this.panelContainer.Controls.Add(this.panel7);
             this.panelContainer.Location = new System.Drawing.Point(6, 87);
@@ -426,16 +357,17 @@
             this.panelContainer.Size = new System.Drawing.Size(186, 39);
             this.panelContainer.TabIndex = 0;
             // 
-            // lblStudents
+            // lblPayment
             // 
-            this.lblStudents.AutoSize = true;
-            this.lblStudents.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblStudents.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStudents.Location = new System.Drawing.Point(44, 12);
-            this.lblStudents.Name = "lblStudents";
-            this.lblStudents.Size = new System.Drawing.Size(69, 16);
-            this.lblStudents.TabIndex = 1;
-            this.lblStudents.Text = "Students";
+            this.lblPayment.AutoSize = true;
+            this.lblPayment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblPayment.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPayment.Location = new System.Drawing.Point(44, 12);
+            this.lblPayment.Name = "lblPayment";
+            this.lblPayment.Size = new System.Drawing.Size(76, 16);
+            this.lblPayment.TabIndex = 1;
+            this.lblPayment.Text = "Payments";
+            this.lblPayment.Click += new System.EventHandler(this.lblPayment_Click);
             // 
             // pbUser
             // 
@@ -447,6 +379,16 @@
             this.pbUser.TabIndex = 14;
             this.pbUser.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(34, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            // 
             // AccountingOfficeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,14 +397,13 @@
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelTopContent);
             this.Controls.Add(this.panelSidebar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "AccountingOfficeForm";
             this.Text = "AccountingOfficeForm";
             this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbAccount)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -476,18 +417,15 @@
             this.panelContainer4.ResumeLayout(false);
             this.panelContainer4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panelContainer3.ResumeLayout(false);
-            this.panelContainer3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panelContainer2.ResumeLayout(false);
             this.panelContainer2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panelContainer1.ResumeLayout(false);
             this.panelContainer1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelContainer.ResumeLayout(false);
             this.panelContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -500,9 +438,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.PictureBox pbAccount;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel9;
@@ -519,17 +454,14 @@
         private System.Windows.Forms.Panel panelContainer4;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label lblMenu;
-        private System.Windows.Forms.Panel panelContainer3;
-        private System.Windows.Forms.Label lblEnrollments;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panelContainer2;
-        private System.Windows.Forms.Label lblSubjects;
+        private System.Windows.Forms.Label lblTuition;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel panelContainer1;
-        private System.Windows.Forms.Label lblCourse;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblScholarship;
         private System.Windows.Forms.Panel panelContainer;
-        private System.Windows.Forms.Label lblStudents;
+        private System.Windows.Forms.Label lblPayment;
         private System.Windows.Forms.PictureBox pbUser;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentManagementForm));
             this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.lblPaymentMethod = new System.Windows.Forms.Label();
@@ -40,29 +41,50 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.lblRemarks = new System.Windows.Forms.Label();
             this.lblSelectInfo = new System.Windows.Forms.Label();
-            this.lblSearch = new System.Windows.Forms.Label();
             this.lblStudent = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.chkActive = new System.Windows.Forms.CheckBox();
-            this.dgvEnrollments = new System.Windows.Forms.DataGridView();
+            this.dgvPayments = new System.Windows.Forms.DataGridView();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
-            this.btnClear = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.panelTable = new System.Windows.Forms.Panel();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.txtAmount = new System.Windows.Forms.TextBox();
-            this.dtpBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.lblPaymentDate = new System.Windows.Forms.Label();
+            this.lblFields = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblAdd = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblReferenceNo = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblClear = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.txtReferenceNo = new System.Windows.Forms.TextBox();
+            this.lblPaymentDate = new System.Windows.Forms.Label();
+            this.txtAmount = new System.Windows.Forms.TextBox();
+            this.panelTable = new System.Windows.Forms.Panel();
+            this.lblRecords = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblUpdate = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDelete = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbRefresh = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.dtpPaymentDate = new System.Windows.Forms.DateTimePicker();
             this.panelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEnrollments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
             this.panelInput.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panelTable.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbPaymentMethod
@@ -163,23 +185,12 @@
             this.lblSelectInfo.AutoSize = true;
             this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
-            this.lblSelectInfo.Location = new System.Drawing.Point(220, 341);
+            this.lblSelectInfo.Location = new System.Drawing.Point(179, 456);
             this.lblSelectInfo.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblSelectInfo.Name = "lblSelectInfo";
             this.lblSelectInfo.Size = new System.Drawing.Size(206, 18);
             this.lblSelectInfo.TabIndex = 57;
             this.lblSelectInfo.Text = "Select a row on the table first: ";
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.ForeColor = System.Drawing.Color.Black;
-            this.lblSearch.Location = new System.Drawing.Point(19, 23);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(71, 20);
-            this.lblSearch.TabIndex = 35;
-            this.lblSearch.Text = "Search:";
             // 
             // lblStudent
             // 
@@ -195,29 +206,17 @@
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(96, 17);
+            this.txtSearch.Location = new System.Drawing.Point(9, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(281, 26);
+            this.txtSearch.Size = new System.Drawing.Size(281, 19);
             this.txtSearch.TabIndex = 36;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // chkActive
+            // dgvPayments
             // 
-            this.chkActive.AutoSize = true;
-            this.chkActive.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chkActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkActive.ForeColor = System.Drawing.Color.Black;
-            this.chkActive.Location = new System.Drawing.Point(447, 18);
-            this.chkActive.Name = "chkActive";
-            this.chkActive.Size = new System.Drawing.Size(71, 24);
-            this.chkActive.TabIndex = 39;
-            this.chkActive.Text = "Active";
-            this.chkActive.UseVisualStyleBackColor = true;
-            // 
-            // dgvEnrollments
-            // 
-            this.dgvEnrollments.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvPayments.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,8 +224,8 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEnrollments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvEnrollments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPayments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -234,10 +233,10 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEnrollments.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvEnrollments.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvEnrollments.Location = new System.Drawing.Point(23, 49);
-            this.dgvEnrollments.Name = "dgvEnrollments";
+            this.dgvPayments.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPayments.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dgvPayments.Location = new System.Drawing.Point(23, 112);
+            this.dgvPayments.Name = "dgvPayments";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,9 +244,10 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEnrollments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvEnrollments.Size = new System.Drawing.Size(590, 274);
-            this.dgvEnrollments.TabIndex = 44;
+            this.dgvPayments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvPayments.Size = new System.Drawing.Size(581, 312);
+            this.dgvPayments.TabIndex = 44;
+            this.dgvPayments.SelectionChanged += new System.EventHandler(this.dgvPayments_SelectionChanged);
             // 
             // txtID
             // 
@@ -273,16 +273,17 @@
             // panelInput
             // 
             this.panelInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.panelInput.Controls.Add(this.dtpPaymentDate);
+            this.panelInput.Controls.Add(this.lblFields);
+            this.panelInput.Controls.Add(this.panel5);
             this.panelInput.Controls.Add(this.lblReferenceNo);
+            this.panelInput.Controls.Add(this.panel4);
             this.panelInput.Controls.Add(this.txtReferenceNo);
-            this.panelInput.Controls.Add(this.dtpBirthDate);
             this.panelInput.Controls.Add(this.lblPaymentDate);
             this.panelInput.Controls.Add(this.txtAmount);
             this.panelInput.Controls.Add(this.cmbPaymentMethod);
             this.panelInput.Controls.Add(this.lblRemarks);
             this.panelInput.Controls.Add(this.txtRemarks);
-            this.panelInput.Controls.Add(this.btnClear);
-            this.panelInput.Controls.Add(this.btnAdd);
             this.panelInput.Controls.Add(this.lblPaymentMethod);
             this.panelInput.Controls.Add(this.lblAmount);
             this.panelInput.Controls.Add(this.cmbStudent);
@@ -294,132 +295,49 @@
             this.panelInput.Size = new System.Drawing.Size(303, 483);
             this.panelInput.TabIndex = 54;
             // 
-            // btnClear
+            // lblFields
             // 
-            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.btnClear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.btnClear.Location = new System.Drawing.Point(63, 443);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnClear.Size = new System.Drawing.Size(87, 26);
-            this.btnClear.TabIndex = 54;
-            this.btnClear.Text = "Clear";
-            this.btnClear.UseVisualStyleBackColor = false;
+            this.lblFields.AutoSize = true;
+            this.lblFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFields.ForeColor = System.Drawing.Color.Black;
+            this.lblFields.Location = new System.Drawing.Point(14, 16);
+            this.lblFields.Name = "lblFields";
+            this.lblFields.Size = new System.Drawing.Size(149, 25);
+            this.lblFields.TabIndex = 66;
+            this.lblFields.Text = "Payment Info";
             // 
-            // btnAdd
+            // panel5
             // 
-            this.btnAdd.BackColor = System.Drawing.Color.Yellow;
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.Black;
-            this.btnAdd.Location = new System.Drawing.Point(156, 443);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnAdd.Size = new System.Drawing.Size(129, 26);
-            this.btnAdd.TabIndex = 53;
-            this.btnAdd.Text = "Add Payment";
-            this.btnAdd.UseVisualStyleBackColor = false;
+            this.panel5.BackColor = System.Drawing.Color.Yellow;
+            this.panel5.Controls.Add(this.lblAdd);
+            this.panel5.Controls.Add(this.pictureBox4);
+            this.panel5.Location = new System.Drawing.Point(118, 438);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(167, 36);
+            this.panel5.TabIndex = 61;
             // 
-            // btnUpdate
+            // lblAdd
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.Blue;
-            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnUpdate.Location = new System.Drawing.Point(524, 338);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnUpdate.Size = new System.Drawing.Size(89, 26);
-            this.btnUpdate.TabIndex = 56;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.lblAdd.AutoSize = true;
+            this.lblAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdd.ForeColor = System.Drawing.Color.Black;
+            this.lblAdd.Location = new System.Drawing.Point(43, 8);
+            this.lblAdd.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblAdd.Name = "lblAdd";
+            this.lblAdd.Size = new System.Drawing.Size(106, 18);
+            this.lblAdd.TabIndex = 60;
+            this.lblAdd.Text = "Add Payment";
+            this.lblAdd.Click += new System.EventHandler(this.lblAdd_Click);
             // 
-            // btnDelete
+            // pictureBox4
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.Red;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnDelete.Location = new System.Drawing.Point(429, 338);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnDelete.Size = new System.Drawing.Size(89, 26);
-            this.btnDelete.TabIndex = 55;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // panelTable
-            // 
-            this.panelTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
-            this.panelTable.Controls.Add(this.lblSelectInfo);
-            this.panelTable.Controls.Add(this.lblSearch);
-            this.panelTable.Controls.Add(this.btnUpdate);
-            this.panelTable.Controls.Add(this.btnDelete);
-            this.panelTable.Controls.Add(this.btnRefresh);
-            this.panelTable.Controls.Add(this.txtSearch);
-            this.panelTable.Controls.Add(this.chkActive);
-            this.panelTable.Controls.Add(this.dgvEnrollments);
-            this.panelTable.Location = new System.Drawing.Point(339, 78);
-            this.panelTable.Name = "panelTable";
-            this.panelTable.Size = new System.Drawing.Size(629, 378);
-            this.panelTable.TabIndex = 55;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
-            this.btnRefresh.Location = new System.Drawing.Point(524, 16);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.btnRefresh.Size = new System.Drawing.Size(89, 26);
-            this.btnRefresh.TabIndex = 49;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmount.Location = new System.Drawing.Point(16, 191);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(269, 26);
-            this.txtAmount.TabIndex = 61;
-            // 
-            // dtpBirthDate
-            // 
-            this.dtpBirthDate.CalendarMonthBackground = System.Drawing.SystemColors.InactiveBorder;
-            this.dtpBirthDate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dtpBirthDate.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dtpBirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpBirthDate.Location = new System.Drawing.Point(15, 244);
-            this.dtpBirthDate.MaxDate = new System.DateTime(2026, 7, 10, 0, 0, 0, 0);
-            this.dtpBirthDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpBirthDate.Name = "dtpBirthDate";
-            this.dtpBirthDate.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.dtpBirthDate.Size = new System.Drawing.Size(270, 26);
-            this.dtpBirthDate.TabIndex = 62;
-            this.dtpBirthDate.Value = new System.DateTime(2026, 7, 10, 0, 0, 0, 0);
-            // 
-            // lblPaymentDate
-            // 
-            this.lblPaymentDate.AutoSize = true;
-            this.lblPaymentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaymentDate.ForeColor = System.Drawing.Color.Black;
-            this.lblPaymentDate.Location = new System.Drawing.Point(11, 221);
-            this.lblPaymentDate.Name = "lblPaymentDate";
-            this.lblPaymentDate.Size = new System.Drawing.Size(127, 20);
-            this.lblPaymentDate.TabIndex = 63;
-            this.lblPaymentDate.Text = "Payment Date:";
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(16, 5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 59;
+            this.pictureBox4.TabStop = false;
             // 
             // lblReferenceNo
             // 
@@ -432,6 +350,39 @@
             this.lblReferenceNo.TabIndex = 65;
             this.lblReferenceNo.Text = "Reference No.:";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightBlue;
+            this.panel4.Controls.Add(this.lblClear);
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Location = new System.Drawing.Point(19, 438);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(93, 36);
+            this.panel4.TabIndex = 60;
+            // 
+            // lblClear
+            // 
+            this.lblClear.AutoSize = true;
+            this.lblClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClear.ForeColor = System.Drawing.Color.Black;
+            this.lblClear.Location = new System.Drawing.Point(34, 8);
+            this.lblClear.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblClear.Name = "lblClear";
+            this.lblClear.Size = new System.Drawing.Size(48, 18);
+            this.lblClear.TabIndex = 60;
+            this.lblClear.Text = "Clear";
+            this.lblClear.Click += new System.EventHandler(this.lblClear_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(8, 5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(23, 23);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 59;
+            this.pictureBox3.TabStop = false;
+            // 
             // txtReferenceNo
             // 
             this.txtReferenceNo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
@@ -442,11 +393,165 @@
             this.txtReferenceNo.Size = new System.Drawing.Size(266, 26);
             this.txtReferenceNo.TabIndex = 64;
             // 
+            // lblPaymentDate
+            // 
+            this.lblPaymentDate.AutoSize = true;
+            this.lblPaymentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaymentDate.ForeColor = System.Drawing.Color.Black;
+            this.lblPaymentDate.Location = new System.Drawing.Point(11, 221);
+            this.lblPaymentDate.Name = "lblPaymentDate";
+            this.lblPaymentDate.Size = new System.Drawing.Size(127, 20);
+            this.lblPaymentDate.TabIndex = 63;
+            this.lblPaymentDate.Text = "Payment Date:";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmount.Location = new System.Drawing.Point(16, 191);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(269, 26);
+            this.txtAmount.TabIndex = 61;
+            // 
+            // panelTable
+            // 
+            this.panelTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.panelTable.Controls.Add(this.lblRecords);
+            this.panelTable.Controls.Add(this.panel3);
+            this.panelTable.Controls.Add(this.panel2);
+            this.panelTable.Controls.Add(this.pbRefresh);
+            this.panelTable.Controls.Add(this.panel1);
+            this.panelTable.Controls.Add(this.lblSelectInfo);
+            this.panelTable.Controls.Add(this.dgvPayments);
+            this.panelTable.Location = new System.Drawing.Point(339, 78);
+            this.panelTable.Name = "panelTable";
+            this.panelTable.Size = new System.Drawing.Size(629, 483);
+            this.panelTable.TabIndex = 55;
+            // 
+            // lblRecords
+            // 
+            this.lblRecords.AutoSize = true;
+            this.lblRecords.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecords.ForeColor = System.Drawing.Color.Black;
+            this.lblRecords.Location = new System.Drawing.Point(18, 16);
+            this.lblRecords.Name = "lblRecords";
+            this.lblRecords.Size = new System.Drawing.Size(197, 25);
+            this.lblRecords.TabIndex = 67;
+            this.lblRecords.Text = "Payment Records";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Blue;
+            this.panel3.Controls.Add(this.lblUpdate);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Location = new System.Drawing.Point(499, 438);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(105, 36);
+            this.panel3.TabIndex = 61;
+            // 
+            // lblUpdate
+            // 
+            this.lblUpdate.AutoSize = true;
+            this.lblUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdate.ForeColor = System.Drawing.Color.White;
+            this.lblUpdate.Location = new System.Drawing.Point(35, 8);
+            this.lblUpdate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(68, 20);
+            this.lblUpdate.TabIndex = 60;
+            this.lblUpdate.Text = "Update";
+            this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 59;
+            this.pictureBox2.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Red;
+            this.panel2.Controls.Add(this.lblDelete);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(388, 438);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(105, 36);
+            this.panel2.TabIndex = 59;
+            // 
+            // lblDelete
+            // 
+            this.lblDelete.AutoSize = true;
+            this.lblDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDelete.ForeColor = System.Drawing.Color.White;
+            this.lblDelete.Location = new System.Drawing.Point(35, 8);
+            this.lblDelete.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(62, 20);
+            this.lblDelete.TabIndex = 60;
+            this.lblDelete.Text = "Delete";
+            this.lblDelete.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 59;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pbRefresh
+            // 
+            this.pbRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.pbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("pbRefresh.Image")));
+            this.pbRefresh.Location = new System.Drawing.Point(575, 80);
+            this.pbRefresh.Name = "pbRefresh";
+            this.pbRefresh.Size = new System.Drawing.Size(29, 26);
+            this.pbRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbRefresh.TabIndex = 60;
+            this.pbRefresh.TabStop = false;
+            this.pbRefresh.Click += new System.EventHandler(this.pbRefresh_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.panel1.Controls.Add(this.pictureBox5);
+            this.panel1.Controls.Add(this.txtSearch);
+            this.panel1.Location = new System.Drawing.Point(23, 73);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(329, 36);
+            this.panel1.TabIndex = 58;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(296, 5);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(29, 26);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 59;
+            this.pictureBox5.TabStop = false;
+            // 
+            // dtpPaymentDate
+            // 
+            this.dtpPaymentDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPaymentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpPaymentDate.Location = new System.Drawing.Point(15, 244);
+            this.dtpPaymentDate.Name = "dtpPaymentDate";
+            this.dtpPaymentDate.Size = new System.Drawing.Size(269, 26);
+            this.dtpPaymentDate.TabIndex = 86;
+            // 
             // PaymentManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 636);
+            this.ClientSize = new System.Drawing.Size(988, 631);
             this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.panelInput);
             this.Controls.Add(this.panelTable);
@@ -455,11 +560,27 @@
             this.Text = "PaymentManagementForm";
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEnrollments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.panelTable.ResumeLayout(false);
             this.panelTable.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -475,24 +596,34 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblRemarks;
         private System.Windows.Forms.Label lblSelectInfo;
-        private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Label lblStudent;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.CheckBox chkActive;
-        private System.Windows.Forms.DataGridView dgvEnrollments;
+        private System.Windows.Forms.DataGridView dgvPayments;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.Panel panelInput;
-        private System.Windows.Forms.Button btnClear;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Panel panelTable;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.TextBox txtAmount;
-        private System.Windows.Forms.DateTimePicker dtpBirthDate;
         private System.Windows.Forms.Label lblPaymentDate;
         private System.Windows.Forms.Label lblReferenceNo;
         private System.Windows.Forms.TextBox txtReferenceNo;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pbRefresh;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lblDelete;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblUpdate;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblClear;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label lblAdd;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lblFields;
+        private System.Windows.Forms.Label lblRecords;
+        private System.Windows.Forms.DateTimePicker dtpPaymentDate;
     }
 }
