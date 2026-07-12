@@ -220,9 +220,9 @@
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.panelContent.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.panelContent.Location = new System.Drawing.Point(197, 30);
+            this.panelContent.Location = new System.Drawing.Point(197, 39);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(988, 636);
+            this.panelContent.Size = new System.Drawing.Size(988, 627);
             this.panelContent.TabIndex = 5;
             // 
             // panelTopContent
@@ -230,7 +230,7 @@
             this.panelTopContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.panelTopContent.Controls.Add(this.pbAccount);
             this.panelTopContent.Controls.Add(this.lblTitle);
-            this.panelTopContent.Location = new System.Drawing.Point(197, -5);
+            this.panelTopContent.Location = new System.Drawing.Point(197, 1);
             this.panelTopContent.Name = "panelTopContent";
             this.panelTopContent.Size = new System.Drawing.Size(988, 42);
             this.panelTopContent.TabIndex = 4;

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TuitionManagementForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRecords = new System.Windows.Forms.Label();
             this.pbRefresh = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -290,12 +290,12 @@
             this.lblAdd.AutoSize = true;
             this.lblAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdd.ForeColor = System.Drawing.Color.Black;
-            this.lblAdd.Location = new System.Drawing.Point(87, 8);
+            this.lblAdd.Location = new System.Drawing.Point(66, 10);
             this.lblAdd.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblAdd.Name = "lblAdd";
-            this.lblAdd.Size = new System.Drawing.Size(106, 18);
+            this.lblAdd.Size = new System.Drawing.Size(36, 18);
             this.lblAdd.TabIndex = 60;
-            this.lblAdd.Text = "Add Payment";
+            this.lblAdd.Text = "Add";
             this.lblAdd.Click += new System.EventHandler(this.lblAdd_Click);
             // 
             // panelHeader
@@ -325,6 +325,7 @@
             this.panelInput.Controls.Add(this.cmbStatus);
             this.panelInput.Controls.Add(this.lblStatus);
             this.panelInput.Controls.Add(this.lblBalance);
+            this.panelInput.Controls.Add(this.panel5);
             this.panelInput.Controls.Add(this.txtBalance);
             this.panelInput.Controls.Add(this.lblAmountPaid);
             this.panelInput.Controls.Add(this.txtAmountPaid);
@@ -334,7 +335,6 @@
             this.panelInput.Controls.Add(this.txtSchoolYear);
             this.panelInput.Controls.Add(this.cmbSemester);
             this.panelInput.Controls.Add(this.lblFields);
-            this.panelInput.Controls.Add(this.panel5);
             this.panelInput.Controls.Add(this.lblUnitFee);
             this.panelInput.Controls.Add(this.panel4);
             this.panelInput.Controls.Add(this.txtUnitFee);
@@ -366,15 +366,15 @@
             this.panel5.BackColor = System.Drawing.Color.Yellow;
             this.panel5.Controls.Add(this.lblAdd);
             this.panel5.Controls.Add(this.pictureBox4);
-            this.panel5.Location = new System.Drawing.Point(15, 637);
+            this.panel5.Location = new System.Drawing.Point(139, 595);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(270, 36);
+            this.panel5.Size = new System.Drawing.Size(145, 36);
             this.panel5.TabIndex = 61;
             // 
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(60, 5);
+            this.pictureBox4.Location = new System.Drawing.Point(39, 7);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(23, 23);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -480,34 +480,34 @@
             // dgvTuitions
             // 
             this.dgvTuitions.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTuitions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTuitions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvTuitions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTuitions.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTuitions.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvTuitions.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvTuitions.Location = new System.Drawing.Point(23, 115);
             this.dgvTuitions.Name = "dgvTuitions";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTuitions.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTuitions.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvTuitions.Size = new System.Drawing.Size(581, 312);
             this.dgvTuitions.TabIndex = 44;
             this.dgvTuitions.SelectionChanged += new System.EventHandler(this.dgvTuitions_SelectionChanged);
@@ -620,9 +620,9 @@
             this.panel6.BackColor = System.Drawing.Color.Orange;
             this.panel6.Controls.Add(this.lblCalculate);
             this.panel6.Controls.Add(this.pictureBox6);
-            this.panel6.Location = new System.Drawing.Point(138, 595);
+            this.panel6.Location = new System.Drawing.Point(16, 637);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(146, 36);
+            this.panel6.Size = new System.Drawing.Size(268, 36);
             this.panel6.TabIndex = 78;
             // 
             // lblCalculate
@@ -630,7 +630,7 @@
             this.lblCalculate.AutoSize = true;
             this.lblCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCalculate.ForeColor = System.Drawing.Color.Black;
-            this.lblCalculate.Location = new System.Drawing.Point(45, 8);
+            this.lblCalculate.Location = new System.Drawing.Point(98, 9);
             this.lblCalculate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.lblCalculate.Name = "lblCalculate";
             this.lblCalculate.Size = new System.Drawing.Size(78, 18);
@@ -641,7 +641,7 @@
             // pictureBox6
             // 
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(18, 5);
+            this.pictureBox6.Location = new System.Drawing.Point(71, 6);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(23, 23);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

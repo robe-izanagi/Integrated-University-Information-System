@@ -1,0 +1,36 @@
+[
+  {
+    "Id": 1,
+    "EmployeeNumber": "EMP-001",
+    "FirstName": "Maria",
+    "LastName": "Santos",
+    "MiddleName": "Reyes",
+    "BirthDate": "1985-05-15T00:00:00",
+    "Gender": "Female",
+    "ContactNumber": "09171234567",
+    "Email": "maria.santos@university.edu",
+    "Address": "Quezon City",
+    "Position": "IT Manager",
+    "Department": "IT Department",
+    "HireDate": "2018-06-01T00:00:00",
+    "EmploymentType": "Full Time",
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "EmployeeNumber": "EMP-002",
+    "FirstName": "Juan",
+    "LastName": "Dela Cruz",
+    "MiddleName": "Santos",
+    "BirthDate": "1990-08-20T00:00:00",
+    "Gender": "Male",
+    "ContactNumber": "09181234567",
+    "Email": "juan.delacruz@university.edu",
+    "Address": "Manila",
+    "Position": "Professor",
+    "Department": "College of Informatics",
+    "HireDate": "2020-08-01T00:00:00",
+    "EmploymentType": "Full Time",
+    "IsActive": true
+  }
+]

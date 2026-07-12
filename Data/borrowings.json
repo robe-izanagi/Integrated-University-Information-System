@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "BookId": 1,
+    "BorrowDate": "2025-07-10T00:00:00",
+    "DueDate": "2025-07-17T00:00:00",
+    "ReturnDate": null,
+    "Status": "Borrowed",
+    "Remarks": "First time borrower"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "BookId": 2,
+    "BorrowDate": "2025-07-05T00:00:00",
+    "DueDate": "2025-07-12T00:00:00",
+    "ReturnDate": "2025-07-10T00:00:00",
+    "Status": "Returned",
+    "Remarks": ""
+  }
+]

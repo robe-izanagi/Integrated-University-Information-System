@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "AppointmentDate": "2025-07-12T09:00:00",
+    "AppointmentTime": "2025-07-12T09:00:00",
+    "Purpose": "Follow-up counseling session",
+    "Status": "Scheduled",
+    "Remarks": ""
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "AppointmentDate": "2025-07-14T14:30:00",
+    "AppointmentTime": "2025-07-14T14:30:00",
+    "Purpose": "Career guidance appointment",
+    "Status": "Scheduled",
+    "Remarks": "Bring resume"
+  }
+]

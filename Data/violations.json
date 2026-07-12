@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "ViolationType": "Attendance",
+    "Description": "Student was late for 3 consecutive days",
+    "DateOfViolation": "2025-07-05T00:00:00",
+    "Sanction": "Verbal warning",
+    "Status": "Resolved",
+    "Remarks": "Student promised to improve"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "ViolationType": "Dress Code",
+    "Description": "Student wearing inappropriate attire",
+    "DateOfViolation": "2025-07-08T00:00:00",
+    "Sanction": "Written warning",
+    "Status": "Pending",
+    "Remarks": "Awaiting parent meeting"
+  }
+]

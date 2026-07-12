@@ -1,0 +1,41 @@
+[
+  {
+    "Id": 1,
+    "ISBN": "978-3-16-148410-0",
+    "Title": "C# Programming for Beginners",
+    "Author": "John Smith",
+    "Publisher": "Tech Books Publishing",
+    "YearPublished": 2022,
+    "Category": "Technology",
+    "Location": "B-2-1",
+    "Quantity": 5,
+    "AvailableCopies": 3,
+    "IsActive": true
+  },
+  {
+    "Id": 2,
+    "ISBN": "978-1-23-456789-7",
+    "Title": "The Great Gatsby",
+    "Author": "F. Scott Fitzgerald",
+    "Publisher": "Classic Books Co.",
+    "YearPublished": 1925,
+    "Category": "Fiction",
+    "Location": "A-1-5",
+    "Quantity": 3,
+    "AvailableCopies": 2,
+    "IsActive": true
+  },
+  {
+    "Id": 3,
+    "ISBN": "978-0-12-345678-9",
+    "Title": "Database Systems: A Practical Approach",
+    "Author": "David Johnson",
+    "Publisher": "Academic Press",
+    "YearPublished": 2020,
+    "Category": "Science",
+    "Location": "C-3-2",
+    "Quantity": 4,
+    "AvailableCopies": 4,
+    "IsActive": true
+  }
+]

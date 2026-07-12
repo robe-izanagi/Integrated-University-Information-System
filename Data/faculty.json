@@ -1,0 +1,11 @@
+[
+  {
+    "Id": 1,
+    "EmployeeId": 2,
+    "FacultyType": "Full Time",
+    "Specialization": "Web Development, Programming",
+    "SubjectsTaught": "IT332, IT331, IT334",
+    "YearsTeaching": 3,
+    "IsActive": true
+  }
+]

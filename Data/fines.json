@@ -1,0 +1,10 @@
+[
+  {
+    "Id": 1,
+    "BorrowingId": 2,
+    "Amount": 50.00,
+    "FineDate": "2025-07-13T00:00:00",
+    "Reason": "Overdue (1 day late)",
+    "Status": "Pending"
+  }
+]

@@ -73,15 +73,15 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return new RegistrarOfficeForm(user);
                 case "accounting":
                     return new AccountingOfficeForm(user);
-                //case "librarian":
-                //case "library":
-                //    return new LibraryOfficeForm(user);
-                //case "guidance":
-                //    return new GuidanceOfficeForm(user);
+                case "librarian":
+                case "library":
+                    return new LibraryOfficeForm(user);
+                case "guidance":
+                    return new GuidanceOfficeForm(user);
                 //case "clinic":
                 //    return new ClinicOfficeForm(user);
-                //case "hr":
-                //    return new HROfficeForm(user);
+                case "hr":
+                    return new HROfficeForm(user);
                 //case "admin":
                 //    return new AdminOfficeForm(user);
                 default:

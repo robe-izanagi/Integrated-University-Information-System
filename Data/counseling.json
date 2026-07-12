@@ -1,0 +1,24 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "Counselor": "Dr. Anna Reyes",
+    "SessionDate": "2025-07-10T10:00:00",
+    "SessionType": "Individual",
+    "Concern": "Academic performance anxiety",
+    "Notes": "Student expressed difficulty in focusing",
+    "Recommendation": "Recommend regular study sessions",
+    "Status": "Completed"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "Counselor": "Dr. Anna Reyes",
+    "SessionDate": "2025-07-15T14:00:00",
+    "SessionType": "Career",
+    "Concern": "Career path decision",
+    "Notes": "Student unsure about future career",
+    "Recommendation": "Schedule career assessment",
+    "Status": "Scheduled"
+  }
+]

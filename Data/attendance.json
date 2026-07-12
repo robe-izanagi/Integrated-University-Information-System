@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "EmployeeId": 1,
+    "Date": "2025-07-11T00:00:00",
+    "TimeIn": "2025-07-11T08:00:00",
+    "TimeOut": "2025-07-11T17:00:00",
+    "Status": "Present",
+    "Remarks": "On time"
+  },
+  {
+    "Id": 2,
+    "EmployeeId": 2,
+    "Date": "2025-07-11T00:00:00",
+    "TimeIn": "2025-07-11T08:30:00",
+    "TimeOut": "2025-07-11T17:00:00",
+    "Status": "Late",
+    "Remarks": "Traffic"
+  }
+]

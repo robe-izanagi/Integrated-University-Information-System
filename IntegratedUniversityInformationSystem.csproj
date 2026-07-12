@@ -111,6 +111,36 @@
     <Compile Include="Forms\AccountingOfficeForm.Designer.cs">
       <DependentUpon>AccountingOfficeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AppointmentManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AppointmentManagementForm.Designer.cs">
+      <DependentUpon>AppointmentManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AttendanceManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AttendanceManagementForm.Designer.cs">
+      <DependentUpon>AttendanceManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BookManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BookManagementForm.Designer.cs">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BorrowingManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BorrowingManagementForm.Designer.cs">
+      <DependentUpon>BorrowingManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CounselingManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CounselingManagementForm.Designer.cs">
+      <DependentUpon>CounselingManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CourseManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,11 +153,47 @@
     <Compile Include="Forms\DashboardForm.Designer.cs">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EmployeeManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeManagementForm.Designer.cs">
+      <DependentUpon>EmployeeManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EnrollmentManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\EnrollmentManagementForm.Designer.cs">
       <DependentUpon>EnrollmentManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FacultyManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FacultyManagementForm.Designer.cs">
+      <DependentUpon>FacultyManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FineManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FineManagementForm.Designer.cs">
+      <DependentUpon>FineManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GuidanceOfficeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GuidanceOfficeForm.Designer.cs">
+      <DependentUpon>GuidanceOfficeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HROfficeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HROfficeForm.Designer.cs">
+      <DependentUpon>HROfficeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LibraryOfficeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LibraryOfficeForm.Designer.cs">
+      <DependentUpon>LibraryOfficeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
@@ -171,9 +237,23 @@
     <Compile Include="Forms\TuitionManagementForm.Designer.cs">
       <DependentUpon>TuitionManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ViolationManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ViolationManagementForm.Designer.cs">
+      <DependentUpon>ViolationManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Validator.cs" />
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Borrowing.cs" />
+    <Compile Include="Models\Counseling.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\Faculty.cs" />
+    <Compile Include="Models\Fine.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Scholarship.cs" />
@@ -181,10 +261,19 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\Tuition.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Violation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AppointmentRepository.cs" />
+    <Compile Include="Repositories\AttendanceRepository.cs" />
+    <Compile Include="Repositories\BookRepository.cs" />
+    <Compile Include="Repositories\BorrowingRepository.cs" />
+    <Compile Include="Repositories\CounselingRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\EnrollmentRepository.cs" />
+    <Compile Include="Repositories\FacultyRepository.cs" />
+    <Compile Include="Repositories\FineRepository.cs" />
     <Compile Include="Repositories\JsonRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\ScholarshipRepository.cs" />
@@ -192,11 +281,27 @@
     <Compile Include="Repositories\SubjectRepository.cs" />
     <Compile Include="Repositories\TuitionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\ViolationRepository.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccountingOfficeForm.resx">
       <DependentUpon>AccountingOfficeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AppointmentManagementForm.resx">
+      <DependentUpon>AppointmentManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AttendanceManagementForm.resx">
+      <DependentUpon>AttendanceManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BookManagementForm.resx">
+      <DependentUpon>BookManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BorrowingManagementForm.resx">
+      <DependentUpon>BorrowingManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CounselingManagementForm.resx">
+      <DependentUpon>CounselingManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CourseManagementForm.resx">
       <DependentUpon>CourseManagementForm.cs</DependentUpon>
@@ -204,8 +309,26 @@
     <EmbeddedResource Include="Forms\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EmployeeManagementForm.resx">
+      <DependentUpon>EmployeeManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EnrollmentManagementForm.resx">
       <DependentUpon>EnrollmentManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FacultyManagementForm.resx">
+      <DependentUpon>FacultyManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FineManagementForm.resx">
+      <DependentUpon>FineManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GuidanceOfficeForm.resx">
+      <DependentUpon>GuidanceOfficeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HROfficeForm.resx">
+      <DependentUpon>HROfficeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LibraryOfficeForm.resx">
+      <DependentUpon>LibraryOfficeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -228,6 +351,9 @@
     <EmbeddedResource Include="Forms\TuitionManagementForm.resx">
       <DependentUpon>TuitionManagementForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViolationManagementForm.resx">
+      <DependentUpon>ViolationManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -240,10 +366,34 @@
     <None Include="Data\AdminAccount.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\appointments.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\attendance.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\books.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\borrowings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\counseling.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\courses.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\employees.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\enrollments.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\faculty.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fines.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\payments.json">
@@ -262,6 +412,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Data\users.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\violations.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
