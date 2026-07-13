@@ -20,6 +20,7 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly PaymentRepository _paymentRepo;
         private List<Tuition> _tuitions; // holds all tuition records
+
         public TuitionManagementForm()
         {
             InitializeComponent();
@@ -145,12 +146,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtBalance.Clear();
             cmbStatus.SelectedIndex = -1;
             txtID.Focus();
-        }
-
-        // manually triggers calculation
-        private void lblCalculate_Click(object sender, EventArgs e)
-        {
-            CalculateTuition();
         }
 
         // auto-calculate when total units changes
@@ -289,7 +284,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     cmbSemester.Text = tuition.Semester;
                     txtSchoolYear.Text = tuition.SchoolYear;
                     txtTotalUnits.Text = tuition.TotalUnits.ToString();
-                    txtUnitFee.Text = tuition.UnitFee.ToString();
+                    txtUnitFee.Text = tuition.UnitFee.ToString("N2");
                     txtTotalAmount.Text = tuition.TotalAmount.ToString("N2");
                     txtAmountPaid.Text = tuition.AmountPaid.ToString("N2");
                     txtBalance.Text = tuition.Balance.ToString("N2");
