@@ -104,12 +104,75 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
-        private void StudentManagementForm_Load(object sender, EventArgs e)
+        private void dgvStudents_SelectionChanged(object sender, EventArgs e)
         {
-
+            if (dgvStudents.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvStudents.SelectedRows[0];
+                var student = _studentRepo.GetById(s => s.Id == (int)selectedRow.Cells["Id"].Value);
+                if (student != null)
+                {
+                    txtID.Text = student.Id.ToString();
+                    txtStudentNumber.Text = student.StudentNumber;
+                    txtFirstName.Text = student.FirstName;
+                    txtLastName.Text = student.LastName;
+                    txtMiddleName.Text = student.MiddleName;
+                    dtpBirthDate.Value = student.BirthDate;
+                    cmbGender.Text = student.Gender;
+                    txtContact.Text = student.ContactNumber;
+                    txtEmail.Text = student.Email;
+                    txtAddress.Text = student.Address;
+                    cmbCourse.SelectedValue = student.CourseId;
+                    cmbYearLevel.Text = student.YearLevel.ToString();
+                    txtSection.Text = student.Section;
+                }
+            }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            SearchStudents();
+        }
+
+        private void SearchStudents()
+        {
+            try
+            {
+                string keyword = txtSearch.Text.ToLower();
+                var filtered = _students.Where(s =>
+                    s.StudentNumber.ToLower().Contains(keyword) ||
+                    s.FirstName.ToLower().Contains(keyword) ||
+                    s.LastName.ToLower().Contains(keyword) ||
+                    s.Email.ToLower().Contains(keyword)
+                ).ToList();
+
+                dgvStudents.DataSource = null;
+                dgvStudents.DataSource = filtered.Select(s => new
+                {
+                    s.Id,
+                    s.StudentNumber,
+                    s.FirstName,
+                    s.LastName,
+                    s.MiddleName,
+                    s.BirthDate,
+                    s.Gender,
+                    s.ContactNumber,
+                    s.Email,
+                    s.Address,
+                    Course = GetCourseName(s.CourseId),
+                    s.YearLevel,
+                    s.Section,
+                    s.IsActive
+                }).ToList();
+            }
+            catch (Exception)
+            {
+                // Ignore search errors
+            }
+        }
+
+        private void lblAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -187,32 +250,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void dgvStudents_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvStudents.SelectedRows.Count > 0)
-            {
-                var selectedRow = dgvStudents.SelectedRows[0];
-                var student = _studentRepo.GetById(s => s.Id == (int)selectedRow.Cells["Id"].Value);
-                if (student != null)
-                {
-                    txtID.Text = student.Id.ToString();
-                    txtStudentNumber.Text = student.StudentNumber;
-                    txtFirstName.Text = student.FirstName;
-                    txtLastName.Text = student.LastName;
-                    txtMiddleName.Text = student.MiddleName;
-                    dtpBirthDate.Value = student.BirthDate;
-                    cmbGender.Text = student.Gender;
-                    txtContact.Text = student.ContactNumber;
-                    txtEmail.Text = student.Email;
-                    txtAddress.Text = student.Address;
-                    cmbCourse.SelectedValue = student.CourseId;
-                    cmbYearLevel.Text = student.YearLevel.ToString();
-                    txtSection.Text = student.Section;
-                }
-            }
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -290,7 +328,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void lblDelete_Click(object sender, EventArgs e)
         {
             try
             {
@@ -331,57 +369,15 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void lblClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void pbRefresh_Click(object sender, EventArgs e)
         {
             LoadStudents();
             ClearFields();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            SearchStudents();
-        }
-
-        private void SearchStudents()
-        {
-            try
-            {
-                string keyword = txtSearch.Text.ToLower();
-                var filtered = _students.Where(s =>
-                    s.StudentNumber.ToLower().Contains(keyword) ||
-                    s.FirstName.ToLower().Contains(keyword) ||
-                    s.LastName.ToLower().Contains(keyword) ||
-                    s.Email.ToLower().Contains(keyword)
-                ).ToList();
-
-                dgvStudents.DataSource = null;
-                dgvStudents.DataSource = filtered.Select(s => new
-                {
-                    s.Id,
-                    s.StudentNumber,
-                    s.FirstName,
-                    s.LastName,
-                    s.MiddleName,
-                    s.BirthDate,
-                    s.Gender,
-                    s.ContactNumber,
-                    s.Email,
-                    s.Address,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Section,
-                    s.IsActive
-                }).ToList();
-            }
-            catch (Exception)
-            {
-                // Ignore search errors
-            }
         }
     }
 }

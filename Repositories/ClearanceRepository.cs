@@ -9,18 +9,15 @@ using System.Windows.Forms;
 
 namespace IntegratedUniversityInformationSystem.Repositories
 {
-    // repository for handling tuition data (CRUD operations)
-    internal class TuitionRepository : JsonRepository<Tuition>
+    internal class ClearanceRepository : JsonRepository<Clearance>
     {
-        // path to the tuition JSON file
         private static readonly string _filePath = Path.Combine(
             Application.StartupPath,
             "Data",
-            "tuitions.json"
+            "clearances.json"
         );
 
-        // constructor - passes file path to the base repository
-        public TuitionRepository() : base(_filePath)
+        public ClearanceRepository() : base(_filePath)
         {
         }
     }

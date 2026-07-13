@@ -248,12 +248,15 @@
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Models\Borrowing.cs" />
+    <Compile Include="Models\Clearance.cs" />
+    <Compile Include="Models\Consultation.cs" />
     <Compile Include="Models\Counseling.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Fine.cs" />
+    <Compile Include="Models\MedicalRecord.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Scholarship.cs" />
@@ -268,6 +271,8 @@
     <Compile Include="Repositories\AttendanceRepository.cs" />
     <Compile Include="Repositories\BookRepository.cs" />
     <Compile Include="Repositories\BorrowingRepository.cs" />
+    <Compile Include="Repositories\ClearanceRepository.cs" />
+    <Compile Include="Repositories\ConsultationRepository.cs" />
     <Compile Include="Repositories\CounselingRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
@@ -275,6 +280,7 @@
     <Compile Include="Repositories\FacultyRepository.cs" />
     <Compile Include="Repositories\FineRepository.cs" />
     <Compile Include="Repositories\JsonRepository.cs" />
+    <Compile Include="Repositories\MedicalRecordRepository.cs" />
     <Compile Include="Repositories\PaymentRepository.cs" />
     <Compile Include="Repositories\ScholarshipRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
@@ -378,6 +384,8 @@
     <None Include="Data\borrowings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\clearances.json" />
+    <None Include="Data\consultations.json" />
     <None Include="Data\counseling.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -396,6 +404,7 @@
     <None Include="Data\fines.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\medical_records.json" />
     <None Include="Data\payments.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

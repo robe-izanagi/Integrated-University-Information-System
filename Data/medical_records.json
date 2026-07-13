@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "BloodType": "A+",
+    "Allergies": "None",
+    "MedicalHistory": "No significant history",
+    "Medications": "None",
+    "EmergencyContact": "Juan Dela Cruz",
+    "EmergencyPhone": "09171234567"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "BloodType": "O+",
+    "Allergies": "Pollen, Dust",
+    "MedicalHistory": "Asthma (mild)",
+    "Medications": "Ventolin inhaler",
+    "EmergencyContact": "Maria Santos",
+    "EmergencyPhone": "09181234567"
+  }
+]

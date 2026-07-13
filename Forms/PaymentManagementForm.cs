@@ -12,20 +12,27 @@ using System.Windows.Forms;
 
 namespace IntegratedUniversityInformationSystem.Forms
 {
+    // form for managing student payments
     public partial class PaymentManagementForm : Form
     {
+        // repositories for data access
         private readonly PaymentRepository _paymentRepo;
         private readonly StudentRepository _studentRepo;
-        private List<Payment> _payments;
+        private List<Payment> _payments; // holds all payments
         public PaymentManagementForm()
         {
             InitializeComponent();
+
+            // initialize repositories
             _paymentRepo = new PaymentRepository();
             _studentRepo = new StudentRepository();
+
+            // load data
             LoadPayments();
             LoadStudents();
         }
 
+        // loads all payments from JSON
         private void LoadPayments()
         {
             try
@@ -50,12 +57,14 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // gets student full name by ID
         private string GetStudentName(int studentId)
         {
             var student = _studentRepo.GetById(s => s.Id == studentId);
             return student != null ? $"{student.FirstName} {student.LastName}" : "N/A";
         }
 
+        // loads active students into dropdown
         private void LoadStudents()
         {
             try
@@ -73,6 +82,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears all input fields
         private void ClearFields()
         {
             txtID.Clear();
@@ -85,10 +95,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+        // adds new payment record
         private void lblAdd_Click(object sender, EventArgs e)
         {
             try
             {
+                // validate student selection
                 if (cmbStudent.SelectedIndex == -1)
                 {
                     MessageBox.Show("Please select a Student.", "Validation Error",
@@ -97,6 +109,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // validate amount
                 if (string.IsNullOrWhiteSpace(txtAmount.Text))
                 {
                     MessageBox.Show("Please enter Amount.", "Validation Error",
@@ -113,6 +126,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // validate payment method
                 if (cmbPaymentMethod.SelectedIndex == -1)
                 {
                     MessageBox.Show("Please select Payment Method.", "Validation Error",
@@ -121,6 +135,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // create new payment
                 var payment = new Payment
                 {
                     Id = _payments.Count > 0 ? _payments.Max(p => p.Id) + 1 : 1,
@@ -132,6 +147,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     Remarks = txtRemarks.Text
                 };
 
+                // save and refresh
                 _paymentRepo.Add(payment);
                 LoadPayments();
                 ClearFields();
@@ -145,15 +161,18 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears all fields
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
+        // deletes selected payment
         private void lblDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                // check if record is selected
                 if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
                     MessageBox.Show("Please select a payment to delete.", "Validation Error",
@@ -170,6 +189,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // confirm deletion
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this payment?",
                     "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -189,10 +209,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // updates selected payment
         private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
             {
+                // check if record is selected
                 if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
                     MessageBox.Show("Please select a payment to update.", "Validation Error",
@@ -200,6 +222,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // validate fields
                 int id = int.Parse(txtID.Text);
                 var payment = _paymentRepo.GetById(p => p.Id == id);
                 if (payment == null)
@@ -241,6 +264,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // update payment
                 payment.StudentId = (int)cmbStudent.SelectedValue;
                 payment.Amount = amount;
                 payment.PaymentDate = dtpPaymentDate.Value;
@@ -248,6 +272,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                 payment.ReferenceNo = txtReferenceNo.Text;
                 payment.Remarks = txtRemarks.Text;
 
+                // save and refresh
                 _paymentRepo.Update(p => p.Id == id, payment);
                 LoadPayments();
                 ClearFields();
@@ -261,17 +286,20 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // refreshes the list
         private void pbRefresh_Click(object sender, EventArgs e)
         {
             LoadPayments();
             ClearFields();
         }
 
+        // search filter
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchPayments();
         }
 
+        // loads selected row into fields
         private void dgvPayments_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvPayments.SelectedRows.Count > 0)
@@ -291,6 +319,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // filters payments by student name, method, or reference
         private void SearchPayments()
         {
             try

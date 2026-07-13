@@ -12,22 +12,29 @@ using System.Windows.Forms;
 
 namespace IntegratedUniversityInformationSystem.Forms
 {
+    // form for managing tuition assessments
     public partial class TuitionManagementForm : Form
     {
+        // repositories for data access
         private readonly TuitionRepository _tuitionRepo;
         private readonly StudentRepository _studentRepo;
         private readonly PaymentRepository _paymentRepo;
-        private List<Tuition> _tuitions;
+        private List<Tuition> _tuitions; // holds all tuition records
         public TuitionManagementForm()
         {
             InitializeComponent();
+
+            // initialize repositories
             _tuitionRepo = new TuitionRepository();
             _studentRepo = new StudentRepository();
             _paymentRepo = new PaymentRepository();
+
+            // load data
             LoadTuitions();
             LoadStudents();
         }
 
+        // loads all tuition records from JSON
         private void LoadTuitions()
         {
             try
@@ -55,12 +62,14 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // gets student full name by ID
         private string GetStudentName(int studentId)
         {
             var student = _studentRepo.GetById(s => s.Id == studentId);
             return student != null ? $"{student.FirstName} {student.LastName}" : "N/A";
         }
 
+        // loads active students into dropdown
         private void LoadStudents()
         {
             try
@@ -78,13 +87,16 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // computes total amount, paid amount, balance, and auto-updates status
         private void CalculateTuition()
         {
             try
             {
+                // exit if units or fee are empty
                 if (string.IsNullOrWhiteSpace(txtTotalUnits.Text) || string.IsNullOrWhiteSpace(txtUnitFee.Text))
                     return;
 
+                // compute total amount
                 if (int.TryParse(txtTotalUnits.Text, out int totalUnits) &&
                     decimal.TryParse(txtUnitFee.Text, out decimal unitFee))
                 {
@@ -99,6 +111,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                         decimal amountPaid = payments.Sum(p => p.Amount);
                         txtAmountPaid.Text = amountPaid.ToString("N2");
 
+                        // compute balance
                         decimal balance = totalAmount - amountPaid;
                         txtBalance.Text = balance.ToString("N2");
 
@@ -118,6 +131,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears all input fields
         private void ClearFields()
         {
             txtID.Clear();
@@ -133,30 +147,36 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+        // manually triggers calculation
         private void lblCalculate_Click(object sender, EventArgs e)
         {
             CalculateTuition();
         }
 
+        // auto-calculate when total units changes
         private void txtTotalUnits_TextChanged(object sender, EventArgs e)
         {
             CalculateTuition();
         }
 
+        // auto-calculate when unit fee changes
         private void txtUnitFee_TextChanged(object sender, EventArgs e)
         {
             CalculateTuition();
         }
 
+        // auto-calculate when student changes
         private void cmbStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalculateTuition();
         }
 
+        // adds new tuition record
         private void lblAdd_Click(object sender, EventArgs e)
         {
             try
             {
+                // validate fields
                 if (cmbStudent.SelectedIndex == -1)
                 {
                     MessageBox.Show("Please select a Student.", "Validation Error",
@@ -207,7 +227,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
-                // Check if tuition already exists for this student/semester/year
+                // check for duplicate tuition (same student, semester, school year)
                 int studentId = (int)cmbStudent.SelectedValue;
                 var existing = _tuitionRepo.GetById(t =>
                     t.StudentId == studentId &&
@@ -221,10 +241,12 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // compute values
                 decimal totalAmount = totalUnits * unitFee;
                 decimal amountPaid = 0;
                 decimal balance = totalAmount;
 
+                // create new tuition
                 var tuition = new Tuition
                 {
                     Id = _tuitions.Count > 0 ? _tuitions.Max(t => t.Id) + 1 : 1,
@@ -239,6 +261,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     Status = cmbStatus.Text
                 };
 
+                // save and refresh
                 _tuitionRepo.Add(tuition);
                 LoadTuitions();
                 ClearFields();
@@ -252,6 +275,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // loads selected row into fields
         private void dgvTuitions_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvTuitions.SelectedRows.Count > 0)
@@ -274,10 +298,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // updates selected tuition record
         private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
             {
+                // check if record is selected
                 if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
                     MessageBox.Show("Please select a tuition to update.", "Validation Error",
@@ -294,6 +320,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // validate fields
                 if (cmbStudent.SelectedIndex == -1)
                 {
                     MessageBox.Show("Please select a Student.", "Validation Error",
@@ -344,10 +371,12 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // compute values
                 decimal totalAmount = totalUnits * unitFee;
                 decimal amountPaid = tuition.AmountPaid;
                 decimal balance = totalAmount - amountPaid;
 
+                // update tuition
                 tuition.StudentId = (int)cmbStudent.SelectedValue;
                 tuition.Semester = cmbSemester.Text;
                 tuition.SchoolYear = txtSchoolYear.Text;
@@ -358,6 +387,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                 tuition.Balance = balance;
                 tuition.Status = cmbStatus.Text;
 
+                // save and refresh
                 _tuitionRepo.Update(t => t.Id == id, tuition);
                 LoadTuitions();
                 ClearFields();
@@ -371,10 +401,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // deletes selected tuition record
         private void lblDelete_Click(object sender, EventArgs e)
         {
             try
             {
+                // check if record is selected
                 if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
                     MessageBox.Show("Please select a tuition to delete.", "Validation Error",
@@ -391,6 +423,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // confirm deletion
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this tuition?",
                     "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -410,22 +443,26 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // refreshes the list
         private void pbRefresh_Click(object sender, EventArgs e)
         {
             LoadTuitions();
             ClearFields();
         }
 
+        // clears all fields
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
+        // search filter
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchTuitions();
         }
 
+        // filters tuitions by student name, semester, school year, or status
         private void SearchTuitions()
         {
             try

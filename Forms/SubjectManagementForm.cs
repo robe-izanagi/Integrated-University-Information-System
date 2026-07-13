@@ -89,13 +89,74 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+ 
 
-        private void SubjectManagementForm_Load(object sender, EventArgs e)
+        private void dgvSubjects_SelectionChanged(object sender, EventArgs e)
         {
-
+            if (dgvSubjects.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvSubjects.SelectedRows[0];
+                var subject = _subjectRepo.GetById(s => s.Id == (int)selectedRow.Cells["Id"].Value);
+                if (subject != null)
+                {
+                    txtID.Text = subject.Id.ToString();
+                    txtCode.Text = subject.Code;
+                    txtName.Text = subject.Name;
+                    txtDescription.Text = subject.Description;
+                    numUnits.Value = subject.Units;
+                    cmbCourse.SelectedValue = subject.CourseId;
+                    cmbYearLevel.Text = subject.YearLevel.ToString();
+                    cmbSemester.Text = subject.Semester;
+                    chkActive.Checked = subject.IsActive;
+                }
+            }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            SearchSubjects();
+        }
+
+        private void SearchSubjects()
+        {
+            try
+            {
+                string keyword = txtSearch.Text.ToLower();
+                var filtered = _subjects.Where(s =>
+                    s.Code.ToLower().Contains(keyword) ||
+                    s.Name.ToLower().Contains(keyword) ||
+                    s.Description.ToLower().Contains(keyword)
+                ).ToList();
+
+                dgvSubjects.DataSource = null;
+                dgvSubjects.DataSource = filtered.Select(s => new
+                {
+                    s.Id,
+                    s.Code,
+                    s.Name,
+                    s.Description,
+                    s.Units,
+                    Course = GetCourseName(s.CourseId),
+                    s.YearLevel,
+                    s.Semester,
+                    s.IsActive
+                }).ToList();
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
+        }
+
+        private void lblClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        private void lblAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -173,28 +234,47 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void dgvSubjects_SelectionChanged(object sender, EventArgs e)
+        private void lblDelete_Click(object sender, EventArgs e)
         {
-            if (dgvSubjects.SelectedRows.Count > 0)
+            try
             {
-                var selectedRow = dgvSubjects.SelectedRows[0];
-                var subject = _subjectRepo.GetById(s => s.Id == (int)selectedRow.Cells["Id"].Value);
-                if (subject != null)
+                if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
-                    txtID.Text = subject.Id.ToString();
-                    txtCode.Text = subject.Code;
-                    txtName.Text = subject.Name;
-                    txtDescription.Text = subject.Description;
-                    numUnits.Value = subject.Units;
-                    cmbCourse.SelectedValue = subject.CourseId;
-                    cmbYearLevel.Text = subject.YearLevel.ToString();
-                    cmbSemester.Text = subject.Semester;
-                    chkActive.Checked = subject.IsActive;
+                    MessageBox.Show("Please select a subject to delete.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                int id = int.Parse(txtID.Text);
+                var subject = _subjectRepo.GetById(s => s.Id == id);
+                if (subject == null)
+                {
+                    MessageBox.Show("Subject not found.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this subject?",
+                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    subject.IsActive = false;
+                    _subjectRepo.Update(s => s.Id == id, subject);
+                    LoadSubjects();
+                    ClearFields();
+                    MessageBox.Show("Subject deleted successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting subject: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -276,91 +356,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtID.Text))
-                {
-                    MessageBox.Show("Please select a subject to delete.", "Validation Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int id = int.Parse(txtID.Text);
-                var subject = _subjectRepo.GetById(s => s.Id == id);
-                if (subject == null)
-                {
-                    MessageBox.Show("Subject not found.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this subject?",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    subject.IsActive = false;
-                    _subjectRepo.Update(s => s.Id == id, subject);
-                    LoadSubjects();
-                    ClearFields();
-                    MessageBox.Show("Subject deleted successfully.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error deleting subject: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void pbRefresh_Click(object sender, EventArgs e)
         {
             LoadSubjects();
             ClearFields();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            SearchSubjects();
-        }
-
-        private void SearchSubjects()
-        {
-            try
-            {
-                string keyword = txtSearch.Text.ToLower();
-                var filtered = _subjects.Where(s =>
-                    s.Code.ToLower().Contains(keyword) ||
-                    s.Name.ToLower().Contains(keyword) ||
-                    s.Description.ToLower().Contains(keyword)
-                ).ToList();
-
-                dgvSubjects.DataSource = null;
-                dgvSubjects.DataSource = filtered.Select(s => new
-                {
-                    s.Id,
-                    s.Code,
-                    s.Name,
-                    s.Description,
-                    s.Units,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Semester,
-                    s.IsActive
-                }).ToList();
-            }
-            catch (Exception)
-            {
-                // Ignore
-            }
         }
     }
 }

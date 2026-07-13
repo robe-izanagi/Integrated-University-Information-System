@@ -343,5 +343,182 @@ namespace IntegratedUniversityInformationSystem.Forms
                 // Ignore
             }
         }
+
+        private void lblAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbStudent.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Student.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbStudent.Focus();
+                    return;
+                }
+
+                if (cmbSubject.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Subject.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbSubject.Focus();
+                    return;
+                }
+
+                if (cmbStatus.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Status.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbStatus.Focus();
+                    return;
+                }
+
+                // Check if student is already enrolled in this subject
+                int studentId = (int)cmbStudent.SelectedValue;
+                int subjectId = (int)cmbSubject.SelectedValue;
+                var existing = _enrollmentRepo.GetById(en => en.StudentId == studentId && en.SubjectId == subjectId);
+                if (existing != null)
+                {
+                    MessageBox.Show("Student is already enrolled in this subject.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var enrollment = new Enrollment
+                {
+                    Id = _enrollments.Count > 0 ? _enrollments.Max(en => en.Id) + 1 : 1,
+                    StudentId = studentId,
+                    SubjectId = subjectId,
+                    EnrollmentDate = DateTime.Now,
+                    Status = cmbStatus.Text,
+                    Grade = numGrade.Value,
+                    Remarks = txtRemarks.Text
+                };
+
+                _enrollmentRepo.Add(enrollment);
+                LoadEnrollments();
+                ClearFields();
+                MessageBox.Show("Student enrolled successfully.", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding enrollment: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void lblUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtID.Text))
+                {
+                    MessageBox.Show("Please select an enrollment to update.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int id = int.Parse(txtID.Text);
+                var enrollment = _enrollmentRepo.GetById(en => en.Id == id);
+                if (enrollment == null)
+                {
+                    MessageBox.Show("Enrollment not found.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (cmbStudent.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Student.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbStudent.Focus();
+                    return;
+                }
+
+                if (cmbSubject.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Subject.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbSubject.Focus();
+                    return;
+                }
+
+                if (cmbStatus.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please select a Status.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    cmbStatus.Focus();
+                    return;
+                }
+
+                enrollment.StudentId = (int)cmbStudent.SelectedValue;
+                enrollment.SubjectId = (int)cmbSubject.SelectedValue;
+                enrollment.Status = cmbStatus.Text;
+                enrollment.Grade = numGrade.Value;
+                enrollment.Remarks = txtRemarks.Text;
+
+                _enrollmentRepo.Update(en => en.Id == id, enrollment);
+                LoadEnrollments();
+                ClearFields();
+                MessageBox.Show("Enrollment updated successfully.", "Success",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating enrollment: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void lblDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtID.Text))
+                {
+                    MessageBox.Show("Please select an enrollment to cancel.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int id = int.Parse(txtID.Text);
+                var enrollment = _enrollmentRepo.GetById(en => en.Id == id);
+                if (enrollment == null)
+                {
+                    MessageBox.Show("Enrollment not found.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show("Are you sure you want to cancel this enrollment?",
+                    "Confirm Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    enrollment.Status = "Cancelled";
+                    _enrollmentRepo.Update(en => en.Id == id, enrollment);
+                    LoadEnrollments();
+                    ClearFields();
+                    MessageBox.Show("Enrollment cancelled successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error cancelling enrollment: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pbRefresh_Click(object sender, EventArgs e)
+        {
+            LoadEnrollments();
+            ClearFields();
+        }
+
+        private void lblClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
     }
 }

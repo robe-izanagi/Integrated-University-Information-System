@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "StudentId": 1,
+    "ClearanceDate": "2025-07-15T00:00:00",
+    "Purpose": "Sports participation",
+    "Result": "Fit",
+    "Restrictions": "None",
+    "Remarks": "Cleared for sports"
+  },
+  {
+    "Id": 2,
+    "StudentId": 2,
+    "ClearanceDate": "2025-07-13T00:00:00",
+    "Purpose": "School field trip",
+    "Result": "With Restrictions",
+    "Restrictions": "Avoid strenuous activities",
+    "Remarks": "Requires inhaler during trip"
+  }
+]

@@ -69,7 +69,58 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void dgvCourses_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCourses.SelectedRows.Count > 0)
+            {
+                var selectedRow = dgvCourses.SelectedRows[0];
+                var course = _courseRepo.GetById(c => c.Id == (int)selectedRow.Cells["Id"].Value);
+                if (course != null)
+                {
+                    txtID.Text = course.Id.ToString();
+                    txtCode.Text = course.Code;
+                    txtName.Text = course.Name;
+                    txtDescription.Text = course.Description;
+                    numDuration.Value = course.DurationYears;
+                    chkActive.Checked = course.IsActive;
+                }
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            SearchCourses();
+        }
+
+        private void SearchCourses()
+        {
+            try
+            {
+                string keyword = txtSearch.Text.ToLower();
+                var filtered = _courses.Where(c =>
+                    c.Code.ToLower().Contains(keyword) ||
+                    c.Name.ToLower().Contains(keyword) ||
+                    c.Description.ToLower().Contains(keyword)
+                ).ToList();
+
+                dgvCourses.DataSource = null;
+                dgvCourses.DataSource = filtered.Select(c => new
+                {
+                    c.Id,
+                    c.Code,
+                    c.Name,
+                    c.Description,
+                    c.DurationYears,
+                    c.IsActive
+                }).ToList();
+            }
+            catch (Exception)
+            {
+                // Ignore
+            }
+        }
+
+        private void lblAdd_Click(object sender, EventArgs e)
         {
             try
             {
@@ -120,25 +171,59 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void dgvCourses_SelectionChanged(object sender, EventArgs e)
+        private void lblClear_Click(object sender, EventArgs e)
         {
-            if (dgvCourses.SelectedRows.Count > 0)
+            ClearFields();
+        }
+
+        private void pbRefresh_Click(object sender, EventArgs e)
+        {
+            LoadCourses();
+            ClearFields();
+        }
+
+        private void lblDelete_Click(object sender, EventArgs e)
+        {
+            try
             {
-                var selectedRow = dgvCourses.SelectedRows[0];
-                var course = _courseRepo.GetById(c => c.Id == (int)selectedRow.Cells["Id"].Value);
-                if (course != null)
+                if (string.IsNullOrWhiteSpace(txtID.Text))
                 {
-                    txtID.Text = course.Id.ToString();
-                    txtCode.Text = course.Code;
-                    txtName.Text = course.Name;
-                    txtDescription.Text = course.Description;
-                    numDuration.Value = course.DurationYears;
-                    chkActive.Checked = course.IsActive;
+                    MessageBox.Show("Please select a course to delete.", "Validation Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                int id = int.Parse(txtID.Text);
+                var course = _courseRepo.GetById(c => c.Id == id);
+                if (course == null)
+                {
+                    MessageBox.Show("Course not found.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show("Are you sure you want to delete this course?",
+                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Soft delete
+                    course.IsActive = false;
+                    _courseRepo.Update(c => c.Id == id, course);
+                    LoadCourses();
+                    ClearFields();
+                    MessageBox.Show("Course deleted successfully.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting course: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
             {
@@ -190,91 +275,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             {
                 MessageBox.Show($"Error updating course: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(txtID.Text))
-                {
-                    MessageBox.Show("Please select a course to delete.", "Validation Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int id = int.Parse(txtID.Text);
-                var course = _courseRepo.GetById(c => c.Id == id);
-                if (course == null)
-                {
-                    MessageBox.Show("Course not found.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this course?",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    // Soft delete
-                    course.IsActive = false;
-                    _courseRepo.Update(c => c.Id == id, course);
-                    LoadCourses();
-                    ClearFields();
-                    MessageBox.Show("Course deleted successfully.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error deleting course: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            LoadCourses();
-            ClearFields();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            ClearFields();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            SearchCourses();
-        }
-
-        private void SearchCourses()
-        {
-            try
-            {
-                string keyword = txtSearch.Text.ToLower();
-                var filtered = _courses.Where(c =>
-                    c.Code.ToLower().Contains(keyword) ||
-                    c.Name.ToLower().Contains(keyword) ||
-                    c.Description.ToLower().Contains(keyword)
-                ).ToList();
-
-                dgvCourses.DataSource = null;
-                dgvCourses.DataSource = filtered.Select(c => new
-                {
-                    c.Id,
-                    c.Code,
-                    c.Name,
-                    c.Description,
-                    c.DurationYears,
-                    c.IsActive
-                }).ToList();
-            }
-            catch (Exception)
-            {
-                // Ignore
             }
         }
     }
