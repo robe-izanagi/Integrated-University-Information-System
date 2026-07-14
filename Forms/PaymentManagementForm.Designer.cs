@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentManagementForm));
             this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.txtRemarks = new System.Windows.Forms.TextBox();
@@ -38,7 +38,6 @@
             this.lblAmount = new System.Windows.Forms.Label();
             this.cmbStudent = new System.Windows.Forms.ComboBox();
             this.lblRemarks = new System.Windows.Forms.Label();
-            this.lblSelectInfo = new System.Windows.Forms.Label();
             this.lblStudent = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.dgvPayments = new System.Windows.Forms.DataGridView();
@@ -46,7 +45,6 @@
             this.lblID = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
             this.dtpPaymentDate = new System.Windows.Forms.DateTimePicker();
-            this.lblFields = new System.Windows.Forms.Label();
             this.lblAdd = new System.Windows.Forms.Label();
             this.lblReferenceNo = new System.Windows.Forms.Label();
             this.lblClear = new System.Windows.Forms.Label();
@@ -85,6 +83,10 @@
             this.lblCash = new System.Windows.Forms.Label();
             this.cmbSortOrder = new System.Windows.Forms.ComboBox();
             this.cmbSortColumn = new System.Windows.Forms.ComboBox();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblFields = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.lblSelectInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayments)).BeginInit();
             this.panelInput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
@@ -104,6 +106,7 @@
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbPaymentMethod
@@ -179,18 +182,6 @@
             this.lblRemarks.TabIndex = 59;
             this.lblRemarks.Text = "Remarks: ";
             // 
-            // lblSelectInfo
-            // 
-            this.lblSelectInfo.AutoSize = true;
-            this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
-            this.lblSelectInfo.Location = new System.Drawing.Point(354, 600);
-            this.lblSelectInfo.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lblSelectInfo.Name = "lblSelectInfo";
-            this.lblSelectInfo.Size = new System.Drawing.Size(202, 18);
-            this.lblSelectInfo.TabIndex = 57;
-            this.lblSelectInfo.Text = "Select a row on the table first.";
-            // 
             // lblStudent
             // 
             this.lblStudent.AutoSize = true;
@@ -218,36 +209,36 @@
             this.dgvPayments.BackgroundColor = System.Drawing.Color.White;
             this.dgvPayments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPayments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPayments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPayments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPayments.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPayments.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvPayments.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dgvPayments.Location = new System.Drawing.Point(337, 166);
+            this.dgvPayments.Location = new System.Drawing.Point(339, 166);
             this.dgvPayments.Name = "dgvPayments";
             this.dgvPayments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPayments.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgvPayments.Size = new System.Drawing.Size(635, 431);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPayments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvPayments.Size = new System.Drawing.Size(630, 469);
             this.dgvPayments.TabIndex = 44;
             this.dgvPayments.SelectionChanged += new System.EventHandler(this.dgvPayments_SelectionChanged);
             // 
@@ -275,12 +266,13 @@
             // panelInput
             // 
             this.panelInput.BackColor = System.Drawing.Color.White;
+            this.panelInput.Controls.Add(this.panel11);
+            this.panelInput.Controls.Add(this.lblFields);
             this.panelInput.Controls.Add(this.panel3);
             this.panelInput.Controls.Add(this.panel2);
             this.panelInput.Controls.Add(this.panel5);
             this.panelInput.Controls.Add(this.panel4);
             this.panelInput.Controls.Add(this.dtpPaymentDate);
-            this.panelInput.Controls.Add(this.lblFields);
             this.panelInput.Controls.Add(this.lblReferenceNo);
             this.panelInput.Controls.Add(this.lblPaymentDate);
             this.panelInput.Controls.Add(this.txtReferenceNo);
@@ -296,7 +288,7 @@
             this.panelInput.Controls.Add(this.lblStudent);
             this.panelInput.Location = new System.Drawing.Point(17, 51);
             this.panelInput.Name = "panelInput";
-            this.panelInput.Size = new System.Drawing.Size(303, 581);
+            this.panelInput.Size = new System.Drawing.Size(303, 617);
             this.panelInput.TabIndex = 54;
             // 
             // dtpPaymentDate
@@ -307,17 +299,6 @@
             this.dtpPaymentDate.Name = "dtpPaymentDate";
             this.dtpPaymentDate.Size = new System.Drawing.Size(269, 26);
             this.dtpPaymentDate.TabIndex = 86;
-            // 
-            // lblFields
-            // 
-            this.lblFields.AutoSize = true;
-            this.lblFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFields.ForeColor = System.Drawing.Color.Black;
-            this.lblFields.Location = new System.Drawing.Point(14, 16);
-            this.lblFields.Name = "lblFields";
-            this.lblFields.Size = new System.Drawing.Size(149, 25);
-            this.lblFields.TabIndex = 66;
-            this.lblFields.Text = "Payment Info";
             // 
             // lblAdd
             // 
@@ -472,7 +453,7 @@
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.lblUpdate);
-            this.panel3.Location = new System.Drawing.Point(15, 489);
+            this.panel3.Location = new System.Drawing.Point(15, 527);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(136, 36);
             this.panel3.TabIndex = 89;
@@ -495,7 +476,7 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.lblDelete);
-            this.panel2.Location = new System.Drawing.Point(157, 489);
+            this.panel2.Location = new System.Drawing.Point(157, 527);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(128, 36);
             this.panel2.TabIndex = 87;
@@ -518,7 +499,7 @@
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.pictureBox4);
             this.panel5.Controls.Add(this.lblAdd);
-            this.panel5.Location = new System.Drawing.Point(15, 445);
+            this.panel5.Location = new System.Drawing.Point(15, 483);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 36);
             this.panel5.TabIndex = 90;
@@ -541,7 +522,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.lblClear);
             this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(15, 531);
+            this.panel4.Location = new System.Drawing.Point(15, 569);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(270, 36);
             this.panel4.TabIndex = 88;
@@ -740,11 +721,56 @@
             this.cmbSortColumn.TabIndex = 79;
             this.cmbSortColumn.SelectedIndexChanged += new System.EventHandler(this.cmbSortColumn_SelectedIndexChanged);
             // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel11.Location = new System.Drawing.Point(0, 46);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(297, 1);
+            this.panel11.TabIndex = 92;
+            // 
+            // lblFields
+            // 
+            this.lblFields.AutoSize = true;
+            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFields.ForeColor = System.Drawing.Color.Black;
+            this.lblFields.Location = new System.Drawing.Point(6, 8);
+            this.lblFields.Name = "lblFields";
+            this.lblFields.Size = new System.Drawing.Size(136, 27);
+            this.lblFields.TabIndex = 91;
+            this.lblFields.Text = "Payment Info";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(339, 639);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(15, 15);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 82;
+            this.pictureBox6.TabStop = false;
+            // 
+            // lblSelectInfo
+            // 
+            this.lblSelectInfo.AutoSize = true;
+            this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
+            this.lblSelectInfo.Location = new System.Drawing.Point(354, 638);
+            this.lblSelectInfo.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblSelectInfo.Name = "lblSelectInfo";
+            this.lblSelectInfo.Size = new System.Drawing.Size(206, 18);
+            this.lblSelectInfo.TabIndex = 81;
+            this.lblSelectInfo.Text = "Select a row on the table first: ";
+            // 
             // PaymentManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(988, 631);
+            this.ClientSize = new System.Drawing.Size(988, 668);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.lblSelectInfo);
             this.Controls.Add(this.cmbSortOrder);
             this.Controls.Add(this.cmbSortColumn);
             this.Controls.Add(this.panel10);
@@ -757,7 +783,6 @@
             this.Controls.Add(this.panelInput);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvPayments);
-            this.Controls.Add(this.lblSelectInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PaymentManagementForm";
             this.Text = "PaymentManagementForm";
@@ -792,6 +817,7 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -805,7 +831,6 @@
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.ComboBox cmbStudent;
         private System.Windows.Forms.Label lblRemarks;
-        private System.Windows.Forms.Label lblSelectInfo;
         private System.Windows.Forms.Label lblStudent;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.DataGridView dgvPayments;
@@ -823,7 +848,6 @@
         private System.Windows.Forms.Label lblUpdate;
         private System.Windows.Forms.Label lblClear;
         private System.Windows.Forms.Label lblAdd;
-        private System.Windows.Forms.Label lblFields;
         private System.Windows.Forms.DateTimePicker dtpPaymentDate;
         private System.Windows.Forms.Panel panelTopContent;
         private System.Windows.Forms.Label label2;
@@ -852,5 +876,9 @@
         private System.Windows.Forms.Label lblCash;
         private System.Windows.Forms.ComboBox cmbSortOrder;
         private System.Windows.Forms.ComboBox cmbSortColumn;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label lblFields;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label lblSelectInfo;
     }
 }

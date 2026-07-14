@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScholarshipManagementForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.lblAdd = new System.Windows.Forms.Label();
             this.lblUpdate = new System.Windows.Forms.Label();
@@ -59,7 +59,6 @@
             this.dtpExpiryDate = new System.Windows.Forms.DateTimePicker();
             this.dtpDateAwarded = new System.Windows.Forms.DateTimePicker();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.lblFields = new System.Windows.Forms.Label();
             this.panelTopContent = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -91,6 +90,8 @@
             this.lblAcademicSummary = new System.Windows.Forms.Label();
             this.lblAcademic = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblFields = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScholarships)).BeginInit();
             this.panelInput.SuspendLayout();
@@ -207,34 +208,34 @@
             // 
             this.dgvScholarships.BackgroundColor = System.Drawing.Color.White;
             this.dgvScholarships.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScholarships.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScholarships.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgvScholarships.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvScholarships.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvScholarships.DefaultCellStyle = dataGridViewCellStyle20;
             this.dgvScholarships.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvScholarships.Location = new System.Drawing.Point(332, 167);
             this.dgvScholarships.Name = "dgvScholarships";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScholarships.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScholarships.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dgvScholarships.Size = new System.Drawing.Size(629, 472);
             this.dgvScholarships.TabIndex = 44;
             this.dgvScholarships.SelectionChanged += new System.EventHandler(this.dgvScholarships_SelectionChanged);
@@ -244,7 +245,7 @@
             this.lblRemarks.AutoSize = true;
             this.lblRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRemarks.ForeColor = System.Drawing.Color.Black;
-            this.lblRemarks.Location = new System.Drawing.Point(151, 420);
+            this.lblRemarks.Location = new System.Drawing.Point(140, 422);
             this.lblRemarks.Name = "lblRemarks";
             this.lblRemarks.Size = new System.Drawing.Size(85, 20);
             this.lblRemarks.TabIndex = 75;
@@ -257,7 +258,6 @@
             this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRemarks.Location = new System.Drawing.Point(147, 445);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.ReadOnly = true;
             this.txtRemarks.Size = new System.Drawing.Size(142, 26);
             this.txtRemarks.TabIndex = 74;
             // 
@@ -409,6 +409,8 @@
             // panelInput
             // 
             this.panelInput.BackColor = System.Drawing.Color.White;
+            this.panelInput.Controls.Add(this.panel11);
+            this.panelInput.Controls.Add(this.lblFields);
             this.panelInput.Controls.Add(this.panel3);
             this.panelInput.Controls.Add(this.dtpExpiryDate);
             this.panelInput.Controls.Add(this.panel2);
@@ -423,7 +425,6 @@
             this.panelInput.Controls.Add(this.lblStatus);
             this.panelInput.Controls.Add(this.lblExpiryDate);
             this.panelInput.Controls.Add(this.txtAmount);
-            this.panelInput.Controls.Add(this.lblFields);
             this.panelInput.Controls.Add(this.lblDateAwarded);
             this.panelInput.Controls.Add(this.lblType);
             this.panelInput.Controls.Add(this.lblAmount);
@@ -469,17 +470,6 @@
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(123, 28);
             this.cmbStatus.TabIndex = 83;
-            // 
-            // lblFields
-            // 
-            this.lblFields.AutoSize = true;
-            this.lblFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFields.ForeColor = System.Drawing.Color.Black;
-            this.lblFields.Location = new System.Drawing.Point(13, 16);
-            this.lblFields.Name = "lblFields";
-            this.lblFields.Size = new System.Drawing.Size(182, 25);
-            this.lblFields.TabIndex = 66;
-            this.lblFields.Text = "Scholarship Info";
             // 
             // panelTopContent
             // 
@@ -786,9 +776,9 @@
             this.lblAcademicSummary.ForeColor = System.Drawing.Color.Blue;
             this.lblAcademicSummary.Location = new System.Drawing.Point(4, 28);
             this.lblAcademicSummary.Name = "lblAcademicSummary";
-            this.lblAcademicSummary.Size = new System.Drawing.Size(19, 24);
+            this.lblAcademicSummary.Size = new System.Drawing.Size(42, 24);
             this.lblAcademicSummary.TabIndex = 62;
-            this.lblAcademicSummary.Text = "0";
+            this.lblAcademicSummary.Text = "0.00";
             // 
             // lblAcademic
             // 
@@ -799,7 +789,6 @@
             this.lblAcademic.Size = new System.Drawing.Size(70, 17);
             this.lblAcademic.TabIndex = 0;
             this.lblAcademic.Text = "Academic:";
-            this.lblAcademic.Click += new System.EventHandler(this.lblTotalUnitsText_Click);
             // 
             // pictureBox6
             // 
@@ -811,6 +800,26 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 79;
             this.pictureBox6.TabStop = false;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel11.Location = new System.Drawing.Point(3, 46);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(297, 1);
+            this.panel11.TabIndex = 91;
+            // 
+            // lblFields
+            // 
+            this.lblFields.AutoSize = true;
+            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFields.ForeColor = System.Drawing.Color.Black;
+            this.lblFields.Location = new System.Drawing.Point(9, 8);
+            this.lblFields.Name = "lblFields";
+            this.lblFields.Size = new System.Drawing.Size(163, 27);
+            this.lblFields.TabIndex = 90;
+            this.lblFields.Text = "Scholarship Info";
             // 
             // ScholarshipManagementForm
             // 
@@ -835,7 +844,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ScholarshipManagementForm";
             this.Text = "ScholarshipManagementForm";
-            this.Load += new System.EventHandler(this.ScholarshipManagementForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScholarships)).EndInit();
             this.panelInput.ResumeLayout(false);
@@ -899,7 +907,6 @@
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label lblDateAwarded;
         private System.Windows.Forms.Panel panelInput;
-        private System.Windows.Forms.Label lblFields;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.DateTimePicker dtpExpiryDate;
         private System.Windows.Forms.DateTimePicker dtpDateAwarded;
@@ -934,5 +941,7 @@
         private System.Windows.Forms.Label lblAcademicSummary;
         private System.Windows.Forms.Label lblAcademic;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Label lblFields;
     }
 }

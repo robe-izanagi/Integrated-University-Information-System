@@ -130,10 +130,5 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
 
         }
-
-        private void panelContent_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

@@ -451,15 +451,5 @@ namespace IntegratedUniversityInformationSystem.Forms
             ApplySort();
 
         }
-
-        private void lblTotalUnitsText_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ScholarshipManagementForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

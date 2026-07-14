@@ -99,7 +99,6 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(988, 668);
             this.panelContent.TabIndex = 5;
-            this.panelContent.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContent_Paint);
             // 
             // panelSidebar
             // 

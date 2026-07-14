@@ -359,5 +359,9 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        private void ViolationManagementForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -368,5 +368,15 @@ namespace IntegratedUniversityInformationSystem.Forms
                 // ignore
             }
         }
+
+        private void cmbSessionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelInput_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

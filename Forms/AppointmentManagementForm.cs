@@ -327,5 +327,9 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        private void AppointmentManagementForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
