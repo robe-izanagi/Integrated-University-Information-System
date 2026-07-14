@@ -243,6 +243,7 @@
     <Compile Include="Forms\ViolationManagementForm.Designer.cs">
       <DependentUpon>ViolationManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SortHelper.cs" />
     <Compile Include="Helpers\Validator.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Attendance.cs" />

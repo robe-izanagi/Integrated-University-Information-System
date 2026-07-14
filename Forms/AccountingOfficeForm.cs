@@ -17,6 +17,9 @@ namespace IntegratedUniversityInformationSystem.Forms
         // stores logged-in user info
         private readonly User _currentUser;
 
+        // current active sidebar 
+        private string activeSidebar = "payment"; // payment - scholarship - tuition
+
         // holds forms that will open inside the panel
         private Form _activeForm = null;
 
@@ -27,6 +30,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             _currentUser = user;
             this.Text = "Accounting Office";
 
+            handleModule(activeSidebar);
             // auto-load Payment Management when form opens
             OpenChildForm(new PaymentManagementForm());
         }
@@ -51,19 +55,67 @@ namespace IntegratedUniversityInformationSystem.Forms
         // opens Payment Management
         private void lblPayment_Click(object sender, EventArgs e)
         {
+            activeSidebar = "payment";
             OpenChildForm(new PaymentManagementForm());
+            handleModule(activeSidebar);
         }
 
         // opens Scholarship Management
         private void lblScholarship_Click(object sender, EventArgs e)
         {
             OpenChildForm(new ScholarshipManagementForm());
+            activeSidebar = "scholarship";
+            handleModule(activeSidebar);
+            
         }
 
         // opens Tuition Management
         private void lblTuition_Click(object sender, EventArgs e)
         {
             OpenChildForm(new TuitionManagementForm());
+            activeSidebar = "tuition";
+            handleModule(activeSidebar);
+            
+        }
+
+        private void handleModule (string activeModule)
+        {
+            switch (activeModule)
+            {
+                case "payment":
+                    p1.Visible = true;
+                    p2.Visible = true;
+                    p3.Visible = false;
+                    p4.Visible = false;
+                    p5.Visible = false;
+                    p6.Visible = false;
+                    pc1.BackColor = Color.LightSkyBlue;
+                    pc2.BackColor = Color.Transparent;
+                    pc3.BackColor = Color.Transparent;
+                break;
+                case "scholarship":
+                    p1.Visible = false;
+                    p2.Visible = false;
+                    p3.Visible = true;
+                    p4.Visible = true;
+                    p5.Visible = false;
+                    p6.Visible = false;
+                    pc2.BackColor = Color.LightSkyBlue;
+                    pc1.BackColor = Color.Transparent;
+                    pc3.BackColor = Color.Transparent;
+                    break;
+                case "tuition":
+                    p1.Visible = false;
+                    p2.Visible = false;
+                    p3.Visible = false;
+                    p4.Visible = false;
+                    p5.Visible = true;
+                    p6.Visible = true;
+                    pc3.BackColor = Color.LightSkyBlue;
+                    pc1.BackColor = Color.Transparent;
+                    pc2.BackColor = Color.Transparent;
+                    break;
+            }
         }
 
         // logout and go back to login
@@ -72,6 +124,16 @@ namespace IntegratedUniversityInformationSystem.Forms
             this.Close();
             LoginForm login = new LoginForm();
             login.Show();
+        }
+
+        private void panelContainer_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelContent_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

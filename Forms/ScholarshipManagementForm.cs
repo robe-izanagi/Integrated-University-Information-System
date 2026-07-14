@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,27 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly ScholarshipRepository _scholarshipRepo;
         private readonly StudentRepository _studentRepo;
         private List<Scholarship> _scholarships;
+        private List<Scholarship> _displayedList;
+
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "ScholarshipName",
+            "Type",
+            "Amount",
+            "DateAwarded",
+            "ExpiryDate",
+            "Status"
+        };
+
         public ScholarshipManagementForm()
         {
             InitializeComponent();
             _scholarshipRepo = new ScholarshipRepository();
             _studentRepo = new StudentRepository();
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
             LoadScholarships();
             LoadStudents();
         }
@@ -30,19 +47,8 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _scholarships = _scholarshipRepo.GetAll();
-                dgvScholarships.DataSource = null;
-                dgvScholarships.DataSource = _scholarships.Select(s => new
-                {
-                    s.Id,
-                    Student = GetStudentName(s.StudentId),
-                    s.ScholarshipName,
-                    s.Type,
-                    s.Amount,
-                    s.DateAwarded,
-                    s.ExpiryDate,
-                    s.Status,
-                    s.Remarks
-                }).ToList();
+                _displayedList = _scholarships;
+                DisplayScholarships(_displayedList);
             }
             catch (Exception ex)
             {
@@ -50,6 +56,41 @@ namespace IntegratedUniversityInformationSystem.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void DisplayScholarships(List<Scholarship> list)
+        {
+            dgvScholarships.DataSource = null;
+            dgvScholarships.DataSource = list.Select(s => new
+            {
+                s.Id,
+                Student = GetStudentName(s.StudentId),
+                s.ScholarshipName,
+                s.Type,
+                Amount = s.Amount.ToString("N2"),
+                s.DateAwarded,
+                s.ExpiryDate,
+                s.Status,
+                s.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _scholarships ?? new List<Scholarship>();
+
+            decimal totalAcademic = list.Where(s => s.Type == "Academic").Sum(s => s.Amount);
+            decimal totalAthletic = list.Where(s => s.Type == "Athletic").Sum(s => s.Amount);
+            decimal totalGovernment = list.Where(s => s.Type == "Government").Sum(s => s.Amount);
+            decimal totalPrivate = list.Where(s => s.Type == "Private").Sum(s => s.Amount);
+            decimal totalAll = list.Sum(s => s.Amount);
+
+            lblAcademicSummary.Text = totalAcademic.ToString("N2");
+            lblAthleticSummary.Text = totalAthletic.ToString("N2");
+            lblGovernmentSummary.Text = totalGovernment.ToString("N2");
+            lblPrivateSummary.Text = totalPrivate.ToString("N2");
+            lblTotalScholarshipSummary.Text = totalAll.ToString("N2");
+        }
+
 
         private string GetStudentName(int studentId)
         {
@@ -73,6 +114,23 @@ namespace IntegratedUniversityInformationSystem.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void ApplySort()
+        {
+            if (_scholarships == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _scholarships,
+                sortColumn,
+                sortOrder,
+                dgvScholarships,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayScholarships(_displayedList);
+        }
 
         private void ClearFields()
         {
@@ -86,7 +144,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             cmbStatus.SelectedIndex = -1;
             txtRemarks.Clear();
             txtID.Focus();
-        }   
+        }
 
         private void lblAdd_Click(object sender, EventArgs e)
         {
@@ -333,6 +391,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadScholarships();
             ClearFields();
         }
@@ -352,6 +413,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _scholarships.Where(s =>
                     GetStudentName(s.StudentId).ToLower().Contains(keyword) ||
                     s.ScholarshipName.ToLower().Contains(keyword) ||
@@ -359,24 +421,45 @@ namespace IntegratedUniversityInformationSystem.Forms
                     s.Status.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvScholarships.DataSource = null;
-                dgvScholarships.DataSource = filtered.Select(s => new
-                {
-                    s.Id,
-                    Student = GetStudentName(s.StudentId),
-                    s.ScholarshipName,
-                    s.Type,
-                    s.Amount,
-                    s.DateAwarded,
-                    s.ExpiryDate,
-                    s.Status,
-                    s.Remarks
-                }).ToList();
+                _displayedList = filtered;
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvScholarships,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayScholarships(_displayedList);
             }
             catch (Exception)
             {
                 // Ignore
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+
+        }
+
+        private void lblTotalUnitsText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ScholarshipManagementForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

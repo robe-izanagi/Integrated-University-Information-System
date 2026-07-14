@@ -60,5 +60,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             LoginForm login = new LoginForm();
             login.Show();
         }
+
+        private void panelSidebar_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

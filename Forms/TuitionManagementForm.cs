@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,22 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly PaymentRepository _paymentRepo;
         private List<Tuition> _tuitions; // holds all tuition records
+        private List<Tuition> _displayedList;
 
+        // define sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Semester",
+            "SchoolYear",
+            "TotalUnits",
+            "UnitFee",
+            "TotalAmount",
+            "AmountPaid",
+            "Balance",
+            "Status"
+        };
         public TuitionManagementForm()
         {
             InitializeComponent();
@@ -29,6 +45,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             _tuitionRepo = new TuitionRepository();
             _studentRepo = new StudentRepository();
             _paymentRepo = new PaymentRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             // load data
             LoadTuitions();
@@ -41,20 +61,9 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _tuitions = _tuitionRepo.GetAll();
-                dgvTuitions.DataSource = null;
-                dgvTuitions.DataSource = _tuitions.Select(t => new
-                {
-                    t.Id,
-                    Student = GetStudentName(t.StudentId),
-                    t.Semester,
-                    t.SchoolYear,
-                    t.TotalUnits,
-                    t.UnitFee,
-                    t.TotalAmount,
-                    t.AmountPaid,
-                    t.Balance,
-                    t.Status
-                }).ToList();
+                _displayedList = _tuitions;
+                DisplayTuitions(_displayedList);
+                UpdateSummary(); // update summary after loading
             }
             catch (Exception ex)
             {
@@ -62,6 +71,59 @@ namespace IntegratedUniversityInformationSystem.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void DisplayTuitions(List<Tuition> list)
+        {
+            dgvTuitions.DataSource = null;
+            dgvTuitions.DataSource = list.Select(t => new
+            {
+                t.Id,
+                Student = GetStudentName(t.StudentId),
+                t.Semester,
+                t.SchoolYear,
+                t.TotalUnits,
+                UnitFee = t.UnitFee.ToString("N2"),
+                TotalAmount = t.TotalAmount.ToString("N2"),
+                AmountPaid = t.AmountPaid.ToString("N2"),
+                Balance = t.Balance.ToString("N2"),
+                t.Status
+            }).ToList();
+
+            // update summary after displaying
+            UpdateSummary();
+        }
+
+        // updates the summary box at the top
+        private void UpdateSummary()
+        {
+            // use displayed list (filtered + sorted) or fallback to all tuitions
+            var list = _displayedList ?? _tuitions ?? new List<Tuition>();
+
+            if (list.Count == 0)
+            {
+                lblTotalUnitsSummary.Text = "0";
+                lblUnitFeeSummary.Text = "0.00";
+                lblTotalAmountSummary.Text = "0.00";
+                lblAmountPaidSummary.Text = "0.00";
+                lblBalanceSummary.Text = "0.00";
+                return;
+            }
+
+            // compute totals
+            int totalUnits = list.Sum(t => t.TotalUnits);
+            decimal totalAmount = list.Sum(t => t.TotalAmount);
+            decimal amountPaid = list.Sum(t => t.AmountPaid);
+            decimal balance = list.Sum(t => t.Balance);
+            decimal avgUnitFee = list.Average(t => t.UnitFee);
+
+            // display with formatting
+            lblTotalUnitsSummary.Text = totalUnits.ToString("N0");
+            lblUnitFeeSummary.Text = avgUnitFee.ToString("N2"); // average unit fee
+            lblTotalAmountSummary.Text = totalAmount.ToString("N2");
+            lblAmountPaidSummary.Text = amountPaid.ToString("N2");
+            lblBalanceSummary.Text = balance.ToString("N2");
+        }
+
 
         // gets student full name by ID
         private string GetStudentName(int studentId)
@@ -86,6 +148,25 @@ namespace IntegratedUniversityInformationSystem.Forms
                 MessageBox.Show($"Error loading students: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_tuitions == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _tuitions,
+                sortColumn,
+                sortOrder,
+                dgvTuitions,
+                t => GetStudentName(t.StudentId) // pass the function to get student name for sorting
+            );
+
+            DisplayTuitions(_displayedList);
         }
 
         // computes total amount, paid amount, balance, and auto-updates status
@@ -138,7 +219,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Clear();
             cmbStudent.SelectedIndex = -1;
             cmbSemester.SelectedIndex = -1;
-            txtSchoolYear.Clear();
             txtTotalUnits.Clear();
             txtUnitFee.Clear();
             txtTotalAmount.Clear();
@@ -188,11 +268,11 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtSchoolYear.Text))
+                if (string.IsNullOrWhiteSpace(cmbSchoolYear.Text))
                 {
                     MessageBox.Show("Please enter School Year.", "Validation Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtSchoolYear.Focus();
+                    cmbSchoolYear.Focus();
                     return;
                 }
 
@@ -227,7 +307,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                 var existing = _tuitionRepo.GetById(t =>
                     t.StudentId == studentId &&
                     t.Semester == cmbSemester.Text &&
-                    t.SchoolYear == txtSchoolYear.Text);
+                    t.SchoolYear == cmbSchoolYear.Text);
 
                 if (existing != null)
                 {
@@ -247,7 +327,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     Id = _tuitions.Count > 0 ? _tuitions.Max(t => t.Id) + 1 : 1,
                     StudentId = studentId,
                     Semester = cmbSemester.Text,
-                    SchoolYear = txtSchoolYear.Text,
+                    SchoolYear = cmbSchoolYear.Text,
                     TotalUnits = totalUnits,
                     UnitFee = unitFee,
                     TotalAmount = totalAmount,
@@ -282,7 +362,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     txtID.Text = tuition.Id.ToString();
                     cmbStudent.SelectedValue = tuition.StudentId;
                     cmbSemester.Text = tuition.Semester;
-                    txtSchoolYear.Text = tuition.SchoolYear;
+                    cmbSchoolYear.Text = tuition.SchoolYear;
                     txtTotalUnits.Text = tuition.TotalUnits.ToString();
                     txtUnitFee.Text = tuition.UnitFee.ToString("N2");
                     txtTotalAmount.Text = tuition.TotalAmount.ToString("N2");
@@ -332,11 +412,11 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(txtSchoolYear.Text))
+                if (string.IsNullOrWhiteSpace(cmbSchoolYear.Text))
                 {
                     MessageBox.Show("Please enter School Year.", "Validation Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtSchoolYear.Focus();
+                    cmbSchoolYear.Focus();
                     return;
                 }
 
@@ -374,7 +454,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                 // update tuition
                 tuition.StudentId = (int)cmbStudent.SelectedValue;
                 tuition.Semester = cmbSemester.Text;
-                tuition.SchoolYear = txtSchoolYear.Text;
+                tuition.SchoolYear = cmbSchoolYear.Text;
                 tuition.TotalUnits = totalUnits;
                 tuition.UnitFee = unitFee;
                 tuition.TotalAmount = totalAmount;
@@ -441,6 +521,9 @@ namespace IntegratedUniversityInformationSystem.Forms
         // refreshes the list
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadTuitions();
             ClearFields();
         }
@@ -489,6 +572,36 @@ namespace IntegratedUniversityInformationSystem.Forms
             {
                 // Ignore
             }
+        }
+
+        private void cmbSortColumn_TextChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_TextChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void TuitionManagementForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

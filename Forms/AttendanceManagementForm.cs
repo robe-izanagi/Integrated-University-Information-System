@@ -334,5 +334,10 @@ namespace IntegratedUniversityInformationSystem.Forms
                 // ignore
             }
         }
+
+        private void AttendanceManagementForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

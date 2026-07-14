@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,17 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly PaymentRepository _paymentRepo;
         private readonly StudentRepository _studentRepo;
         private List<Payment> _payments; // holds all payments
+        private List<Payment> _displayedList;
+
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Amount",
+            "PaymentDate",
+            "PaymentMethod",
+            "ReferenceNo"
+        };
         public PaymentManagementForm()
         {
             InitializeComponent();
@@ -26,6 +38,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             // initialize repositories
             _paymentRepo = new PaymentRepository();
             _studentRepo = new StudentRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             // load data
             LoadPayments();
@@ -38,23 +54,49 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _payments = _paymentRepo.GetAll();
-                dgvPayments.DataSource = null;
-                dgvPayments.DataSource = _payments.Select(p => new
-                {
-                    p.Id,
-                    Student = GetStudentName(p.StudentId),
-                    p.Amount,
-                    p.PaymentDate,
-                    p.PaymentMethod,
-                    p.ReferenceNo,
-                    p.Remarks
-                }).ToList();
+                _displayedList = _payments;
+                DisplayPayments(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading payments: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayPayments(List<Payment> list)
+        {
+            dgvPayments.DataSource = null;
+            dgvPayments.DataSource = list.Select(p => new
+            {
+                p.Id,
+                Student = GetStudentName(p.StudentId),
+                Amount = p.Amount.ToString("N2"),
+                p.PaymentDate,
+                p.PaymentMethod,
+                p.ReferenceNo,
+                p.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _payments ?? new List<Payment>();
+
+            decimal totalCash = list.Where(p => p.PaymentMethod == "Cash").Sum(p => p.Amount);
+            decimal totalBankTransfer = list.Where(p => p.PaymentMethod == "Bank Transfer").Sum(p => p.Amount);
+            decimal totalCreditCard = list.Where(p => p.PaymentMethod == "Credit Card").Sum(p => p.Amount);
+            decimal totalCheck = list.Where(p => p.PaymentMethod == "Check").Sum(p => p.Amount);
+            decimal totalAll = list.Sum(p => p.Amount);
+
+            lblCashSummary.Text = totalCash.ToString("N2");
+            lblBankTransferSummary.Text = totalBankTransfer.ToString("N2");
+            lblCreditCardSummary.Text = totalCreditCard.ToString("N2");
+            lblCheckSummary.Text = totalCheck.ToString("N2");
+            lblTotalPaymentsSummary.Text = totalAll.ToString("N2");
         }
 
         // gets student full name by ID
@@ -95,6 +137,25 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_payments == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _payments,
+                sortColumn,
+                sortOrder,
+                dgvPayments,
+                null // no student name needed for sorting, but if needed: p => GetStudentName(p.StudentId)
+            );
+
+            DisplayPayments(_displayedList);
+        }
         // adds new payment record
         private void lblAdd_Click(object sender, EventArgs e)
         {
@@ -289,6 +350,9 @@ namespace IntegratedUniversityInformationSystem.Forms
         // refreshes the list
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadPayments();
             ClearFields();
         }
@@ -319,34 +383,49 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        // filters payments by student name, method, or reference
+        // search filter
         private void SearchPayments()
         {
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _payments.Where(p =>
                     GetStudentName(p.StudentId).ToLower().Contains(keyword) ||
                     p.PaymentMethod.ToLower().Contains(keyword) ||
                     p.ReferenceNo.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvPayments.DataSource = null;
-                dgvPayments.DataSource = filtered.Select(p => new
-                {
-                    p.Id,
-                    Student = GetStudentName(p.StudentId),
-                    p.Amount,
-                    p.PaymentDate,
-                    p.PaymentMethod,
-                    p.ReferenceNo,
-                    p.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvPayments,
+                    null
+                );
+
+                DisplayPayments(_displayedList);
             }
             catch (Exception)
             {
                 // Ignore
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }
