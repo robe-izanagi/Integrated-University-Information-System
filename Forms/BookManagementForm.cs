@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,31 @@ namespace IntegratedUniversityInformationSystem.Forms
         // repository for saving and loading books
         private readonly BookRepository _bookRepo;
         private List<Book> _books;
+        private List<Book> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "ISBN",
+            "Title",
+            "Author",
+            "Publisher",
+            "YearPublished",
+            "Category",
+            "Location",
+            "Quantity",
+            "AvailableCopies"
+        };
         public BookManagementForm()
         {
             InitializeComponent();
             // setup the repository
             _bookRepo = new BookRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             // load books from json
             LoadBooks();
@@ -32,27 +53,9 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
             try
             {
-                // get all books from the repository
                 _books = _bookRepo.GetAll();
-
-                // clear the datagridview
-                dgvBooks.DataSource = null;
-
-                // show only the important columns
-                dgvBooks.DataSource = _books.Select(b => new
-                {
-                    b.Id,
-                    b.ISBN,
-                    b.Title,
-                    b.Author,
-                    b.Publisher,
-                    b.YearPublished,
-                    b.Category,
-                    b.Location,
-                    b.Quantity,
-                    b.AvailableCopies,
-                    b.IsActive
-                }).ToList();
+                _displayedList = _books;
+                DisplayBooks(_displayedList);
             }
             catch (Exception ex)
             {
@@ -61,6 +64,71 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        private void DisplayBooks(List<Book> list)
+        {
+            dgvBooks.DataSource = null;
+            dgvBooks.DataSource = list.Select(b => new
+            {
+                b.Id,
+                b.ISBN,
+                b.Title,
+                b.Author,
+                b.Publisher,
+                b.YearPublished,
+                b.Category,
+                b.Location,
+                b.Quantity,
+                b.AvailableCopies,
+                b.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+        // updates summary box with count per category
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _books ?? new List<Book>();
+
+            // count books per category
+            int fictionCount = list.Count(b => b.Category == "Fiction");
+            int nonFictionCount = list.Count(b => b.Category == "Non-Fiction");
+            int scienceCount = list.Count(b => b.Category == "Science");
+            int technologyCount = list.Count(b => b.Category == "Technology");
+            int historyCount = list.Count(b => b.Category == "History");
+            int literatureCount = list.Count(b => b.Category == "Literature");
+            int referenceCount = list.Count(b => b.Category == "Reference");
+            int childrenCount = list.Count(b => b.Category == "Children");
+            int totalBooks = list.Count;
+
+            // display with formatting
+            lblFictionSummary.Text = fictionCount.ToString("N0");
+            lblNonFictionSummary.Text = nonFictionCount.ToString("N0");
+            lblScienceSummary.Text = scienceCount.ToString("N0");
+            lblTechnologySummary.Text = technologyCount.ToString("N0");
+            lblHistorySummary.Text = historyCount.ToString("N0");
+            lblLiteratureSummary.Text = literatureCount.ToString("N0");
+            lblReferenceSummary.Text = referenceCount.ToString("N0");
+            lblChildrenSummary.Text = childrenCount.ToString("N0");
+            lblTotalBooksSummary.Text = totalBooks.ToString("N0");
+        }
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_books == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _books,
+                sortColumn,
+                sortOrder,
+                dgvBooks,
+                null
+            );
+
+            DisplayBooks(_displayedList);
+        }
         // clears all textboxes and comboboxes
         private void ClearFields()
         {
@@ -348,10 +416,14 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadBooks();
             ClearFields();
         }
 
+        // search - filters books by title, author, isbn, or category
         private void SearchBooks()
         {
             try
@@ -365,26 +437,36 @@ namespace IntegratedUniversityInformationSystem.Forms
                     b.Category.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvBooks.DataSource = null;
-                dgvBooks.DataSource = filtered.Select(b => new
-                {
-                    b.Id,
-                    b.ISBN,
-                    b.Title,
-                    b.Author,
-                    b.Publisher,
-                    b.YearPublished,
-                    b.Category,
-                    b.Location,
-                    b.Quantity,
-                    b.AvailableCopies,
-                    b.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvBooks,
+                    null
+                );
+
+                DisplayBooks(_displayedList);
             }
             catch (Exception)
             {
                 // ignore search errors
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

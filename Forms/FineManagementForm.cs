@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,19 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly BookRepository _bookRepo;
         private List<Fine> _fines;
+        private List<Fine> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Book",
+            "Amount",
+            "FineDate",
+            "Reason",
+            "Status"
+        };
         public FineManagementForm()
         {
             InitializeComponent();
@@ -27,6 +41,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             _borrowingRepo = new BorrowingRepository();
             _studentRepo = new StudentRepository();
             _bookRepo = new BookRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             LoadFines();
             LoadBorrowingDropdown();
@@ -37,26 +55,67 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _fines = _fineRepo.GetAll();
-
-                dgvFines.DataSource = null;
-
-                dgvFines.DataSource = _fines.Select(f => new
-                {
-                    f.Id,
-                    Borrowing = GetBorrowingInfo(f.BorrowingId),
-                    Student = GetStudentNameFromBorrowing(f.BorrowingId),
-                    Book = GetBookTitleFromBorrowing(f.BorrowingId),
-                    f.Amount,
-                    f.FineDate,
-                    f.Reason,
-                    f.Status
-                }).ToList();
+                _displayedList = _fines;
+                DisplayFines(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading fines: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayFines(List<Fine> list)
+        {
+            dgvFines.DataSource = null;
+            dgvFines.DataSource = list.Select(f => new
+            {
+                f.Id,
+                Borrowing = GetBorrowingInfo(f.BorrowingId),
+                Student = GetStudentNameFromBorrowing(f.BorrowingId),
+                Book = GetBookTitleFromBorrowing(f.BorrowingId),
+                Amount = f.Amount.ToString("N2"),
+                f.FineDate,
+                f.Reason,
+                f.Status
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with amount per status
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _fines ?? new List<Fine>();
+
+            decimal pendingTotal = list.Where(f => f.Status == "Pending").Sum(f => f.Amount);
+            decimal paidTotal = list.Where(f => f.Status == "Paid").Sum(f => f.Amount);
+            decimal waivedTotal = list.Where(f => f.Status == "Waived").Sum(f => f.Amount);
+            decimal totalAll = list.Sum(f => f.Amount);
+
+            lblPendingSummary.Text = pendingTotal.ToString("N2");
+            lblPaidSummary.Text = paidTotal.ToString("N2");
+            lblWaivedSummary.Text = waivedTotal.ToString("N2");
+            lblTotalFinesSummary.Text = totalAll.ToString("N2");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_fines == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _fines,
+                sortColumn,
+                sortOrder,
+                dgvFines,
+                t => GetStudentNameFromBorrowing(t.BorrowingId)
+            );
+
+            DisplayFines(_displayedList);
         }
 
         // gets borrowing info text
@@ -345,6 +404,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadFines();
             LoadBorrowingDropdown();
             ClearFields();
@@ -360,6 +422,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             SearchFines();
         }
 
+        // search - filters fines by borrowing info, status, or reason
         private void SearchFines()
         {
             try
@@ -372,23 +435,36 @@ namespace IntegratedUniversityInformationSystem.Forms
                     f.Reason.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvFines.DataSource = null;
-                dgvFines.DataSource = filtered.Select(f => new
-                {
-                    f.Id,
-                    Borrowing = GetBorrowingInfo(f.BorrowingId),
-                    Student = GetStudentNameFromBorrowing(f.BorrowingId),
-                    Book = GetBookTitleFromBorrowing(f.BorrowingId),
-                    f.Amount,
-                    f.FineDate,
-                    f.Reason,
-                    f.Status
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvFines,
+                    t => GetStudentNameFromBorrowing(t.BorrowingId)
+                );
+
+                DisplayFines(_displayedList);
             }
             catch (Exception)
             {
                 // ignore
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,19 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly BookRepository _bookRepo;
         private List<Borrowing> _borrowings;
+        private List<Borrowing> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Book",
+            "BorrowDate",
+            "DueDate",
+            "ReturnDate",
+            "Status"
+        };
         public BorrowingManagementForm()
         {
             InitializeComponent();
@@ -27,6 +41,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             _borrowingRepo = new BorrowingRepository();
             _studentRepo = new StudentRepository();
             _bookRepo = new BookRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             // load data
             LoadBorrowings();
@@ -40,20 +58,8 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _borrowings = _borrowingRepo.GetAll();
-
-                dgvBorrowings.DataSource = null;
-
-                dgvBorrowings.DataSource = _borrowings.Select(b => new
-                {
-                    b.Id,
-                    Student = GetStudentName(b.StudentId),
-                    Book = GetBookTitle(b.BookId),
-                    b.BorrowDate,
-                    b.DueDate,
-                    b.ReturnDate,
-                    b.Status,
-                    b.Remarks
-                }).ToList();
+                _displayedList = _borrowings;
+                DisplayBorrowings(_displayedList);
             }
             catch (Exception ex)
             {
@@ -62,6 +68,60 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        private void DisplayBorrowings(List<Borrowing> list)
+        {
+            dgvBorrowings.DataSource = null;
+            dgvBorrowings.DataSource = list.Select(b => new
+            {
+                b.Id,
+                Student = GetStudentName(b.StudentId),
+                Book = GetBookTitle(b.BookId),
+                b.BorrowDate,
+                b.DueDate,
+                b.ReturnDate,
+                b.Status,
+                b.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per status
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _borrowings ?? new List<Borrowing>();
+
+            int borrowedCount = list.Count(b => b.Status == "Borrowed");
+            int returnedCount = list.Count(b => b.Status == "Returned");
+            int overdueCount = list.Count(b => b.Status == "Overdue");
+            int cancelledCount = list.Count(b => b.Status == "Cancelled");
+            int totalCount = list.Count;
+
+            lblBorrowedSummary.Text = borrowedCount.ToString("N0");
+            lblReturnedSummary.Text = returnedCount.ToString("N0");
+            lblOverdueSummary.Text = overdueCount.ToString("N0");
+            lblCancelledSummary.Text = cancelledCount.ToString("N0");
+            lblTotalBorrowingsSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_borrowings == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _borrowings,
+                sortColumn,
+                sortOrder,
+                dgvBorrowings,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayBorrowings(_displayedList);
+        }
         // helper - gets student name
         private string GetStudentName(int studentId)
         {
@@ -429,6 +489,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadBorrowings();
             LoadStudents();
             LoadBooks();
@@ -445,6 +508,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             SearchBorrowings();
         }
 
+        // search - filters borrowings by student, book, or status
         private void SearchBorrowings()
         {
             try
@@ -457,23 +521,36 @@ namespace IntegratedUniversityInformationSystem.Forms
                     b.Status.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvBorrowings.DataSource = null;
-                dgvBorrowings.DataSource = filtered.Select(b => new
-                {
-                    b.Id,
-                    Student = GetStudentName(b.StudentId),
-                    Book = GetBookTitle(b.BookId),
-                    b.BorrowDate,
-                    b.DueDate,
-                    b.ReturnDate,
-                    b.Status,
-                    b.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvBorrowings,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayBorrowings(_displayedList);
             }
             catch (Exception)
             {
                 // ignore
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }
