@@ -104,8 +104,6 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void lblLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginForm login = new LoginForm();
-            login.Show();
         }
 
         private void panelSidebar_Paint(object sender, PaintEventArgs e)

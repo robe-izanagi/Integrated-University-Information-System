@@ -29,15 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TuitionManagementForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pbRefresh = new System.Windows.Forms.PictureBox();
             this.txtUnitFee = new System.Windows.Forms.TextBox();
             this.lblSchoolYear = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblUnitFee = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.cmbSchoolYear = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblUpdate = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDelete = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.lblAdd = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblClear = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
@@ -62,45 +77,26 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.panelTopContent = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblUpdate = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblDelete = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.lblAdd = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblClear = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.cmbSortColumn = new System.Windows.Forms.ComboBox();
             this.cmbSortOrder = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lblTotalUnitsText = new System.Windows.Forms.Label();
-            this.lblTotalUnitsSummary = new System.Windows.Forms.Label();
             this.lblUnitFeeSummary = new System.Windows.Forms.Label();
             this.lblUnitFeeText = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.lblTotalAmountSummary = new System.Windows.Forms.Label();
             this.lblTotalAmountText = new System.Windows.Forms.Label();
-            this.lblAmountPaidSummary = new System.Windows.Forms.Label();
-            this.lblAmountPaidText = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
             this.lblBalanceSummary = new System.Windows.Forms.Label();
             this.lblBalanceText = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.lblAmountPaidSummary = new System.Windows.Forms.Label();
+            this.lblAmountPaidText = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.lblTotalUnitsSummary = new System.Windows.Forms.Label();
+            this.lblTotalUnitsText = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.cmbSchoolYear = new System.Windows.Forms.ComboBox();
-            this.panel11 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             this.panelInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTuitions)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.panelTopContent.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -109,6 +105,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTuitions)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.panelTopContent.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -209,6 +209,192 @@
             this.panelInput.Name = "panelInput";
             this.panelInput.Size = new System.Drawing.Size(303, 620);
             this.panelInput.TabIndex = 57;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel11.Location = new System.Drawing.Point(3, 50);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(297, 1);
+            this.panel11.TabIndex = 84;
+            // 
+            // cmbSchoolYear
+            // 
+            this.cmbSchoolYear.BackColor = System.Drawing.Color.White;
+            this.cmbSchoolYear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cmbSchoolYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbSchoolYear.FormattingEnabled = true;
+            this.cmbSchoolYear.Items.AddRange(new object[] {
+            "2015-2016",
+            "2016-2017",
+            "2017-2018",
+            "2018-2019",
+            "2019-2020",
+            "2020-2021",
+            "2021-2022",
+            "2022-2023",
+            "2023-2024",
+            "2024-2025",
+            "2025-2026",
+            "2026-2027"});
+            this.cmbSchoolYear.Location = new System.Drawing.Point(150, 193);
+            this.cmbSchoolYear.Name = "cmbSchoolYear";
+            this.cmbSchoolYear.Size = new System.Drawing.Size(135, 28);
+            this.cmbSchoolYear.TabIndex = 83;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(79, 604);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.TabIndex = 82;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.lblUpdate);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(254)))));
+            this.panel3.Location = new System.Drawing.Point(14, 527);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(136, 36);
+            this.panel3.TabIndex = 80;
+            this.panel3.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // lblUpdate
+            // 
+            this.lblUpdate.AutoSize = true;
+            this.lblUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(254)))));
+            this.lblUpdate.Location = new System.Drawing.Point(46, 8);
+            this.lblUpdate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblUpdate.Name = "lblUpdate";
+            this.lblUpdate.Size = new System.Drawing.Size(61, 18);
+            this.lblUpdate.TabIndex = 60;
+            this.lblUpdate.Text = "Update";
+            this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(30, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 59;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.lblDelete);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(156, 527);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(133, 36);
+            this.panel2.TabIndex = 78;
+            this.panel2.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // lblDelete
+            // 
+            this.lblDelete.AutoSize = true;
+            this.lblDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDelete.ForeColor = System.Drawing.Color.Red;
+            this.lblDelete.Location = new System.Drawing.Point(45, 8);
+            this.lblDelete.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblDelete.Name = "lblDelete";
+            this.lblDelete.Size = new System.Drawing.Size(56, 18);
+            this.lblDelete.TabIndex = 60;
+            this.lblDelete.Text = "Delete";
+            this.lblDelete.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(27, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 59;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.lblAdd);
+            this.panel5.Controls.Add(this.pictureBox4);
+            this.panel5.Location = new System.Drawing.Point(14, 483);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(275, 36);
+            this.panel5.TabIndex = 81;
+            this.panel5.Click += new System.EventHandler(this.lblAdd_Click);
+            // 
+            // lblAdd
+            // 
+            this.lblAdd.AutoSize = true;
+            this.lblAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdd.ForeColor = System.Drawing.Color.White;
+            this.lblAdd.Location = new System.Drawing.Point(128, 9);
+            this.lblAdd.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblAdd.Name = "lblAdd";
+            this.lblAdd.Size = new System.Drawing.Size(36, 18);
+            this.lblAdd.TabIndex = 60;
+            this.lblAdd.Text = "Add";
+            this.lblAdd.Click += new System.EventHandler(this.lblAdd_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(112, 10);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 59;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.lblAdd_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.lblClear);
+            this.panel4.Controls.Add(this.pictureBox3);
+            this.panel4.Location = new System.Drawing.Point(14, 569);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(275, 36);
+            this.panel4.TabIndex = 79;
+            this.panel4.Click += new System.EventHandler(this.lblClear_Click);
+            // 
+            // lblClear
+            // 
+            this.lblClear.AutoSize = true;
+            this.lblClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
+            this.lblClear.Location = new System.Drawing.Point(126, 10);
+            this.lblClear.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lblClear.Name = "lblClear";
+            this.lblClear.Size = new System.Drawing.Size(48, 18);
+            this.lblClear.TabIndex = 60;
+            this.lblClear.Text = "Clear";
+            this.lblClear.Click += new System.EventHandler(this.lblClear_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(108, 10);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 59;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.lblClear_Click);
             // 
             // cmbStatus
             // 
@@ -425,35 +611,35 @@
             this.dgvTuitions.BackgroundColor = System.Drawing.Color.White;
             this.dgvTuitions.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvTuitions.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTuitions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTuitions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvTuitions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTuitions.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTuitions.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTuitions.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvTuitions.Location = new System.Drawing.Point(332, 168);
             this.dgvTuitions.Name = "dgvTuitions";
             this.dgvTuitions.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTuitions.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTuitions.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvTuitions.Size = new System.Drawing.Size(629, 470);
             this.dgvTuitions.TabIndex = 44;
             this.dgvTuitions.SelectionChanged += new System.EventHandler(this.dgvTuitions_SelectionChanged);
@@ -507,151 +693,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "TUITION MANAGEMENT";
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.lblUpdate);
-            this.panel3.Controls.Add(this.pictureBox2);
-            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(254)))));
-            this.panel3.Location = new System.Drawing.Point(14, 527);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(136, 36);
-            this.panel3.TabIndex = 80;
-            this.panel3.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // lblUpdate
-            // 
-            this.lblUpdate.AutoSize = true;
-            this.lblUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(254)))));
-            this.lblUpdate.Location = new System.Drawing.Point(46, 8);
-            this.lblUpdate.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lblUpdate.Name = "lblUpdate";
-            this.lblUpdate.Size = new System.Drawing.Size(61, 18);
-            this.lblUpdate.TabIndex = 60;
-            this.lblUpdate.Text = "Update";
-            this.lblUpdate.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(30, 10);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 59;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.lblDelete);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(156, 527);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(133, 36);
-            this.panel2.TabIndex = 78;
-            this.panel2.Click += new System.EventHandler(this.lblDelete_Click);
-            // 
-            // lblDelete
-            // 
-            this.lblDelete.AutoSize = true;
-            this.lblDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDelete.ForeColor = System.Drawing.Color.Red;
-            this.lblDelete.Location = new System.Drawing.Point(45, 8);
-            this.lblDelete.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lblDelete.Name = "lblDelete";
-            this.lblDelete.Size = new System.Drawing.Size(56, 18);
-            this.lblDelete.TabIndex = 60;
-            this.lblDelete.Text = "Delete";
-            this.lblDelete.Click += new System.EventHandler(this.lblDelete_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(27, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 59;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.lblDelete_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.lblAdd);
-            this.panel5.Controls.Add(this.pictureBox4);
-            this.panel5.Location = new System.Drawing.Point(14, 483);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(275, 36);
-            this.panel5.TabIndex = 81;
-            this.panel5.Click += new System.EventHandler(this.lblAdd_Click);
-            // 
-            // lblAdd
-            // 
-            this.lblAdd.AutoSize = true;
-            this.lblAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdd.ForeColor = System.Drawing.Color.White;
-            this.lblAdd.Location = new System.Drawing.Point(128, 9);
-            this.lblAdd.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lblAdd.Name = "lblAdd";
-            this.lblAdd.Size = new System.Drawing.Size(36, 18);
-            this.lblAdd.TabIndex = 60;
-            this.lblAdd.Text = "Add";
-            this.lblAdd.Click += new System.EventHandler(this.lblAdd_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(112, 10);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 59;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.lblAdd_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.lblClear);
-            this.panel4.Controls.Add(this.pictureBox3);
-            this.panel4.Location = new System.Drawing.Point(14, 569);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(275, 36);
-            this.panel4.TabIndex = 79;
-            this.panel4.Click += new System.EventHandler(this.lblClear_Click);
-            // 
-            // lblClear
-            // 
-            this.lblClear.AutoSize = true;
-            this.lblClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(50)))));
-            this.lblClear.Location = new System.Drawing.Point(126, 10);
-            this.lblClear.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lblClear.Name = "lblClear";
-            this.lblClear.Size = new System.Drawing.Size(48, 18);
-            this.lblClear.TabIndex = 60;
-            this.lblClear.Text = "Clear";
-            this.lblClear.Click += new System.EventHandler(this.lblClear_Click);
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(108, 10);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 59;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.lblClear_Click);
-            // 
             // cmbSortColumn
             // 
             this.cmbSortColumn.BackColor = System.Drawing.Color.White;
@@ -689,67 +730,6 @@
             this.panel7.Size = new System.Drawing.Size(123, 57);
             this.panel7.TabIndex = 72;
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Controls.Add(this.lblTotalAmountSummary);
-            this.panel8.Controls.Add(this.lblTotalAmountText);
-            this.panel8.Location = new System.Drawing.Point(586, 71);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(119, 57);
-            this.panel8.TabIndex = 72;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.Controls.Add(this.lblBalanceSummary);
-            this.panel9.Controls.Add(this.lblBalanceText);
-            this.panel9.Location = new System.Drawing.Point(836, 71);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(125, 57);
-            this.panel9.TabIndex = 72;
-            // 
-            // panel10
-            // 
-            this.panel10.BackColor = System.Drawing.Color.White;
-            this.panel10.Controls.Add(this.lblAmountPaidSummary);
-            this.panel10.Controls.Add(this.lblAmountPaidText);
-            this.panel10.Location = new System.Drawing.Point(711, 71);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(119, 57);
-            this.panel10.TabIndex = 73;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.lblTotalUnitsSummary);
-            this.panel6.Controls.Add(this.lblTotalUnitsText);
-            this.panel6.Location = new System.Drawing.Point(332, 71);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(119, 57);
-            this.panel6.TabIndex = 71;
-            // 
-            // lblTotalUnitsText
-            // 
-            this.lblTotalUnitsText.AutoSize = true;
-            this.lblTotalUnitsText.Font = new System.Drawing.Font("Noto Sans KR", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalUnitsText.Location = new System.Drawing.Point(3, 10);
-            this.lblTotalUnitsText.Name = "lblTotalUnitsText";
-            this.lblTotalUnitsText.Size = new System.Drawing.Size(77, 17);
-            this.lblTotalUnitsText.TabIndex = 0;
-            this.lblTotalUnitsText.Text = "Total Units:";
-            // 
-            // lblTotalUnitsSummary
-            // 
-            this.lblTotalUnitsSummary.AutoSize = true;
-            this.lblTotalUnitsSummary.Font = new System.Drawing.Font("Noto Sans KR", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalUnitsSummary.ForeColor = System.Drawing.Color.Blue;
-            this.lblTotalUnitsSummary.Location = new System.Drawing.Point(4, 28);
-            this.lblTotalUnitsSummary.Name = "lblTotalUnitsSummary";
-            this.lblTotalUnitsSummary.Size = new System.Drawing.Size(19, 24);
-            this.lblTotalUnitsSummary.TabIndex = 62;
-            this.lblTotalUnitsSummary.Text = "0";
-            // 
             // lblUnitFeeSummary
             // 
             this.lblUnitFeeSummary.AutoSize = true;
@@ -770,6 +750,16 @@
             this.lblUnitFeeText.Size = new System.Drawing.Size(62, 17);
             this.lblUnitFeeText.TabIndex = 63;
             this.lblUnitFeeText.Text = "Unit Fee:";
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.lblTotalAmountSummary);
+            this.panel8.Controls.Add(this.lblTotalAmountText);
+            this.panel8.Location = new System.Drawing.Point(586, 71);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(119, 57);
+            this.panel8.TabIndex = 72;
             // 
             // lblTotalAmountSummary
             // 
@@ -792,26 +782,15 @@
             this.lblTotalAmountText.TabIndex = 63;
             this.lblTotalAmountText.Text = "Total Amount:";
             // 
-            // lblAmountPaidSummary
+            // panel9
             // 
-            this.lblAmountPaidSummary.AutoSize = true;
-            this.lblAmountPaidSummary.Font = new System.Drawing.Font("Noto Sans KR", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmountPaidSummary.ForeColor = System.Drawing.Color.Blue;
-            this.lblAmountPaidSummary.Location = new System.Drawing.Point(4, 28);
-            this.lblAmountPaidSummary.Name = "lblAmountPaidSummary";
-            this.lblAmountPaidSummary.Size = new System.Drawing.Size(42, 24);
-            this.lblAmountPaidSummary.TabIndex = 64;
-            this.lblAmountPaidSummary.Text = "0.00";
-            // 
-            // lblAmountPaidText
-            // 
-            this.lblAmountPaidText.AutoSize = true;
-            this.lblAmountPaidText.Font = new System.Drawing.Font("Noto Sans KR", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmountPaidText.Location = new System.Drawing.Point(3, 10);
-            this.lblAmountPaidText.Name = "lblAmountPaidText";
-            this.lblAmountPaidText.Size = new System.Drawing.Size(90, 17);
-            this.lblAmountPaidText.TabIndex = 63;
-            this.lblAmountPaidText.Text = "Amount Paid:";
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.Controls.Add(this.lblBalanceSummary);
+            this.panel9.Controls.Add(this.lblBalanceText);
+            this.panel9.Location = new System.Drawing.Point(836, 71);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(125, 57);
+            this.panel9.TabIndex = 72;
             // 
             // lblBalanceSummary
             // 
@@ -834,13 +813,67 @@
             this.lblBalanceText.TabIndex = 63;
             this.lblBalanceText.Text = "Balance:";
             // 
-            // label3
+            // panel10
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 604);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
-            this.label3.TabIndex = 82;
+            this.panel10.BackColor = System.Drawing.Color.White;
+            this.panel10.Controls.Add(this.lblAmountPaidSummary);
+            this.panel10.Controls.Add(this.lblAmountPaidText);
+            this.panel10.Location = new System.Drawing.Point(711, 71);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(119, 57);
+            this.panel10.TabIndex = 73;
+            // 
+            // lblAmountPaidSummary
+            // 
+            this.lblAmountPaidSummary.AutoSize = true;
+            this.lblAmountPaidSummary.Font = new System.Drawing.Font("Noto Sans KR", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountPaidSummary.ForeColor = System.Drawing.Color.Blue;
+            this.lblAmountPaidSummary.Location = new System.Drawing.Point(4, 28);
+            this.lblAmountPaidSummary.Name = "lblAmountPaidSummary";
+            this.lblAmountPaidSummary.Size = new System.Drawing.Size(42, 24);
+            this.lblAmountPaidSummary.TabIndex = 64;
+            this.lblAmountPaidSummary.Text = "0.00";
+            // 
+            // lblAmountPaidText
+            // 
+            this.lblAmountPaidText.AutoSize = true;
+            this.lblAmountPaidText.Font = new System.Drawing.Font("Noto Sans KR", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountPaidText.Location = new System.Drawing.Point(3, 10);
+            this.lblAmountPaidText.Name = "lblAmountPaidText";
+            this.lblAmountPaidText.Size = new System.Drawing.Size(90, 17);
+            this.lblAmountPaidText.TabIndex = 63;
+            this.lblAmountPaidText.Text = "Amount Paid:";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.lblTotalUnitsSummary);
+            this.panel6.Controls.Add(this.lblTotalUnitsText);
+            this.panel6.Location = new System.Drawing.Point(332, 71);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(119, 57);
+            this.panel6.TabIndex = 71;
+            // 
+            // lblTotalUnitsSummary
+            // 
+            this.lblTotalUnitsSummary.AutoSize = true;
+            this.lblTotalUnitsSummary.Font = new System.Drawing.Font("Noto Sans KR", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalUnitsSummary.ForeColor = System.Drawing.Color.Blue;
+            this.lblTotalUnitsSummary.Location = new System.Drawing.Point(4, 28);
+            this.lblTotalUnitsSummary.Name = "lblTotalUnitsSummary";
+            this.lblTotalUnitsSummary.Size = new System.Drawing.Size(19, 24);
+            this.lblTotalUnitsSummary.TabIndex = 62;
+            this.lblTotalUnitsSummary.Text = "0";
+            // 
+            // lblTotalUnitsText
+            // 
+            this.lblTotalUnitsText.AutoSize = true;
+            this.lblTotalUnitsText.Font = new System.Drawing.Font("Noto Sans KR", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalUnitsText.Location = new System.Drawing.Point(3, 10);
+            this.lblTotalUnitsText.Name = "lblTotalUnitsText";
+            this.lblTotalUnitsText.Size = new System.Drawing.Size(77, 17);
+            this.lblTotalUnitsText.TabIndex = 0;
+            this.lblTotalUnitsText.Text = "Total Units:";
             // 
             // pictureBox6
             // 
@@ -854,44 +887,11 @@
             this.pictureBox6.TabStop = false;
             this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
-            // cmbSchoolYear
-            // 
-            this.cmbSchoolYear.BackColor = System.Drawing.Color.White;
-            this.cmbSchoolYear.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cmbSchoolYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbSchoolYear.FormattingEnabled = true;
-            this.cmbSchoolYear.Items.AddRange(new object[] {
-            "2015-2016",
-            "2016-2017",
-            "2017-2018",
-            "2018-2019",
-            "2019-2020",
-            "2020-2021",
-            "2021-2022",
-            "2022-2023",
-            "2023-2024",
-            "2024-2025",
-            "2025-2026",
-            "2026-2027"});
-            this.cmbSchoolYear.Location = new System.Drawing.Point(150, 193);
-            this.cmbSchoolYear.Name = "cmbSchoolYear";
-            this.cmbSchoolYear.Size = new System.Drawing.Size(135, 28);
-            this.cmbSchoolYear.TabIndex = 83;
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.panel11.Location = new System.Drawing.Point(3, 50);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(297, 1);
-            this.panel11.TabIndex = 84;
-            // 
             // TuitionManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(988, 668);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.panel10);
@@ -915,12 +915,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTuitions)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panelTopContent.ResumeLayout(false);
-            this.panelTopContent.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -933,6 +927,12 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTuitions)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.panelTopContent.ResumeLayout(false);
+            this.panelTopContent.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);

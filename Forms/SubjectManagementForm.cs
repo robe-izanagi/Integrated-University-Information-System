@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,30 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly SubjectRepository _subjectRepo;
         private readonly CourseRepository _courseRepo;
         private List<Subject> _subjects;
+        private List<Subject> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Code",
+            "Name",
+            "Units",
+            "Course",
+            "YearLevel",
+            "Semester"
+        };
+
         public SubjectManagementForm()
         {
             InitializeComponent();
             _subjectRepo = new SubjectRepository();
             _courseRepo = new CourseRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
             LoadSubjects();
             LoadCourses();
         }
@@ -31,25 +51,73 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _subjects = _subjectRepo.GetAll();
-                dgvSubjects.DataSource = null;
-                dgvSubjects.DataSource = _subjects.Select(s => new
-                {
-                    s.Id,
-                    s.Code,
-                    s.Name,
-                    s.Description,
-                    s.Units,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Semester,
-                    s.IsActive
-                }).ToList();
+                _displayedList = _subjects;
+                DisplaySubjects(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading subjects: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplaySubjects(List<Subject> list)
+        {
+            dgvSubjects.DataSource = null;
+            dgvSubjects.DataSource = list.Select(s => new
+            {
+                s.Id,
+                s.Code,
+                s.Name,
+                s.Description,
+                s.Units,
+                Course = GetCourseName(s.CourseId),
+                s.YearLevel,
+                s.Semester,
+                s.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per year level
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _subjects ?? new List<Subject>();
+
+            int year1 = list.Count(s => s.YearLevel == 1);
+            int year2 = list.Count(s => s.YearLevel == 2);
+            int year3 = list.Count(s => s.YearLevel == 3);
+            int year4 = list.Count(s => s.YearLevel == 4);
+            int year5 = list.Count(s => s.YearLevel == 5);
+            int total = list.Count;
+
+            lblYear1Summary.Text = year1.ToString("N0");
+            lblYear2Summary.Text = year2.ToString("N0");
+            lblYear3Summary.Text = year3.ToString("N0");
+            lblYear4Summary.Text = year4.ToString("N0");
+            lblYear5Summary.Text = year5.ToString("N0");
+            lblTotalSubjectsSummary.Text = total.ToString("N0");
+        }
+
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_subjects == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _subjects,
+                sortColumn,
+                sortOrder,
+                dgvSubjects,
+                null
+            );
+
+            DisplaySubjects(_displayedList);
         }
 
         private string GetCourseName(int courseId)
@@ -85,7 +153,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             cmbCourse.SelectedIndex = -1;
             cmbYearLevel.SelectedIndex = -1;
             cmbSemester.SelectedIndex = -1;
-            chkActive.Checked = true;
             txtID.Focus();
         }
 
@@ -107,7 +174,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     cmbCourse.SelectedValue = subject.CourseId;
                     cmbYearLevel.Text = subject.YearLevel.ToString();
                     cmbSemester.Text = subject.Semester;
-                    chkActive.Checked = subject.IsActive;
                 }
             }
         }
@@ -125,29 +191,32 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _subjects.Where(s =>
                     s.Code.ToLower().Contains(keyword) ||
                     s.Name.ToLower().Contains(keyword) ||
                     s.Description.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvSubjects.DataSource = null;
-                dgvSubjects.DataSource = filtered.Select(s => new
-                {
-                    s.Id,
-                    s.Code,
-                    s.Name,
-                    s.Description,
-                    s.Units,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Semester,
-                    s.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvSubjects,
+                    null
+                );
+
+                DisplaySubjects(_displayedList);
             }
             catch (Exception)
             {
-                // Ignore
+                // ignore
             }
         }
 
@@ -218,7 +287,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     CourseId = (int)cmbCourse.SelectedValue,
                     YearLevel = int.Parse(cmbYearLevel.Text),
                     Semester = cmbSemester.Text,
-                    IsActive = chkActive.Checked
                 };
 
                 _subjectRepo.Add(subject);
@@ -341,7 +409,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                 subject.CourseId = (int)cmbCourse.SelectedValue;
                 subject.YearLevel = int.Parse(cmbYearLevel.Text);
                 subject.Semester = cmbSemester.Text;
-                subject.IsActive = chkActive.Checked;
 
                 _subjectRepo.Update(s => s.Id == id, subject);
                 LoadSubjects();
@@ -358,8 +425,21 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadSubjects();
             ClearFields();
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

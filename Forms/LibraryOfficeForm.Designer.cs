@@ -141,7 +141,7 @@
             // 
             // panelSidebar
             // 
-            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.panelSidebar.BackColor = System.Drawing.Color.White;
             this.panelSidebar.Controls.Add(this.panel1);
             this.panelSidebar.Controls.Add(this.panel4);
             this.panelSidebar.Controls.Add(this.panelContainer4);

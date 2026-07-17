@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,20 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly FacultyRepository _facultyRepo;
         private readonly EmployeeRepository _employeeRepo;
         private List<Faculty> _facultyList;
+        private List<Faculty> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Employee",
+            "FacultyType",
+            "Specialization",
+            "SubjectsTaught",
+            "YearsTeaching",
+            "IsActive"
+        };
+
         public FacultyManagementForm()
         {
             InitializeComponent();
@@ -25,10 +40,15 @@ namespace IntegratedUniversityInformationSystem.Forms
             _facultyRepo = new FacultyRepository();
             _employeeRepo = new EmployeeRepository();
 
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
             // load faculty and employee dropdown
             LoadFaculty();
             LoadEmployeeDropdown();
         }
+
 
         // loads all faculty records from json
         private void LoadFaculty()
@@ -36,26 +56,66 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _facultyList = _facultyRepo.GetAll();
-
-                dgvFaculty.DataSource = null;
-
-                // show faculty list with employee name
-                dgvFaculty.DataSource = _facultyList.Select(f => new
-                {
-                    f.Id,
-                    Employee = GetEmployeeName(f.EmployeeId),
-                    f.FacultyType,
-                    f.Specialization,
-                    f.SubjectsTaught,
-                    f.YearsTeaching,
-                    f.IsActive
-                }).ToList();
+                _displayedList = _facultyList;
+                DisplayFaculty(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading faculty: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayFaculty(List<Faculty> list)
+        {
+            dgvFaculty.DataSource = null;
+            dgvFaculty.DataSource = list.Select(f => new
+            {
+                f.Id,
+                Employee = GetEmployeeName(f.EmployeeId),
+                f.FacultyType,
+                f.Specialization,
+                f.SubjectsTaught,
+                f.YearsTeaching,
+                f.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per faculty type
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _facultyList ?? new List<Faculty>();
+
+            int fullTimeCount = list.Count(f => f.FacultyType == "Full Time");
+            int partTimeCount = list.Count(f => f.FacultyType == "Part Time");
+            int guestCount = list.Count(f => f.FacultyType == "Guest Lecturer");
+            int totalCount = list.Count;
+
+            lblFullTimeSummary.Text = fullTimeCount.ToString("N0");
+            lblPartTimeSummary.Text = partTimeCount.ToString("N0");
+            lblGuestSummary.Text = guestCount.ToString("N0");
+            lblTotalFacultySummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_facultyList == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _facultyList,
+                sortColumn,
+                sortOrder,
+                dgvFaculty,
+                t => GetEmployeeName(t.EmployeeId)
+            );
+
+            DisplayFaculty(_displayedList);
         }
 
         // helper method to get employee full name by ID
@@ -70,11 +130,10 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
             try
             {
-                // only show active employees
                 var employees = _employeeRepo.GetAll().Where(emp => emp.IsActive).ToList();
 
                 cmbEmployee.DataSource = employees;
-                cmbEmployee.DisplayMember = "FullName"; // uses the FullName property from Employee model
+                cmbEmployee.DisplayMember = "FullName";
                 cmbEmployee.ValueMember = "Id";
                 cmbEmployee.SelectedIndex = -1;
             }
@@ -84,7 +143,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         // clears all fields
         private void ClearFields()
         {
@@ -94,7 +152,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtSpecialization.Clear();
             txtSubjectsTaught.Clear();
             numYearsTeaching.Value = 0;
-            chkIsActive.Checked = true;
             txtID.Focus();
         }
 
@@ -147,8 +204,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     FacultyType = cmbFacultyType.Text,
                     Specialization = txtSpecialization.Text,
                     SubjectsTaught = txtSubjectsTaught.Text,
-                    YearsTeaching = (int)numYearsTeaching.Value,
-                    IsActive = chkIsActive.Checked
+                    YearsTeaching = (int)numYearsTeaching.Value
                 };
 
                 _facultyRepo.Add(faculty);
@@ -181,7 +237,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     txtSpecialization.Text = faculty.Specialization;
                     txtSubjectsTaught.Text = faculty.SubjectsTaught;
                     numYearsTeaching.Value = faculty.YearsTeaching;
-                    chkIsActive.Checked = faculty.IsActive;
                 }
             }
         }
@@ -238,7 +293,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                 faculty.Specialization = txtSpecialization.Text;
                 faculty.SubjectsTaught = txtSubjectsTaught.Text;
                 faculty.YearsTeaching = (int)numYearsTeaching.Value;
-                faculty.IsActive = chkIsActive.Checked;
 
                 _facultyRepo.Update(f => f.Id == id, faculty);
                 LoadFaculty();
@@ -301,6 +355,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadFaculty();
             LoadEmployeeDropdown();
             ClearFields();
@@ -329,22 +386,36 @@ namespace IntegratedUniversityInformationSystem.Forms
                     f.Specialization.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvFaculty.DataSource = null;
-                dgvFaculty.DataSource = filtered.Select(f => new
-                {
-                    f.Id,
-                    Employee = GetEmployeeName(f.EmployeeId),
-                    f.FacultyType,
-                    f.Specialization,
-                    f.SubjectsTaught,
-                    f.YearsTeaching,
-                    f.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvFaculty,
+                    t => GetEmployeeName(t.EmployeeId)
+                );
+
+                DisplayFaculty(_displayedList);
             }
             catch (Exception)
             {
                 // ignore search errors
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

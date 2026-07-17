@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,30 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly SubjectRepository _subjectRepo;
         private List<Enrollment> _enrollments;
+        private List<Enrollment> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Subject",
+            "EnrollmentDate",
+            "Status",
+            "Grade"
+        };
+
         public EnrollmentManagementForm()
         {
             InitializeComponent();
             _enrollmentRepo = new EnrollmentRepository();
             _studentRepo = new StudentRepository();
             _subjectRepo = new SubjectRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
             LoadEnrollments();
             LoadStudents();
             LoadSubjects();
@@ -34,23 +53,68 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _enrollments = _enrollmentRepo.GetAll();
-                dgvEnrollments.DataSource = null;
-                dgvEnrollments.DataSource = _enrollments.Select(e => new
-                {
-                    e.Id,
-                    Student = GetStudentName(e.StudentId),
-                    Subject = GetSubjectCode(e.SubjectId),
-                    e.EnrollmentDate,
-                    e.Status,
-                    e.Grade,
-                    e.Remarks
-                }).ToList();
+                _displayedList = _enrollments;
+                DisplayEnrollments(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading enrollments: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayEnrollments(List<Enrollment> list)
+        {
+            dgvEnrollments.DataSource = null;
+            dgvEnrollments.DataSource = list.Select(e => new
+            {
+                e.Id,
+                Student = GetStudentName(e.StudentId),
+                Subject = GetSubjectCode(e.SubjectId),
+                e.EnrollmentDate,
+                e.Status,
+                Grade = e.Grade.ToString("N1"),
+                e.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per status
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _enrollments ?? new List<Enrollment>();
+
+            int enrolledCount = list.Count(e => e.Status == "Enrolled");
+            int droppedCount = list.Count(e => e.Status == "Dropped");
+            int completedCount = list.Count(e => e.Status == "Completed");
+            int cancelledCount = list.Count(e => e.Status == "Cancelled");
+            int totalCount = list.Count;
+
+            lblEnrolledSummary.Text = enrolledCount.ToString("N0");
+            lblDroppedSummary.Text = droppedCount.ToString("N0");
+            lblCompletedSummary.Text = completedCount.ToString("N0");
+            lblCancelledSummary.Text = cancelledCount.ToString("N0");
+            lblTotalEnrollmentsSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_enrollments == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _enrollments,
+                sortColumn,
+                sortOrder,
+                dgvEnrollments,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayEnrollments(_displayedList);
         }
 
         private string GetStudentName(int studentId)
@@ -320,27 +384,32 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _enrollments.Where(en =>
                     GetStudentName(en.StudentId).ToLower().Contains(keyword) ||
                     GetSubjectCode(en.SubjectId).ToLower().Contains(keyword) ||
                     en.Status.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvEnrollments.DataSource = null;
-                dgvEnrollments.DataSource = filtered.Select(en => new
-                {
-                    en.Id,
-                    Student = GetStudentName(en.StudentId),
-                    Subject = GetSubjectCode(en.SubjectId),
-                    en.EnrollmentDate,
-                    en.Status,
-                    en.Grade,
-                    en.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvEnrollments,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayEnrollments(_displayedList);
             }
             catch (Exception)
             {
-                // Ignore
+                // ignore
             }
         }
 
@@ -512,6 +581,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadEnrollments();
             ClearFields();
         }
@@ -519,6 +591,16 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

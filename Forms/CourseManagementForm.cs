@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,18 @@ namespace IntegratedUniversityInformationSystem.Forms
     {
         private readonly CourseRepository _courseRepo;
         private List<Course> _courses;
+        private List<Course> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Code",
+            "Name",
+            "DurationYears",
+            "IsActive"
+        };
+
         public CourseManagementForm()
         {
             InitializeComponent();
@@ -25,6 +38,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             dgvCourses.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             dgvCourses.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgvCourses.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             _courseRepo = new CourseRepository();
             LoadCourses();
@@ -35,22 +52,63 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _courses = _courseRepo.GetAll();
-                dgvCourses.DataSource = null;
-                dgvCourses.DataSource = _courses.Select(c => new
-                {
-                    c.Id,
-                    c.Code,
-                    c.Name,
-                    c.Description,
-                    c.DurationYears,
-                    c.IsActive
-                }).ToList();
+                _displayedList = _courses;
+                DisplayCourses(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading courses: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayCourses(List<Course> list)
+        {
+            dgvCourses.DataSource = null;
+            dgvCourses.DataSource = list.Select(c => new
+            {
+                c.Id,
+                c.Code,
+                c.Name,
+                c.Description,
+                c.DurationYears,
+                c.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with active/inactive/total count
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _courses ?? new List<Course>();
+
+            int activeCount = list.Count(c => c.IsActive == true);
+            int inactiveCount = list.Count(c => c.IsActive == false);
+            int totalCount = list.Count;
+
+            lblActiveSummary.Text = activeCount.ToString("N0");
+            lblInactiveSummary.Text = inactiveCount.ToString("N0");
+            lblTotalCoursesSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_courses == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _courses,
+                sortColumn,
+                sortOrder,
+                dgvCourses,
+                null
+            );
+
+            DisplayCourses(_displayedList);
         }
 
         private void ClearFields()
@@ -60,7 +118,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtName.Clear();
             txtDescription.Clear();
             numDuration.Value = 4;
-            chkActive.Checked = true;
             txtID.Focus();
         }
 
@@ -82,7 +139,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     txtName.Text = course.Name;
                     txtDescription.Text = course.Description;
                     numDuration.Value = course.DurationYears;
-                    chkActive.Checked = course.IsActive;
                 }
             }
         }
@@ -97,26 +153,32 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _courses.Where(c =>
                     c.Code.ToLower().Contains(keyword) ||
                     c.Name.ToLower().Contains(keyword) ||
                     c.Description.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvCourses.DataSource = null;
-                dgvCourses.DataSource = filtered.Select(c => new
-                {
-                    c.Id,
-                    c.Code,
-                    c.Name,
-                    c.Description,
-                    c.DurationYears,
-                    c.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvCourses,
+                    null
+                );
+
+                DisplayCourses(_displayedList);
             }
             catch (Exception)
             {
-                // Ignore
+                // ignore
             }
         }
 
@@ -154,8 +216,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     Code = txtCode.Text,
                     Name = txtName.Text,
                     Description = txtDescription.Text,
-                    DurationYears = (int)numDuration.Value,
-                    IsActive = chkActive.Checked
+                    DurationYears = (int)numDuration.Value
                 };
 
                 _courseRepo.Add(course);
@@ -178,6 +239,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadCourses();
             ClearFields();
         }
@@ -263,7 +327,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                 course.Name = txtName.Text;
                 course.Description = txtDescription.Text;
                 course.DurationYears = (int)numDuration.Value;
-                course.IsActive = chkActive.Checked;
 
                 _courseRepo.Update(c => c.Id == id, course);
                 LoadCourses();
@@ -276,6 +339,16 @@ namespace IntegratedUniversityInformationSystem.Forms
                 MessageBox.Show($"Error updating course: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

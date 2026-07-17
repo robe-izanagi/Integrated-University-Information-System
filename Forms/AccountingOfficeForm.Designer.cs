@@ -33,29 +33,29 @@
             this.lblLogout = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelSidebar = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.p5 = new System.Windows.Forms.Panel();
             this.panelContainer4 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lblMenu = new System.Windows.Forms.Label();
             this.pc3 = new System.Windows.Forms.Panel();
+            this.p6 = new System.Windows.Forms.Panel();
             this.lblTuition = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pc2 = new System.Windows.Forms.Panel();
+            this.p4 = new System.Windows.Forms.Panel();
+            this.p3 = new System.Windows.Forms.Panel();
             this.lblScholarship = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pc1 = new System.Windows.Forms.Panel();
+            this.p2 = new System.Windows.Forms.Panel();
+            this.p1 = new System.Windows.Forms.Panel();
             this.lblPayment = new System.Windows.Forms.Label();
             this.pbUser = new System.Windows.Forms.PictureBox();
-            this.p1 = new System.Windows.Forms.Panel();
-            this.p3 = new System.Windows.Forms.Panel();
-            this.p5 = new System.Windows.Forms.Panel();
-            this.p2 = new System.Windows.Forms.Panel();
-            this.p4 = new System.Windows.Forms.Panel();
-            this.p6 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panelSidebar.SuspendLayout();
             this.panelContainer4.SuspendLayout();
@@ -93,7 +93,7 @@
             // 
             // panelContent
             // 
-            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
             this.panelContent.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panelContent.Location = new System.Drawing.Point(197, -2);
             this.panelContent.Name = "panelContent";
@@ -119,6 +119,63 @@
             this.panelSidebar.Name = "panelSidebar";
             this.panelSidebar.Size = new System.Drawing.Size(200, 668);
             this.panelSidebar.TabIndex = 6;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel3.Location = new System.Drawing.Point(143, 80);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(52, 1);
+            this.panel3.TabIndex = 23;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel2.Location = new System.Drawing.Point(3, 80);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(52, 1);
+            this.panel2.TabIndex = 22;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Noto Sans KR", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(76, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "modules";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel1.Location = new System.Drawing.Point(0, 49);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 2);
+            this.panel1.TabIndex = 20;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
+            this.panel4.Location = new System.Drawing.Point(0, 602);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(200, 1);
+            this.panel4.TabIndex = 19;
+            // 
+            // p5
+            // 
+            this.p5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p5.Location = new System.Drawing.Point(0, 186);
+            this.p5.Name = "p5";
+            this.p5.Size = new System.Drawing.Size(5, 39);
+            this.p5.TabIndex = 18;
+            this.p5.Visible = false;
             // 
             // panelContainer4
             // 
@@ -161,6 +218,15 @@
             this.pc3.Size = new System.Drawing.Size(200, 39);
             this.pc3.TabIndex = 2;
             // 
+            // p6
+            // 
+            this.p6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p6.Location = new System.Drawing.Point(195, 7);
+            this.p6.Name = "p6";
+            this.p6.Size = new System.Drawing.Size(5, 26);
+            this.p6.TabIndex = 21;
+            this.p6.Visible = false;
+            // 
             // lblTuition
             // 
             this.lblTuition.AutoSize = true;
@@ -194,6 +260,24 @@
             this.pc2.Name = "pc2";
             this.pc2.Size = new System.Drawing.Size(200, 39);
             this.pc2.TabIndex = 1;
+            // 
+            // p4
+            // 
+            this.p4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p4.Location = new System.Drawing.Point(195, 6);
+            this.p4.Name = "p4";
+            this.p4.Size = new System.Drawing.Size(5, 26);
+            this.p4.TabIndex = 20;
+            this.p4.Visible = false;
+            // 
+            // p3
+            // 
+            this.p3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p3.Location = new System.Drawing.Point(0, 0);
+            this.p3.Name = "p3";
+            this.p3.Size = new System.Drawing.Size(5, 39);
+            this.p3.TabIndex = 18;
+            this.p3.Visible = false;
             // 
             // lblScholarship
             // 
@@ -230,6 +314,24 @@
             this.pc1.TabIndex = 0;
             this.pc1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
             // 
+            // p2
+            // 
+            this.p2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p2.Location = new System.Drawing.Point(195, 6);
+            this.p2.Name = "p2";
+            this.p2.Size = new System.Drawing.Size(5, 26);
+            this.p2.TabIndex = 19;
+            this.p2.Visible = false;
+            // 
+            // p1
+            // 
+            this.p1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
+            this.p1.Location = new System.Drawing.Point(0, 0);
+            this.p1.Name = "p1";
+            this.p1.Size = new System.Drawing.Size(5, 39);
+            this.p1.TabIndex = 17;
+            this.p1.Visible = false;
+            // 
             // lblPayment
             // 
             this.lblPayment.AutoSize = true;
@@ -251,108 +353,6 @@
             this.pbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUser.TabIndex = 14;
             this.pbUser.TabStop = false;
-            // 
-            // p1
-            // 
-            this.p1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p1.Location = new System.Drawing.Point(0, 0);
-            this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(5, 39);
-            this.p1.TabIndex = 17;
-            this.p1.Visible = false;
-            // 
-            // p3
-            // 
-            this.p3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p3.Location = new System.Drawing.Point(0, 0);
-            this.p3.Name = "p3";
-            this.p3.Size = new System.Drawing.Size(5, 39);
-            this.p3.TabIndex = 18;
-            this.p3.Visible = false;
-            // 
-            // p5
-            // 
-            this.p5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p5.Location = new System.Drawing.Point(0, 186);
-            this.p5.Name = "p5";
-            this.p5.Size = new System.Drawing.Size(5, 39);
-            this.p5.TabIndex = 18;
-            this.p5.Visible = false;
-            // 
-            // p2
-            // 
-            this.p2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p2.Location = new System.Drawing.Point(195, 6);
-            this.p2.Name = "p2";
-            this.p2.Size = new System.Drawing.Size(5, 26);
-            this.p2.TabIndex = 19;
-            this.p2.Visible = false;
-            // 
-            // p4
-            // 
-            this.p4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p4.Location = new System.Drawing.Point(195, 6);
-            this.p4.Name = "p4";
-            this.p4.Size = new System.Drawing.Size(5, 26);
-            this.p4.TabIndex = 20;
-            this.p4.Visible = false;
-            // 
-            // p6
-            // 
-            this.p6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.p6.Location = new System.Drawing.Point(195, 7);
-            this.p6.Name = "p6";
-            this.p6.Size = new System.Drawing.Size(5, 26);
-            this.p6.TabIndex = 21;
-            this.p6.Visible = false;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.panel4.Location = new System.Drawing.Point(0, 602);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 1);
-            this.panel4.TabIndex = 19;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(101)))), ((int)(((byte)(192)))));
-            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.panel1.Location = new System.Drawing.Point(0, 49);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 2);
-            this.panel1.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Noto Sans KR", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(76, 72);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 21;
-            this.label1.Text = "modules";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.panel2.Location = new System.Drawing.Point(3, 80);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(52, 1);
-            this.panel2.TabIndex = 22;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(144)))), ((int)(((byte)(156)))));
-            this.panel3.Location = new System.Drawing.Point(143, 80);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(52, 1);
-            this.panel3.TabIndex = 23;
             // 
             // AccountingOfficeForm
             // 

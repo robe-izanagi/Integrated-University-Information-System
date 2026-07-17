@@ -115,5 +115,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             hidePassword.Visible = true;
             txtPassword.PasswordChar = '\0';
         }
+
+        private void panelLoginForm_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

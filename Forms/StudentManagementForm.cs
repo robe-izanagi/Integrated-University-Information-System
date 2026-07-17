@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,21 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly StudentRepository _studentRepo;
         private readonly CourseRepository _courseRepo;
         private List<Student> _students;
+        private List<Student> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "StudentNumber",
+            "FirstName",
+            "LastName",
+            "Gender",
+            "Course",
+            "YearLevel",
+            "Section"
+        };
+
         public StudentManagementForm()
         {
             InitializeComponent();
@@ -28,6 +44,11 @@ namespace IntegratedUniversityInformationSystem.Forms
 
             _studentRepo = new StudentRepository();
             _courseRepo = new CourseRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
             LoadStudents();
             LoadCourses();
         }
@@ -37,30 +58,77 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _students = _studentRepo.GetAll();
-                dgvStudents.DataSource = null;
-                dgvStudents.DataSource = _students.Select(s => new
-                {
-                    s.Id,
-                    s.StudentNumber,
-                    s.FirstName,
-                    s.LastName,
-                    s.MiddleName,
-                    s.BirthDate,
-                    s.Gender,
-                    s.ContactNumber,
-                    s.Email,
-                    s.Address,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Section,
-                    s.IsActive
-                }).ToList();
+                _displayedList = _students;
+                DisplayStudents(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading students: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayStudents(List<Student> list)
+        {
+            dgvStudents.DataSource = null;
+            dgvStudents.DataSource = list.Select(s => new
+            {
+                s.Id,
+                s.StudentNumber,
+                s.FirstName,
+                s.LastName,
+                s.MiddleName,
+                s.BirthDate,
+                s.Gender,
+                s.ContactNumber,
+                s.Email,
+                s.Address,
+                Course = GetCourseName(s.CourseId),
+                s.YearLevel,
+                s.Section,
+                s.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per year level
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _students ?? new List<Student>();
+
+            int year1 = list.Count(s => s.YearLevel == 1);
+            int year2 = list.Count(s => s.YearLevel == 2);
+            int year3 = list.Count(s => s.YearLevel == 3);
+            int year4 = list.Count(s => s.YearLevel == 4);
+            int year5 = list.Count(s => s.YearLevel == 5);
+            int total = list.Count;
+
+            lblYear1Summary.Text = year1.ToString("N0");
+            lblYear2Summary.Text = year2.ToString("N0");
+            lblYear3Summary.Text = year3.ToString("N0");
+            lblYear4Summary.Text = year4.ToString("N0");
+            lblYear5Summary.Text = year5.ToString("N0");
+            lblTotalStudentsSummary.Text = total.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_students == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _students,
+                sortColumn,
+                sortOrder,
+                dgvStudents,
+                null
+            );
+
+            DisplayStudents(_displayedList);
         }
 
         private string GetCourseName(int courseId)
@@ -140,6 +208,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 string keyword = txtSearch.Text.ToLower();
+
                 var filtered = _students.Where(s =>
                     s.StudentNumber.ToLower().Contains(keyword) ||
                     s.FirstName.ToLower().Contains(keyword) ||
@@ -147,28 +216,25 @@ namespace IntegratedUniversityInformationSystem.Forms
                     s.Email.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvStudents.DataSource = null;
-                dgvStudents.DataSource = filtered.Select(s => new
-                {
-                    s.Id,
-                    s.StudentNumber,
-                    s.FirstName,
-                    s.LastName,
-                    s.MiddleName,
-                    s.BirthDate,
-                    s.Gender,
-                    s.ContactNumber,
-                    s.Email,
-                    s.Address,
-                    Course = GetCourseName(s.CourseId),
-                    s.YearLevel,
-                    s.Section,
-                    s.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvStudents,
+                    null
+                );
+
+                DisplayStudents(_displayedList);
             }
             catch (Exception)
             {
-                // Ignore search errors
+                // ignore
             }
         }
 
@@ -376,8 +442,21 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadStudents();
             ClearFields();
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

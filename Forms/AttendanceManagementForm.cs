@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,41 +19,104 @@ namespace IntegratedUniversityInformationSystem.Forms
         private readonly AttendanceRepository _attendanceRepo;
         private readonly EmployeeRepository _employeeRepo;
         private List<Attendance> _attendanceRecords;
+        private List<Attendance> _displayedList; // for display (all records)
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Employee",
+            "Date",
+            "TimeIn",
+            "TimeOut",
+            "Status"
+        };
         public AttendanceManagementForm()
         {
             InitializeComponent();
             _attendanceRepo = new AttendanceRepository();
             _employeeRepo = new EmployeeRepository();
 
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
             LoadAttendance();
             LoadEmployeeDropdown();
         }
 
-        // loads all attendance records
+        // loads ALL attendance records
         private void LoadAttendance()
         {
             try
             {
                 _attendanceRecords = _attendanceRepo.GetAll();
-
-                dgvAttendance.DataSource = null;
-
-                dgvAttendance.DataSource = _attendanceRecords.Select(a => new
-                {
-                    a.Id,
-                    Employee = GetEmployeeName(a.EmployeeId),
-                    a.Date,
-                    a.TimeIn,
-                    a.TimeOut,
-                    a.Status,
-                    a.Remarks
-                }).ToList();
+                _displayedList = _attendanceRecords;
+                DisplayAttendance(_displayedList);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading attendance: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayAttendance(List<Attendance> list)
+        {
+            dgvAttendance.DataSource = null;
+            dgvAttendance.DataSource = list.Select(a => new
+            {
+                a.Id,
+                Employee = GetEmployeeName(a.EmployeeId),
+                a.Date,
+                a.TimeIn,
+                a.TimeOut,
+                a.Status,
+                a.Remarks
+            }).ToList();
+
+            // summary only shows today's records
+            UpdateSummary();
+        }
+
+        // updates summary box with count per status - TODAY ONLY
+        private void UpdateSummary()
+        {
+            // get today's records only for summary
+            var todayRecords = _attendanceRecords.Where(a => a.Date.Date == DateTime.Today).ToList();
+
+            int presentCount = todayRecords.Count(a => a.Status == "Present");
+            int absentCount = todayRecords.Count(a => a.Status == "Absent");
+            int lateCount = todayRecords.Count(a => a.Status == "Late");
+            int halfDayCount = todayRecords.Count(a => a.Status == "Half Day");
+            int onLeaveCount = todayRecords.Count(a => a.Status == "On Leave");
+            int totalCount = todayRecords.Count;
+
+            lblPresentSummary.Text = presentCount.ToString("N0");
+            lblAbsentSummary.Text = absentCount.ToString("N0");
+            lblLateSummary.Text = lateCount.ToString("N0");
+            lblHalfDaySummary.Text = halfDayCount.ToString("N0");
+            lblOnLeaveSummary.Text = onLeaveCount.ToString("N0");
+            lblTotalAttendanceSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list (all records)
+        private void ApplySort()
+        {
+            if (_attendanceRecords == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _attendanceRecords,
+                sortColumn,
+                sortOrder,
+                dgvAttendance,
+                t => GetEmployeeName(t.EmployeeId)
+            );
+
+            DisplayAttendance(_displayedList);
         }
 
         // helper - gets employee name
@@ -289,6 +353,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadAttendance();
             LoadEmployeeDropdown();
             ClearFields();
@@ -299,7 +366,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             ClearFields();
         }
 
-        //serach
+        //serach - filters from today's records only
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchAttendance();
@@ -311,23 +378,28 @@ namespace IntegratedUniversityInformationSystem.Forms
             {
                 string keyword = txtSearch.Text.ToLower();
 
+                // search from ALL records
                 var filtered = _attendanceRecords.Where(a =>
                     GetEmployeeName(a.EmployeeId).ToLower().Contains(keyword) ||
                     a.Status.ToLower().Contains(keyword) ||
                     a.Date.ToString("MM/dd/yyyy").Contains(keyword)
                 ).ToList();
 
-                dgvAttendance.DataSource = null;
-                dgvAttendance.DataSource = filtered.Select(a => new
-                {
-                    a.Id,
-                    Employee = GetEmployeeName(a.EmployeeId),
-                    a.Date,
-                    a.TimeIn,
-                    a.TimeOut,
-                    a.Status,
-                    a.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvAttendance,
+                    t => GetEmployeeName(t.EmployeeId)
+                );
+
+                DisplayAttendance(_displayedList);
             }
             catch (Exception)
             {
@@ -335,9 +407,14 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void AttendanceManagementForm_Load(object sender, EventArgs e)
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ApplySort();
+        }
 
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

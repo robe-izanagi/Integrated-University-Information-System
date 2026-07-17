@@ -78,6 +78,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             
         }
 
+        // Handle UI design changes on Sidebar modules
         private void handleModule (string activeModule)
         {
             switch (activeModule)
@@ -122,8 +123,6 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void lblLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginForm login = new LoginForm();
-            login.Show();
         }
 
         private void panelContainer_Paint(object sender, PaintEventArgs e)

@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,31 @@ namespace IntegratedUniversityInformationSystem.Forms
         // repositories for reading and saving data
         private readonly EmployeeRepository _employeeRepo;
         private List<Employee> _employees;
+        private List<Employee> _displayedList;
+
+        // sortable columns for this form
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "EmployeeNumber",
+            "FirstName",
+            "LastName",
+            "Position",
+            "Department",
+            "EmploymentType",
+            "HireDate",
+            "IsActive"
+        };
+
         public EmployeeManagementForm()
         {
             InitializeComponent();
             // set up the repository for employee data
             _employeeRepo = new EmployeeRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             // load employees from json file
             LoadEmployees();
@@ -32,38 +53,77 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
             try
             {
-                // get all employees from the repository
                 _employees = _employeeRepo.GetAll();
-
-                // clear the datagridview before adding new data
-                dgvEmployees.DataSource = null;
-
-                // show employee list in the datagridview with only the important columns
-                dgvEmployees.DataSource = _employees.Select(e => new
-                {
-                    e.Id,
-                    e.EmployeeNumber,
-                    e.FirstName,
-                    e.LastName,
-                    e.MiddleName,
-                    e.BirthDate,
-                    e.Gender,
-                    e.ContactNumber,
-                    e.Email,
-                    e.Address,
-                    e.Position,
-                    e.Department,
-                    e.HireDate,
-                    e.EmploymentType,
-                    e.IsActive
-                }).ToList();
+                _displayedList = _employees;
+                DisplayEmployees(_displayedList);
             }
             catch (Exception ex)
             {
-                // show error message if something goes wrong
                 MessageBox.Show($"Error loading employees: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void DisplayEmployees(List<Employee> list)
+        {
+            dgvEmployees.DataSource = null;
+            dgvEmployees.DataSource = list.Select(e => new
+            {
+                e.Id,
+                e.EmployeeNumber,
+                e.FirstName,
+                e.LastName,
+                e.MiddleName,
+                e.BirthDate,
+                e.Gender,
+                e.ContactNumber,
+                e.Email,
+                e.Address,
+                e.Position,
+                e.Department,
+                e.HireDate,
+                e.EmploymentType,
+                e.IsActive
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with count per employment type
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _employees ?? new List<Employee>();
+
+            int fullTimeCount = list.Count(e => e.EmploymentType == "Full Time");
+            int partTimeCount = list.Count(e => e.EmploymentType == "Part Time");
+            int contractualCount = list.Count(e => e.EmploymentType == "Contractual");
+            int probationaryCount = list.Count(e => e.EmploymentType == "Probationary");
+            int totalCount = list.Count;
+
+            lblFullTimeSummary.Text = fullTimeCount.ToString("N0");
+            lblPartTimeSummary.Text = partTimeCount.ToString("N0");
+            lblContractualSummary.Text = contractualCount.ToString("N0");
+            lblProbationarySummary.Text = probationaryCount.ToString("N0");
+            lblTotalEmployeesSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_employees == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _employees,
+                sortColumn,
+                sortOrder,
+                dgvEmployees,
+                null
+            );
+
+            DisplayEmployees(_displayedList);
         }
 
         // clears all the textboxes and comboboxes so we can add a new employee
@@ -83,7 +143,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             dtpHireDate.Value = DateTime.Now;
             cmbGender.SelectedIndex = -1;
             cmbEmploymentType.SelectedIndex = -1;
-            chkIsActive.Checked = true;
             txtID.Focus();
         }
 
@@ -158,8 +217,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     Position = txtPosition.Text,
                     Department = txtDepartment.Text,
                     HireDate = dtpHireDate.Value,
-                    EmploymentType = cmbEmploymentType.Text,
-                    IsActive = chkIsActive.Checked
+                    EmploymentType = cmbEmploymentType.Text
                 };
 
                 // save the new employee to json
@@ -209,7 +267,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                     txtDepartment.Text = employee.Department;
                     dtpHireDate.Value = employee.HireDate;
                     cmbEmploymentType.Text = employee.EmploymentType;
-                    chkIsActive.Checked = employee.IsActive;
                 }
             }
         }
@@ -292,7 +349,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                 employee.Department = txtDepartment.Text;
                 employee.HireDate = dtpHireDate.Value;
                 employee.EmploymentType = cmbEmploymentType.Text;
-                employee.IsActive = chkIsActive.Checked;
 
                 // save the changes
                 _employeeRepo.Update(emp => emp.Id == id, employee);
@@ -360,6 +416,10 @@ namespace IntegratedUniversityInformationSystem.Forms
         // refresh button - reloads data from json
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadEmployees();
             ClearFields();
         }
@@ -382,7 +442,6 @@ namespace IntegratedUniversityInformationSystem.Forms
             {
                 string keyword = txtSearch.Text.ToLower();
 
-                // filter employees by name, number, position, or department
                 var filtered = _employees.Where(emp =>
                     emp.EmployeeNumber.ToLower().Contains(keyword) ||
                     emp.FirstName.ToLower().Contains(keyword) ||
@@ -391,31 +450,36 @@ namespace IntegratedUniversityInformationSystem.Forms
                     emp.Department.ToLower().Contains(keyword)
                 ).ToList();
 
-                // show filtered results
-                dgvEmployees.DataSource = null;
-                dgvEmployees.DataSource = filtered.Select(emp => new
-                {
-                    emp.Id,
-                    emp.EmployeeNumber,
-                    emp.FirstName,
-                    emp.LastName,
-                    emp.MiddleName,
-                    emp.BirthDate,
-                    emp.Gender,
-                    emp.ContactNumber,
-                    emp.Email,
-                    emp.Address,
-                    emp.Position,
-                    emp.Department,
-                    emp.HireDate,
-                    emp.EmploymentType,
-                    emp.IsActive
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvEmployees,
+                    null
+                );
+
+                DisplayEmployees(_displayedList);
             }
             catch (Exception)
             {
                 // ignore error
             }
+        }
+
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

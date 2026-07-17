@@ -75,7 +75,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     p4.Visible = false;
                     p5.Visible = false;
                     p6.Visible = false;
-                    pc1.BackColor = Color.LightSkyBlue;
+                    pc1.BackColor = Color.FromArgb(218, 160, 109);
                     pc2.BackColor = Color.Transparent;
                     pc3.BackColor = Color.Transparent;
                     break;
@@ -86,7 +86,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     p4.Visible = true;
                     p5.Visible = false;
                     p6.Visible = false;
-                    pc2.BackColor = Color.LightSkyBlue;
+                    pc2.BackColor = Color.FromArgb(218, 160, 109);
                     pc1.BackColor = Color.Transparent;
                     pc3.BackColor = Color.Transparent;
                     break;
@@ -97,7 +97,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     p4.Visible = false;
                     p5.Visible = true;
                     p6.Visible = true;
-                    pc3.BackColor = Color.LightSkyBlue;
+                    pc3.BackColor = Color.FromArgb(218, 160, 109);
                     pc1.BackColor = Color.Transparent;
                     pc2.BackColor = Color.Transparent;
                     break;
@@ -107,8 +107,6 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void lblLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginForm login = new LoginForm();
-            login.Show();
         }
     }
 }
