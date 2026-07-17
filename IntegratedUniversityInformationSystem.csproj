@@ -141,12 +141,6 @@
     <Compile Include="Forms\CourseManagementForm.Designer.cs">
       <DependentUpon>CourseManagementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DashboardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DashboardForm.Designer.cs">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\EmployeeManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,9 +297,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CourseManagementForm.resx">
       <DependentUpon>CourseManagementForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DashboardForm.resx">
-      <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EmployeeManagementForm.resx">
       <DependentUpon>EmployeeManagementForm.cs</DependentUpon>

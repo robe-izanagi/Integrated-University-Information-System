@@ -73,40 +73,24 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void handleModule(string activeModule)
         {
+            // reset everything first
+            p1.Visible = p2.Visible = p3.Visible = p4.Visible = p5.Visible = p6.Visible = false;
+            pc1.BackColor = pc2.BackColor = pc3.BackColor = Color.Transparent;
+
+            // set only the ones for the active module
             switch (activeModule)
             {
                 case "employee":
-                    p1.Visible = true;
-                    p2.Visible = true;
-                    p3.Visible = false;
-                    p4.Visible = false;
-                    p5.Visible = false;
-                    p6.Visible = false;
+                    p1.Visible = p2.Visible = true;
                     pc1.BackColor = Color.Orange;
-                    pc2.BackColor = Color.Transparent;
-                    pc3.BackColor = Color.Transparent;
                     break;
                 case "faculty":
-                    p1.Visible = false;
-                    p2.Visible = false;
-                    p3.Visible = true;
-                    p4.Visible = true;
-                    p5.Visible = false;
-                    p6.Visible = false;
+                    p3.Visible = p4.Visible = true;
                     pc2.BackColor = Color.Orange;
-                    pc1.BackColor = Color.Transparent;
-                    pc3.BackColor = Color.Transparent;
                     break;
                 case "attendance":
-                    p1.Visible = false;
-                    p2.Visible = false;
-                    p3.Visible = false;
-                    p4.Visible = false;
-                    p5.Visible = true;
-                    p6.Visible = true;
+                    p5.Visible = p6.Visible = true;
                     pc3.BackColor = Color.Orange;
-                    pc1.BackColor = Color.Transparent;
-                    pc2.BackColor = Color.Transparent;
                     break;
             }
         }
