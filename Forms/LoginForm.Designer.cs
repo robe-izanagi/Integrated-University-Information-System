@@ -59,6 +59,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(21, 297);
             this.label1.Name = "label1";
@@ -94,6 +95,8 @@
             // panelLoginForm
             // 
             this.panelLoginForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.panelLoginForm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelLoginForm.BackgroundImage")));
+            this.panelLoginForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelLoginForm.Controls.Add(this.hidePassword);
             this.panelLoginForm.Controls.Add(this.showPassword);
             this.panelLoginForm.Controls.Add(this.lblCopyright);
@@ -106,15 +109,15 @@
             this.panelLoginForm.Controls.Add(this.panelPassword);
             this.panelLoginForm.Controls.Add(this.panelUsername);
             this.panelLoginForm.Controls.Add(this.label1);
-            this.panelLoginForm.Location = new System.Drawing.Point(350, 0);
+            this.panelLoginForm.Location = new System.Drawing.Point(373, -4);
             this.panelLoginForm.Name = "panelLoginForm";
-            this.panelLoginForm.Size = new System.Drawing.Size(450, 700);
+            this.panelLoginForm.Size = new System.Drawing.Size(450, 704);
             this.panelLoginForm.TabIndex = 6;
-            this.panelLoginForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelLoginForm_Paint);
             // 
             // hidePassword
             // 
             this.hidePassword.AutoSize = true;
+            this.hidePassword.BackColor = System.Drawing.Color.Transparent;
             this.hidePassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hidePassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.hidePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -130,6 +133,7 @@
             // showPassword
             // 
             this.showPassword.AutoSize = true;
+            this.showPassword.BackColor = System.Drawing.Color.Transparent;
             this.showPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.showPassword.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.showPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -144,6 +148,7 @@
             // lblCopyright
             // 
             this.lblCopyright.AutoSize = true;
+            this.lblCopyright.BackColor = System.Drawing.Color.Transparent;
             this.lblCopyright.Font = new System.Drawing.Font("PMingLiU-ExtB", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCopyright.Location = new System.Drawing.Point(138, 676);
             this.lblCopyright.Name = "lblCopyright";
@@ -154,6 +159,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Perpetua Titling MT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(19, 223);
             this.label5.Name = "label5";
@@ -164,6 +170,7 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Noto Sans KR", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(155, 96);
             this.lblTitle.Name = "lblTitle";
@@ -174,6 +181,7 @@
             // lblTitleSub
             // 
             this.lblTitleSub.AutoSize = true;
+            this.lblTitleSub.BackColor = System.Drawing.Color.Transparent;
             this.lblTitleSub.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleSub.Location = new System.Drawing.Point(162, 149);
             this.lblTitleSub.Name = "lblTitleSub";
@@ -183,6 +191,7 @@
             // 
             // pbLogo
             // 
+            this.pbLogo.BackColor = System.Drawing.Color.Transparent;
             this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
             this.pbLogo.Location = new System.Drawing.Point(34, 67);
             this.pbLogo.Name = "pbLogo";
@@ -194,6 +203,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Perpetua Titling MT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(21, 390);
             this.label3.Name = "label3";
@@ -204,9 +214,9 @@
             // panelPassword
             // 
             this.panelPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.panelPassword.Controls.Add(this.txtPassword);
             this.panelPassword.Controls.Add(this.pbLock);
             this.panelPassword.Controls.Add(this.panel5);
-            this.panelPassword.Controls.Add(this.txtPassword);
             this.panelPassword.Location = new System.Drawing.Point(25, 416);
             this.panelPassword.Name = "panelPassword";
             this.panelPassword.Size = new System.Drawing.Size(394, 43);
@@ -224,7 +234,7 @@
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel5.Location = new System.Drawing.Point(0, 40);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(394, 12);
@@ -244,9 +254,9 @@
             // panelUsername
             // 
             this.panelUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.panelUsername.Controls.Add(this.txtUsername);
             this.panelUsername.Controls.Add(this.panel6);
             this.panelUsername.Controls.Add(this.pbUser);
-            this.panelUsername.Controls.Add(this.txtUsername);
             this.panelUsername.Location = new System.Drawing.Point(25, 319);
             this.panelUsername.Name = "panelUsername";
             this.panelUsername.Size = new System.Drawing.Size(394, 43);
@@ -254,7 +264,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel6.Location = new System.Drawing.Point(0, 40);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(394, 12);
@@ -274,10 +284,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1200, 700);
             this.Controls.Add(this.panelLoginForm);
-            this.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "LoginForm";
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load_1);

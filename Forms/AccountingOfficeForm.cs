@@ -30,7 +30,9 @@ namespace IntegratedUniversityInformationSystem.Forms
             _currentUser = user;
             this.Text = "Accounting Office";
 
+            // highlight the default menu item (payment)
             handleModule(activeSidebar);
+
             // auto-load Payment Management when form opens
             OpenChildForm(new PaymentManagementForm());
         }
@@ -38,15 +40,19 @@ namespace IntegratedUniversityInformationSystem.Forms
         // opens forms inside panelContent
         private void OpenChildForm(Form childForm)
         {
+            // close existing form if one open
             if (_activeForm != null)
             {
                 _activeForm.Close();
             }
 
+            // set up new form to be embedded inside the panel
             _activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
+            childForm.TopLevel = false;     // not a standalone window
+            childForm.FormBorderStyle = FormBorderStyle.None;      // remove borders
+            childForm.Dock = DockStyle.Fill;   // fill the entire panel
+
+            // add to panel and show
             panelContent.Controls.Add(childForm);
             childForm.BringToFront();
             childForm.Show();
@@ -107,11 +113,6 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void lblLogout_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void panelContainer_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

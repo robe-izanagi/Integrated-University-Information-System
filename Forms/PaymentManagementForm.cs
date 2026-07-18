@@ -19,9 +19,12 @@ namespace IntegratedUniversityInformationSystem.Forms
         // repositories for data access
         private readonly PaymentRepository _paymentRepo;
         private readonly StudentRepository _studentRepo;
+
+        // holds all payments and the currently displayed/filtered list
         private List<Payment> _payments; // holds all payments
         private List<Payment> _displayedList;
 
+        // columns available for sorting
         private readonly string[] _sortColumns = new string[]
         {
             "ID",
@@ -64,6 +67,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays the given student list in DataGridView
         private void DisplayPayments(List<Payment> list)
         {
             dgvPayments.DataSource = null;
@@ -418,11 +422,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // triggers sort when sort column changes
         private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();
         }
 
+        // triggers sort when sort order changes
         private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();

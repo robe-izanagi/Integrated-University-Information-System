@@ -13,9 +13,14 @@ namespace IntegratedUniversityInformationSystem.Forms
 {
     public partial class LibraryOfficeForm : Form
     {
+        // stores the logged-in user info
         private readonly User _currentUser;
+
+        // holds the currently open child form inside the panel
         private Form _activeForm = null;
-        // current active sidebar 
+
+        // tracks which sidebar menu item is currently selected
+        // default is "books" so Books page loads first
         private string activeSidebar = "books"; // books - borrowings - fines
 
         public LibraryOfficeForm(User user)
@@ -24,25 +29,34 @@ namespace IntegratedUniversityInformationSystem.Forms
             _currentUser = user;
             this.Text = "Library Office";
 
+            // highlight the default menu item (books)
             handleModule(activeSidebar);
+
+            // automatically load Books management when form opens
             OpenChildForm(new BookManagementForm());
         }
+
+        // opens a form inside the panelContent container
         private void OpenChildForm(Form childForm)
         {
+            // close existing form if there's one open
             if (_activeForm != null)
             {
                 _activeForm.Close();
             }
 
+            // set up the new form to be embedded inside the panel
             _activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
+            childForm.TopLevel = false;  // not a standalone window
+            childForm.FormBorderStyle = FormBorderStyle.None;  // remove borders
+            childForm.Dock = DockStyle.Fill; // fill the entire panel
+
             panelContent.Controls.Add(childForm);
             childForm.BringToFront();
             childForm.Show();
         }
 
+        // when user clicks Books menu
         private void lblBooks_Click(object sender, EventArgs e)
         {
             OpenChildForm(new BookManagementForm());
@@ -50,6 +64,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             handleModule(activeSidebar);
         }
 
+        // when user clicks Borrowings menu
         private void lblBorrowings_Click(object sender, EventArgs e)
         {
             OpenChildForm(new BorrowingManagementForm());
@@ -57,6 +72,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             handleModule(activeSidebar);
         }
 
+        // when user clicks Fines menu
         private void lblFines_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FineManagementForm());
@@ -64,6 +80,8 @@ namespace IntegratedUniversityInformationSystem.Forms
             handleModule(activeSidebar);
         }
 
+        // highlights the selected sidebar menu item
+        // shows/hides panels and changes background color
         private void handleModule(string activeModule)
         {
             // reset everything first
@@ -88,6 +106,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // logout - closes current form and shows login form
         private void lblLogout_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -162,15 +162,22 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
             try
             {
-                // only show borrowings that are not returned or cancelled
-                var borrowings = _borrowingRepo.GetAll()
-                    .Where(b => b.Status != "Returned" && b.Status != "Cancelled")
-                    .ToList();
+                var borrowings = _borrowingRepo.GetAll().ToList(); // all records
 
                 cmbBorrowing.DataSource = borrowings;
-                cmbBorrowing.DisplayMember = "Id";
                 cmbBorrowing.ValueMember = "Id";
-                cmbBorrowing.SelectedIndex = -1;
+
+                // format display: "1 - Juan Dela Cruz - C# Programming for Beginners"
+                cmbBorrowing.FormattingEnabled = true;
+                cmbBorrowing.Format += (s, e) =>
+                {
+                    if (e.ListItem is Borrowing borrowing)
+                    {
+                        string studentName = GetStudentName(borrowing.StudentId);
+                        string bookTitle = GetBookTitle(borrowing.BookId);
+                        e.Value = $"{borrowing.Id} - {studentName} - {bookTitle}";
+                    }
+                };
             }
             catch (Exception ex)
             {

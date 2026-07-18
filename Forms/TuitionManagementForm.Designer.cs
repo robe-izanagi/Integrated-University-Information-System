@@ -597,6 +597,7 @@
             // lblSelectInfo
             // 
             this.lblSelectInfo.AutoSize = true;
+            this.lblSelectInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
             this.lblSelectInfo.Location = new System.Drawing.Point(347, 641);
@@ -892,6 +893,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(248)))), ((int)(((byte)(248)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(988, 668);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.panel10);

@@ -186,6 +186,7 @@
             this.panelContainer4.Name = "panelContainer4";
             this.panelContainer4.Size = new System.Drawing.Size(185, 39);
             this.panelContainer4.TabIndex = 5;
+            this.panelContainer4.Click += new System.EventHandler(this.lblLogout_Click);
             // 
             // pictureBox4
             // 
@@ -196,6 +197,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 14;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.lblLogout_Click);
             // 
             // lblMenu
             // 
@@ -217,6 +219,7 @@
             this.pc3.Name = "pc3";
             this.pc3.Size = new System.Drawing.Size(200, 39);
             this.pc3.TabIndex = 2;
+            this.pc3.Click += new System.EventHandler(this.lblTuition_Click);
             // 
             // p6
             // 
@@ -248,6 +251,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 14;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.lblTuition_Click);
             // 
             // pc2
             // 
@@ -260,6 +264,7 @@
             this.pc2.Name = "pc2";
             this.pc2.Size = new System.Drawing.Size(200, 39);
             this.pc2.TabIndex = 1;
+            this.pc2.Click += new System.EventHandler(this.lblScholarship_Click);
             // 
             // p4
             // 
@@ -300,6 +305,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.lblScholarship_Click);
             // 
             // pc1
             // 
@@ -312,7 +318,7 @@
             this.pc1.Name = "pc1";
             this.pc1.Size = new System.Drawing.Size(200, 39);
             this.pc1.TabIndex = 0;
-            this.pc1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelContainer_Paint);
+            this.pc1.Click += new System.EventHandler(this.lblPayment_Click);
             // 
             // p2
             // 
@@ -337,7 +343,7 @@
             this.lblPayment.AutoSize = true;
             this.lblPayment.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblPayment.Font = new System.Drawing.Font("Noto Sans KR", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPayment.Location = new System.Drawing.Point(36, 12);
+            this.lblPayment.Location = new System.Drawing.Point(36, 11);
             this.lblPayment.Name = "lblPayment";
             this.lblPayment.Size = new System.Drawing.Size(83, 21);
             this.lblPayment.TabIndex = 1;
@@ -353,6 +359,7 @@
             this.pbUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUser.TabIndex = 14;
             this.pbUser.TabStop = false;
+            this.pbUser.Click += new System.EventHandler(this.lblPayment_Click);
             // 
             // AccountingOfficeForm
             // 
@@ -361,7 +368,7 @@
             this.ClientSize = new System.Drawing.Size(1184, 661);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelSidebar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AccountingOfficeForm";
             this.Text = "AccountingOfficeForm";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();

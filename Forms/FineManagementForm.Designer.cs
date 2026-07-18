@@ -40,6 +40,16 @@
             this.lblClear = new System.Windows.Forms.Label();
             this.lblAdd = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblFields = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblReason = new System.Windows.Forms.Label();
             this.txtReason = new System.Windows.Forms.TextBox();
             this.lblAmount = new System.Windows.Forms.Label();
@@ -54,14 +64,6 @@
             this.lblBorrowing = new System.Windows.Forms.Label();
             this.panelTopContent = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.cmbSortOrder = new System.Windows.Forms.ComboBox();
             this.cmbSortColumn = new System.Windows.Forms.ComboBox();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -80,12 +82,9 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblSelectInfo = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.lblFields = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFines)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             this.panelInput.SuspendLayout();
-            this.panelTopContent.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel7.SuspendLayout();
@@ -94,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            this.panelTopContent.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -241,6 +241,119 @@
             this.panelInput.Name = "panelInput";
             this.panelInput.Size = new System.Drawing.Size(303, 615);
             this.panelInput.TabIndex = 63;
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(160)))), ((int)(((byte)(109)))));
+            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(160)))), ((int)(((byte)(109)))));
+            this.panel11.Location = new System.Drawing.Point(2, 50);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(303, 1);
+            this.panel11.TabIndex = 103;
+            // 
+            // lblFields
+            // 
+            this.lblFields.AutoSize = true;
+            this.lblFields.BackColor = System.Drawing.Color.Transparent;
+            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFields.ForeColor = System.Drawing.Color.Brown;
+            this.lblFields.Location = new System.Drawing.Point(14, 11);
+            this.lblFields.Name = "lblFields";
+            this.lblFields.Size = new System.Drawing.Size(93, 27);
+            this.lblFields.TabIndex = 102;
+            this.lblFields.Text = "Fine Info";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.lblUpdate);
+            this.panel6.Controls.Add(this.pictureBox6);
+            this.panel6.Location = new System.Drawing.Point(15, 522);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(136, 36);
+            this.panel6.TabIndex = 95;
+            this.panel6.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(30, 10);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 59;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.lblUpdate_Click);
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.lblDelete);
+            this.panel7.Controls.Add(this.pictureBox7);
+            this.panel7.Location = new System.Drawing.Point(157, 522);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(128, 36);
+            this.panel7.TabIndex = 93;
+            this.panel7.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(24, 9);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 59;
+            this.pictureBox7.TabStop = false;
+            this.pictureBox7.Click += new System.EventHandler(this.lblDelete_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.Brown;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.lblAdd);
+            this.panel8.Controls.Add(this.pictureBox8);
+            this.panel8.Location = new System.Drawing.Point(15, 478);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(271, 36);
+            this.panel8.TabIndex = 96;
+            this.panel8.Click += new System.EventHandler(this.lblAdd_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(110, 9);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 59;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Click += new System.EventHandler(this.lblAdd_Click);
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.lblClear);
+            this.panel9.Controls.Add(this.pictureBox9);
+            this.panel9.Location = new System.Drawing.Point(15, 564);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(270, 36);
+            this.panel9.TabIndex = 94;
+            this.panel9.Click += new System.EventHandler(this.lblClear_Click);
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(100, 10);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 59;
+            this.pictureBox9.TabStop = false;
+            this.pictureBox9.Click += new System.EventHandler(this.lblClear_Click);
             // 
             // lblReason
             // 
@@ -394,98 +507,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "FINE MANAGEMENT";
             this.label2.UseMnemonic = false;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.lblUpdate);
-            this.panel6.Controls.Add(this.pictureBox6);
-            this.panel6.Location = new System.Drawing.Point(15, 522);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(136, 36);
-            this.panel6.TabIndex = 95;
-            this.panel6.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(30, 10);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 59;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.lblUpdate_Click);
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.lblDelete);
-            this.panel7.Controls.Add(this.pictureBox7);
-            this.panel7.Location = new System.Drawing.Point(157, 522);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(128, 36);
-            this.panel7.TabIndex = 93;
-            this.panel7.Click += new System.EventHandler(this.lblDelete_Click);
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(24, 9);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 59;
-            this.pictureBox7.TabStop = false;
-            this.pictureBox7.Click += new System.EventHandler(this.lblDelete_Click);
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.Brown;
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.lblAdd);
-            this.panel8.Controls.Add(this.pictureBox8);
-            this.panel8.Location = new System.Drawing.Point(15, 478);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(271, 36);
-            this.panel8.TabIndex = 96;
-            this.panel8.Click += new System.EventHandler(this.lblAdd_Click);
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(110, 9);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 59;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Click += new System.EventHandler(this.lblAdd_Click);
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.lblClear);
-            this.panel9.Controls.Add(this.pictureBox9);
-            this.panel9.Location = new System.Drawing.Point(15, 564);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(270, 36);
-            this.panel9.TabIndex = 94;
-            this.panel9.Click += new System.EventHandler(this.lblClear_Click);
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(100, 10);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 59;
-            this.pictureBox9.TabStop = false;
-            this.pictureBox9.Click += new System.EventHandler(this.lblClear_Click);
             // 
             // cmbSortOrder
             // 
@@ -672,6 +693,7 @@
             // lblSelectInfo
             // 
             this.lblSelectInfo.AutoSize = true;
+            this.lblSelectInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
             this.lblSelectInfo.Location = new System.Drawing.Point(357, 633);
@@ -681,32 +703,13 @@
             this.lblSelectInfo.TabIndex = 90;
             this.lblSelectInfo.Text = "Select a row on the table first: ";
             // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(160)))), ((int)(((byte)(109)))));
-            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(160)))), ((int)(((byte)(109)))));
-            this.panel11.Location = new System.Drawing.Point(2, 50);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(303, 1);
-            this.panel11.TabIndex = 103;
-            // 
-            // lblFields
-            // 
-            this.lblFields.AutoSize = true;
-            this.lblFields.BackColor = System.Drawing.Color.Transparent;
-            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFields.ForeColor = System.Drawing.Color.Brown;
-            this.lblFields.Location = new System.Drawing.Point(14, 11);
-            this.lblFields.Name = "lblFields";
-            this.lblFields.Size = new System.Drawing.Size(93, 27);
-            this.lblFields.TabIndex = 102;
-            this.lblFields.Text = "Fine Info";
-            // 
             // FineManagementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(988, 665);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSelectInfo);
@@ -728,8 +731,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
-            this.panelTopContent.ResumeLayout(false);
-            this.panelTopContent.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -742,6 +743,8 @@
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            this.panelTopContent.ResumeLayout(false);
+            this.panelTopContent.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel2.ResumeLayout(false);

@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,37 +15,48 @@ namespace IntegratedUniversityInformationSystem.Forms
 {
     public partial class AppointmentManagementForm : Form
     {
+        // repositories
         private readonly AppointmentRepository _appointmentRepo;
         private readonly StudentRepository _studentRepo;
+
+        // holds all appointments and displayed list
         private List<Appointment> _appointments;
+        private List<Appointment> _displayedList;
+
+        // columns available for sorting
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "AppointmentDate",
+            "AppointmentTime",
+            "Purpose",
+            "Status"
+        };
         public AppointmentManagementForm()
         {
             InitializeComponent();
+
+            // initialize repositories
             _appointmentRepo = new AppointmentRepository();
             _studentRepo = new StudentRepository();
+
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
 
             LoadAppointments();
             LoadStudents();
         }
 
+        // loads all appointments from JSON
         private void LoadAppointments()
         {
             try
             {
                 _appointments = _appointmentRepo.GetAll();
-
-                dgvAppointments.DataSource = null;
-
-                dgvAppointments.DataSource = _appointments.Select(a => new
-                {
-                    a.Id,
-                    Student = GetStudentName(a.StudentId),
-                    a.AppointmentDate,
-                    a.AppointmentTime,
-                    a.Purpose,
-                    a.Status,
-                    a.Remarks
-                }).ToList();
+                _displayedList = _appointments;
+                DisplayAppointments(_displayedList);
             }
             catch (Exception ex)
             {
@@ -53,12 +65,69 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays appointments in DataGridView
+        private void DisplayAppointments(List<Appointment> list)
+        {
+            dgvAppointments.DataSource = null;
+            dgvAppointments.DataSource = list.Select(a => new
+            {
+                a.Id,
+                Student = GetStudentName(a.StudentId),
+                a.AppointmentDate,
+                a.AppointmentTime,
+                a.Purpose,
+                a.Status,
+                a.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with counts per status
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _appointments ?? new List<Appointment>();
+
+            int scheduledCount = list.Count(a => a.Status == "Scheduled");
+            int completedCount = list.Count(a => a.Status == "Completed");
+            int cancelledCount = list.Count(a => a.Status == "Cancelled");
+            int noShowCount = list.Count(a => a.Status == "No Show");
+            int totalCount = list.Count;
+
+            lblScheduledSummary.Text = scheduledCount.ToString("N0");
+            lblCompletedSummary.Text = completedCount.ToString("N0");
+            lblCancelledSummary.Text = cancelledCount.ToString("N0");
+            lblNoShowSummary.Text = noShowCount.ToString("N0");
+            lblTotalAppointmentsSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_appointments == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _appointments,
+                sortColumn,
+                sortOrder,
+                dgvAppointments,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayAppointments(_displayedList);
+        }
+
+        // gets student name by ID
         private string GetStudentName(int studentId)
         {
             var student = _studentRepo.GetById(s => s.Id == studentId);
             return student != null ? $"{student.FirstName} {student.LastName}" : "N/A";
         }
 
+        // loads active students into dropdown
         private void LoadStudents()
         {
             try
@@ -77,6 +146,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears input fields
         private void ClearFields()
         {
             txtID.Clear();
@@ -281,22 +351,30 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // refreshes data and resets filters
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadAppointments();
             LoadStudents();
             ClearFields();
         }
 
+        // clears fields
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
+        // triggers search
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchAppointments();
         }
+
+        // filters appointments by keyword
         private void SearchAppointments()
         {
             try
@@ -309,17 +387,21 @@ namespace IntegratedUniversityInformationSystem.Forms
                     a.Status.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvAppointments.DataSource = null;
-                dgvAppointments.DataSource = filtered.Select(a => new
-                {
-                    a.Id,
-                    Student = GetStudentName(a.StudentId),
-                    a.AppointmentDate,
-                    a.AppointmentTime,
-                    a.Purpose,
-                    a.Status,
-                    a.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvAppointments,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayAppointments(_displayedList);
             }
             catch (Exception)
             {
@@ -330,6 +412,18 @@ namespace IntegratedUniversityInformationSystem.Forms
         private void AppointmentManagementForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // triggers sort when sort column changes
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
+        }
+
+        // triggers sort when sort order changes
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

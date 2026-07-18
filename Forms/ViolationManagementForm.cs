@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,39 +15,51 @@ namespace IntegratedUniversityInformationSystem.Forms
 {
     public partial class ViolationManagementForm : Form
     {
+        // form for managing student violations
         private readonly ViolationRepository _violationRepo;
         private readonly StudentRepository _studentRepo;
+
+        // holds all violations and the currently displayed/filtered list
         private List<Violation> _violations;
+        private List<Violation> _displayedList;
+
+        // columns available for sorting
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "ViolationType",
+            "Description",
+            "DateOfViolation",
+            "Sanction",
+            "Status"
+        };
 
         public ViolationManagementForm()
         {
             InitializeComponent();
+
+            // initialize repositories
             _violationRepo = new ViolationRepository();
             _studentRepo = new StudentRepository();
 
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
+            // load data
             LoadViolations();
             LoadStudents();
         }
 
+        // loads all violations from JSON
         private void LoadViolations()
         {
             try
             {
                 _violations = _violationRepo.GetAll();
-
-                dgvViolations.DataSource = null;
-
-                dgvViolations.DataSource = _violations.Select(v => new
-                {
-                    v.Id,
-                    Student = GetStudentName(v.StudentId),
-                    v.ViolationType,
-                    v.Description,
-                    v.DateOfViolation,
-                    v.Sanction,
-                    v.Status,
-                    v.Remarks
-                }).ToList();
+                _displayedList = _violations;
+                DisplayViolations(_displayedList);
             }
             catch (Exception ex)
             {
@@ -55,12 +68,68 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays violations in DataGridView
+        private void DisplayViolations(List<Violation> list)
+        {
+            dgvViolations.DataSource = null;
+            dgvViolations.DataSource = list.Select(v => new
+            {
+                v.Id,
+                Student = GetStudentName(v.StudentId),
+                v.ViolationType,
+                v.Description,
+                v.DateOfViolation,
+                v.Sanction,
+                v.Status,
+                v.Remarks
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with counts per status
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _violations ?? new List<Violation>();
+
+            int pendingCount = list.Count(v => v.Status == "Pending");
+            int resolvedCount = list.Count(v => v.Status == "Resolved");
+            int dismissedCount = list.Count(v => v.Status == "Dismissed");
+            int totalCount = list.Count;
+
+            lblPendingSummary.Text = pendingCount.ToString("N0");
+            lblResolvedSummary.Text = resolvedCount.ToString("N0");
+            lblDismissedSummary.Text = dismissedCount.ToString("N0");
+            lblTotalViolationsSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_violations == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _violations,
+                sortColumn,
+                sortOrder,
+                dgvViolations,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayViolations(_displayedList);
+        }
+
+        // gets student name by ID
         private string GetStudentName(int studentId)
         {
             var student = _studentRepo.GetById(s => s.Id == studentId);
             return student != null ? $"{student.FirstName} {student.LastName}" : "N/A";
         }
 
+        // loads active students into dropdown
         private void LoadStudents()
         {
             try
@@ -313,6 +382,9 @@ namespace IntegratedUniversityInformationSystem.Forms
 
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadViolations();
             LoadStudents();
             ClearFields();
@@ -327,6 +399,7 @@ namespace IntegratedUniversityInformationSystem.Forms
         {
             SearchViolations();
         }
+        // filters violations by keyword
         private void SearchViolations()
         {
             try
@@ -340,18 +413,21 @@ namespace IntegratedUniversityInformationSystem.Forms
                     v.Description.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvViolations.DataSource = null;
-                dgvViolations.DataSource = filtered.Select(v => new
-                {
-                    v.Id,
-                    Student = GetStudentName(v.StudentId),
-                    v.ViolationType,
-                    v.Description,
-                    v.DateOfViolation,
-                    v.Sanction,
-                    v.Status,
-                    v.Remarks
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvViolations,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayViolations(_displayedList);
             }
             catch (Exception)
             {
@@ -359,9 +435,14 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void ViolationManagementForm_Load(object sender, EventArgs e)
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ApplySort();
+        }
 
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ApplySort();
         }
     }
 }

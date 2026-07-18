@@ -17,6 +17,8 @@ namespace IntegratedUniversityInformationSystem.Forms
     {
         // repositories for reading and saving data
         private readonly EmployeeRepository _employeeRepo;
+
+        // holds all employees and the currently displayed/filtered list
         private List<Employee> _employees;
         private List<Employee> _displayedList;
 
@@ -64,6 +66,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays the given employee list in DataGridView
         private void DisplayEmployees(List<Employee> list)
         {
             dgvEmployees.DataSource = null;
@@ -472,11 +475,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // triggers sort when sort column changes
         private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();
         }
 
+        // triggers sort when sort order changes
         private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();

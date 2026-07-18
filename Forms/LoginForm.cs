@@ -14,20 +14,27 @@ namespace IntegratedUniversityInformationSystem.Forms
 {
     public partial class LoginForm : Form
     {
+        //data access for users - reads/writes users.json
         private readonly UserRepository _userRepo;
         public LoginForm()
         {
             InitializeComponent();
+
+            // setup the repository so we can check user credentials
             _userRepo = new UserRepository();
         }
 
+        // runs when user clicks the Login button
         private void btnLogin_Click(object sender, EventArgs e)
         {
+
             try
             {
+                // get user typed and remove extra spaces
                 string username = txtUsername.Text.Trim();
                 string password = txtPassword.Text.Trim();
 
+                // check if both fields have text
                 if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 {
                     MessageBox.Show("Please enter both username and password.", "Login Error",
@@ -35,8 +42,10 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // find a matching user in the json file
                 var user = _userRepo.GetById(u => u.Username == username && u.IsActive);
 
+                // if no user found, show error
                 if (user == null)
                 {
                     MessageBox.Show("Invalid username or password.", "Login Failed",
@@ -44,6 +53,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // check if password matches
                 if (user.PasswordHash != password)
                 {
                     MessageBox.Show("Invalid username or password.", "Login Failed",
@@ -53,18 +63,25 @@ namespace IntegratedUniversityInformationSystem.Forms
 
                 // Hide login form, show dashboard
                 this.Hide();
-                // Login successful - open appropriate office form based on role
+
+                // open the correct office form based on user's role
                 Form officeForm = GetOfficeForm(user);
+
+                // when office form closes, show login form again
                 officeForm.FormClosed += (s, args) => this.Show();
+
+                // show the office form
                 officeForm.Show();
             }
             catch (Exception ex)
             {
+                // show error message if something unexpected happens
                 MessageBox.Show($"An error occurred during login: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // return office form to open based on user role
         private Form GetOfficeForm(User user)
         {
             switch (user.Role.ToLower())
@@ -82,8 +99,6 @@ namespace IntegratedUniversityInformationSystem.Forms
                 //    return new ClinicOfficeForm(user);
                 case "hr":
                     return new HROfficeForm(user);
-                //case "admin":
-                //    return new AdminOfficeForm(user);
                 default:
                     MessageBox.Show("Unknown role. Please contact administrator.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,16 +107,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // when login form loads, put cursor on username field
         private void LoginForm_Load_1(object sender, EventArgs e)
         {
             txtUsername.Focus();
         }
 
-        private void togglePassword_Click(object sender, EventArgs e)
-        {
-            showPassword.Text = "Hide Password?";
-        }
-
+        // hides the password (shows dots)
         private void hidePassword_Click(object sender, EventArgs e)
         {
             showPassword.Visible = true;
@@ -109,16 +121,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtPassword.PasswordChar = '•';
         }
 
+        // shows the password as plain text
         private void showPassword_Click(object sender, EventArgs e)
         {
             showPassword.Visible = false;
             hidePassword.Visible = true;
             txtPassword.PasswordChar = '\0';
-        }
-
-        private void panelLoginForm_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

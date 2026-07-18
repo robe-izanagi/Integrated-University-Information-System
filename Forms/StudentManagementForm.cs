@@ -13,14 +13,18 @@ using System.Windows.Forms;
 
 namespace IntegratedUniversityInformationSystem.Forms
 {
+    // form for managing student records
     public partial class StudentManagementForm : Form
     {
+        // repositories for data access
         private readonly StudentRepository _studentRepo;
         private readonly CourseRepository _courseRepo;
+
+        // holds all students and the currently displayed/filtered list
         private List<Student> _students;
         private List<Student> _displayedList;
 
-        // sortable columns for this form
+        // columns available for sorting
         private readonly string[] _sortColumns = new string[]
         {
             "ID",
@@ -36,12 +40,15 @@ namespace IntegratedUniversityInformationSystem.Forms
         public StudentManagementForm()
         {
             InitializeComponent();
+
+            // fix DataGridView text color (debug code for setting color -> black)
             dgvStudents.ForeColor = Color.Black;
             dgvStudents.DefaultCellStyle.ForeColor = Color.Black;
             dgvStudents.RowTemplate.DefaultCellStyle.ForeColor = Color.Black;
             dgvStudents.RowHeadersDefaultCellStyle.ForeColor = Color.Black;
             dgvStudents.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
 
+            // initialize repositories
             _studentRepo = new StudentRepository();
             _courseRepo = new CourseRepository();
 
@@ -49,10 +56,12 @@ namespace IntegratedUniversityInformationSystem.Forms
             SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
             SortHelper.LoadSortOrders(cmbSortOrder);
 
+            // load initial data
             LoadStudents();
             LoadCourses();
         }
 
+        // loads all students from JSON
         private void LoadStudents()
         {
             try
@@ -68,6 +77,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays the given student list in DataGridView
         private void DisplayStudents(List<Student> list)
         {
             dgvStudents.DataSource = null;
@@ -92,7 +102,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             UpdateSummary();
         }
 
-        // updates summary box with count per year level
+        // updates the summary box with student counts per year level
         private void UpdateSummary()
         {
             var list = _displayedList ?? _students ?? new List<Student>();
@@ -112,7 +122,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             lblTotalStudentsSummary.Text = total.ToString("N0");
         }
 
-        // applies sorting on current list
+        // applies sorting on the current list
         private void ApplySort()
         {
             if (_students == null) return;
@@ -131,12 +141,14 @@ namespace IntegratedUniversityInformationSystem.Forms
             DisplayStudents(_displayedList);
         }
 
+        // gets course name by ID
         private string GetCourseName(int courseId)
         {
             var course = _courseRepo.GetById(c => c.Id == courseId);
             return course != null ? course.Name : "N/A";
         }
 
+        // loads active courses into dropdown
         private void LoadCourses()
         {
             try
@@ -154,6 +166,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears all input fields
         private void ClearFields()
         {
             txtID.Clear();
@@ -172,6 +185,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+        // loads selected student data into input fields
         private void dgvStudents_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvStudents.SelectedRows.Count > 0)
@@ -197,12 +211,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-
+        // triggers search when user types in search box
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchStudents();
         }
 
+        // filters students by keyword (student number, name, email)
         private void SearchStudents()
         {
             try
@@ -238,6 +253,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // adds new student
         private void lblAdd_Click(object sender, EventArgs e)
         {
             try
@@ -284,6 +300,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
+                // create new student object
                 var student = new Student
                 {
                     Id = _students.Count > 0 ? _students.Max(s => s.Id) + 1 : 1,
@@ -303,6 +320,7 @@ namespace IntegratedUniversityInformationSystem.Forms
                     IsActive = true
                 };
 
+                // save to JSON and refresh
                 _studentRepo.Add(student);
                 LoadStudents();
                 ClearFields();
@@ -316,6 +334,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // updates selected student
         private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -394,6 +413,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // soft delete - marks student as inactive
         private void lblDelete_Click(object sender, EventArgs e)
         {
             try
@@ -435,11 +455,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears input fields
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
+        // refreshes data and resets filters
         private void pbRefresh_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
@@ -449,11 +471,13 @@ namespace IntegratedUniversityInformationSystem.Forms
             ClearFields();
         }
 
+        // triggers sort when sort column changes
         private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();
         }
 
+        // triggers sort when sort order changes
         private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
             ApplySort();

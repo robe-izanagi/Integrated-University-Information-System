@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacultyManagementForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblYearsTeaching = new System.Windows.Forms.Label();
             this.lblClear = new System.Windows.Forms.Label();
             this.lblSpecialization = new System.Windows.Forms.Label();
@@ -50,12 +50,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.panelInput = new System.Windows.Forms.Panel();
-            this.numYearsTeaching = new System.Windows.Forms.NumericUpDown();
-            this.txtSubjectsTaught = new System.Windows.Forms.TextBox();
-            this.panelTopContent = new System.Windows.Forms.Panel();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.lblFields = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -64,6 +58,12 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.lblFields = new System.Windows.Forms.Label();
+            this.numYearsTeaching = new System.Windows.Forms.NumericUpDown();
+            this.txtSubjectsTaught = new System.Windows.Forms.TextBox();
+            this.panelTopContent = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblPartTimeSummary = new System.Windows.Forms.Label();
             this.lblPartTimeText = new System.Windows.Forms.Label();
@@ -85,8 +85,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFaculty)).BeginInit();
             this.panelInput.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearsTeaching)).BeginInit();
-            this.panelTopContent.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.panel5.SuspendLayout();
@@ -95,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYearsTeaching)).BeginInit();
+            this.panelTopContent.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -203,35 +203,35 @@
             this.dgvFaculty.BackgroundColor = System.Drawing.Color.White;
             this.dgvFaculty.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFaculty.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFaculty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFaculty.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFaculty.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvFaculty.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFaculty.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFaculty.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.dgvFaculty.Location = new System.Drawing.Point(341, 166);
             this.dgvFaculty.Name = "dgvFaculty";
             this.dgvFaculty.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvFaculty.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvFaculty.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvFaculty.Size = new System.Drawing.Size(629, 468);
             this.dgvFaculty.TabIndex = 44;
             this.dgvFaculty.SelectionChanged += new System.EventHandler(this.dgvFaculty_SelectionChanged);
@@ -358,72 +358,6 @@
             this.panelInput.Size = new System.Drawing.Size(303, 616);
             this.panelInput.TabIndex = 57;
             // 
-            // numYearsTeaching
-            // 
-            this.numYearsTeaching.BackColor = System.Drawing.Color.White;
-            this.numYearsTeaching.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numYearsTeaching.Location = new System.Drawing.Point(162, 340);
-            this.numYearsTeaching.Maximum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.numYearsTeaching.Name = "numYearsTeaching";
-            this.numYearsTeaching.Size = new System.Drawing.Size(125, 26);
-            this.numYearsTeaching.TabIndex = 68;
-            // 
-            // txtSubjectsTaught
-            // 
-            this.txtSubjectsTaught.BackColor = System.Drawing.Color.White;
-            this.txtSubjectsTaught.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSubjectsTaught.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubjectsTaught.Location = new System.Drawing.Point(14, 299);
-            this.txtSubjectsTaught.Name = "txtSubjectsTaught";
-            this.txtSubjectsTaught.Size = new System.Drawing.Size(273, 26);
-            this.txtSubjectsTaught.TabIndex = 67;
-            // 
-            // panelTopContent
-            // 
-            this.panelTopContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
-            this.panelTopContent.Controls.Add(this.lblTitle);
-            this.panelTopContent.Location = new System.Drawing.Point(0, 0);
-            this.panelTopContent.Name = "panelTopContent";
-            this.panelTopContent.Size = new System.Drawing.Size(988, 52);
-            this.panelTopContent.TabIndex = 60;
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitle.Font = new System.Drawing.Font("Noto Sans KR", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(8, 14);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(183, 21);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "FACULTY MANAGEMENT";
-            // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
-            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
-            this.panel11.Location = new System.Drawing.Point(1, 52);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(303, 1);
-            this.panel11.TabIndex = 107;
-            // 
-            // lblFields
-            // 
-            this.lblFields.AutoSize = true;
-            this.lblFields.BackColor = System.Drawing.Color.Transparent;
-            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFields.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
-            this.lblFields.Location = new System.Drawing.Point(13, 13);
-            this.lblFields.Name = "lblFields";
-            this.lblFields.Size = new System.Drawing.Size(121, 27);
-            this.lblFields.TabIndex = 106;
-            this.lblFields.Text = "Faculty Info";
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
@@ -514,6 +448,72 @@
             this.pictureBox7.TabIndex = 59;
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Click += new System.EventHandler(this.lblClear_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
+            this.panel11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
+            this.panel11.Location = new System.Drawing.Point(1, 52);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(303, 1);
+            this.panel11.TabIndex = 107;
+            // 
+            // lblFields
+            // 
+            this.lblFields.AutoSize = true;
+            this.lblFields.BackColor = System.Drawing.Color.Transparent;
+            this.lblFields.Font = new System.Drawing.Font("Noto Sans KR", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFields.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
+            this.lblFields.Location = new System.Drawing.Point(13, 13);
+            this.lblFields.Name = "lblFields";
+            this.lblFields.Size = new System.Drawing.Size(121, 27);
+            this.lblFields.TabIndex = 106;
+            this.lblFields.Text = "Faculty Info";
+            // 
+            // numYearsTeaching
+            // 
+            this.numYearsTeaching.BackColor = System.Drawing.Color.White;
+            this.numYearsTeaching.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numYearsTeaching.Location = new System.Drawing.Point(162, 340);
+            this.numYearsTeaching.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.numYearsTeaching.Name = "numYearsTeaching";
+            this.numYearsTeaching.Size = new System.Drawing.Size(125, 26);
+            this.numYearsTeaching.TabIndex = 68;
+            // 
+            // txtSubjectsTaught
+            // 
+            this.txtSubjectsTaught.BackColor = System.Drawing.Color.White;
+            this.txtSubjectsTaught.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSubjectsTaught.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubjectsTaught.Location = new System.Drawing.Point(14, 299);
+            this.txtSubjectsTaught.Name = "txtSubjectsTaught";
+            this.txtSubjectsTaught.Size = new System.Drawing.Size(273, 26);
+            this.txtSubjectsTaught.TabIndex = 67;
+            // 
+            // panelTopContent
+            // 
+            this.panelTopContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(123)))), ((int)(((byte)(0)))));
+            this.panelTopContent.Controls.Add(this.lblTitle);
+            this.panelTopContent.Location = new System.Drawing.Point(0, 0);
+            this.panelTopContent.Name = "panelTopContent";
+            this.panelTopContent.Size = new System.Drawing.Size(988, 52);
+            this.panelTopContent.TabIndex = 60;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("Noto Sans KR", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(8, 14);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(183, 21);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "FACULTY MANAGEMENT";
             // 
             // panel1
             // 
@@ -700,6 +700,7 @@
             // lblSelectInfo
             // 
             this.lblSelectInfo.AutoSize = true;
+            this.lblSelectInfo.BackColor = System.Drawing.Color.Transparent;
             this.lblSelectInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectInfo.ForeColor = System.Drawing.Color.Black;
             this.lblSelectInfo.Location = new System.Drawing.Point(361, 638);
@@ -714,6 +715,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(988, 668);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSelectInfo);
@@ -735,9 +738,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFaculty)).EndInit();
             this.panelInput.ResumeLayout(false);
             this.panelInput.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numYearsTeaching)).EndInit();
-            this.panelTopContent.ResumeLayout(false);
-            this.panelTopContent.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -750,6 +750,9 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numYearsTeaching)).EndInit();
+            this.panelTopContent.ResumeLayout(false);
+            this.panelTopContent.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel10.ResumeLayout(false);

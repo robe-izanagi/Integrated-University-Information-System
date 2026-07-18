@@ -1,4 +1,5 @@
-﻿using IntegratedUniversityInformationSystem.Models;
+﻿using IntegratedUniversityInformationSystem.Helpers;
+using IntegratedUniversityInformationSystem.Models;
 using IntegratedUniversityInformationSystem.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,39 +15,50 @@ namespace IntegratedUniversityInformationSystem.Forms
 {
     public partial class CounselingManagementForm : Form
     {
+        // repositories
         private readonly CounselingRepository _counselingRepo;
         private readonly StudentRepository _studentRepo;
+
+        // holds all records and displayed list
         private List<Counseling> _counselingRecords;
+        private List<Counseling> _displayedList;
+
+        // columns available for sorting
+        private readonly string[] _sortColumns = new string[]
+        {
+            "ID",
+            "Student",
+            "Counselor",
+            "SessionDate",
+            "SessionType",
+            "Status"
+        };
+
         public CounselingManagementForm()
         {
             InitializeComponent();
+
+            // initialize repositories
             _counselingRepo = new CounselingRepository();
             _studentRepo = new StudentRepository();
 
+            // load sort dropdowns
+            SortHelper.LoadSortColumns(cmbSortColumn, _sortColumns);
+            SortHelper.LoadSortOrders(cmbSortOrder);
+
+            // load data
             LoadCounseling();
             LoadStudents();
         }
 
+        // loads all counseling records from JSON
         private void LoadCounseling()
         {
             try
             {
                 _counselingRecords = _counselingRepo.GetAll();
-
-                dgvCounseling.DataSource = null;
-
-                dgvCounseling.DataSource = _counselingRecords.Select(c => new
-                {
-                    c.Id,
-                    Student = GetStudentName(c.StudentId),
-                    c.Counselor,
-                    c.SessionDate,
-                    c.SessionType,
-                    c.Concern,
-                    c.Notes,
-                    c.Recommendation,
-                    c.Status
-                }).ToList();
+                _displayedList = _counselingRecords;
+                DisplayCounseling(_displayedList);
             }
             catch (Exception ex)
             {
@@ -55,12 +67,73 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // displays counseling records in DataGridView
+        private void DisplayCounseling(List<Counseling> list)
+        {
+            dgvCounseling.DataSource = null;
+            dgvCounseling.DataSource = list.Select(c => new
+            {
+                c.Id,
+                Student = GetStudentName(c.StudentId),
+                c.Counselor,
+                c.SessionDate,
+                c.SessionType,
+                c.Concern,
+                c.Notes,
+                c.Recommendation,
+                c.Status
+            }).ToList();
+
+            UpdateSummary();
+        }
+
+        // updates summary box with counts per session type
+        private void UpdateSummary()
+        {
+            var list = _displayedList ?? _counselingRecords ?? new List<Counseling>();
+
+            int individualCount = list.Count(c => c.SessionType == "Individual");
+            int groupCount = list.Count(c => c.SessionType == "Group");
+            int careerCount = list.Count(c => c.SessionType == "Career");
+            int academicCount = list.Count(c => c.SessionType == "Academic");
+            int personalCount = list.Count(c => c.SessionType == "Personal");
+            int totalCount = list.Count;
+
+            lblIndividualSummary.Text = individualCount.ToString("N0");
+            lblGroupSummary.Text = groupCount.ToString("N0");
+            lblCareerSummary.Text = careerCount.ToString("N0");
+            lblAcademicSummary.Text = academicCount.ToString("N0");
+            lblPersonalSummary.Text = personalCount.ToString("N0");
+            lblTotalCounselingSummary.Text = totalCount.ToString("N0");
+        }
+
+        // applies sorting on current list
+        private void ApplySort()
+        {
+            if (_counselingRecords == null) return;
+
+            string sortColumn = cmbSortColumn.Text;
+            string sortOrder = cmbSortOrder.Text;
+
+            _displayedList = SortHelper.SortList(
+                _counselingRecords,
+                sortColumn,
+                sortOrder,
+                dgvCounseling,
+                t => GetStudentName(t.StudentId)
+            );
+
+            DisplayCounseling(_displayedList);
+        }
+
+        // gets student name by ID
         private string GetStudentName(int studentId)
         {
             var student = _studentRepo.GetById(s => s.Id == studentId);
             return student != null ? $"{student.FirstName} {student.LastName}" : "N/A";
         }
 
+        // loads active students into dropdown
         private void LoadStudents()
         {
             try
@@ -79,6 +152,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears input fields
         private void ClearFields()
         {
             txtID.Clear();
@@ -93,6 +167,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtID.Focus();
         }
 
+        // filters counseling records by keyword
         private void lblAdd_Click(object sender, EventArgs e)
         {
             try
@@ -166,6 +241,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // loads selected row into fields
         private void dgvCounseling_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvCounseling.SelectedRows.Count > 0)
@@ -188,6 +264,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // updates counseling record
         private void lblUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -274,6 +351,7 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // cancels counseling session (soft delete)
         private void lblDelete_Click(object sender, EventArgs e)
         {
             try
@@ -318,23 +396,30 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
+        // clears fields
         private void lblClear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
 
+        // refreshes data and resets filters
         private void pbRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Clear();
+            cmbSortColumn.SelectedIndex = 0;
+            cmbSortOrder.SelectedIndex = 0;
             LoadCounseling();
             LoadStudents();
             ClearFields();
         }
 
+        // triggers search
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             SearchCounseling();
         }
 
+        // filters counseling records by keyword
         private void SearchCounseling()
         {
             try
@@ -349,19 +434,21 @@ namespace IntegratedUniversityInformationSystem.Forms
                     c.Concern.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvCounseling.DataSource = null;
-                dgvCounseling.DataSource = filtered.Select(c => new
-                {
-                    c.Id,
-                    Student = GetStudentName(c.StudentId),
-                    c.Counselor,
-                    c.SessionDate,
-                    c.SessionType,
-                    c.Concern,
-                    c.Notes,
-                    c.Recommendation,
-                    c.Status
-                }).ToList();
+                _displayedList = filtered;
+
+                // re-apply sort after search
+                string sortColumn = cmbSortColumn.Text;
+                string sortOrder = cmbSortOrder.Text;
+
+                _displayedList = SortHelper.SortList(
+                    _displayedList,
+                    sortColumn,
+                    sortOrder,
+                    dgvCounseling,
+                    t => GetStudentName(t.StudentId)
+                );
+
+                DisplayCounseling(_displayedList);
             }
             catch (Exception)
             {
@@ -369,14 +456,16 @@ namespace IntegratedUniversityInformationSystem.Forms
             }
         }
 
-        private void cmbSessionType_SelectedIndexChanged(object sender, EventArgs e)
+        // triggers sort when sort column changes
+        private void cmbSortColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ApplySort();
         }
 
-        private void panelInput_Paint(object sender, PaintEventArgs e)
+        // triggers sort when sort order changes
+        private void cmbSortOrder_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ApplySort();
         }
     }
 }
