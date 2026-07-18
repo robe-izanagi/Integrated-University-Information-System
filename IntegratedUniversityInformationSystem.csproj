@@ -98,7 +98,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminAccount.cs" />
     <Compile Include="Forms\AccountingOfficeForm.cs">
       <SubType>Form</SubType>
     </Compile>
