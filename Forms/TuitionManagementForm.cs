@@ -61,6 +61,10 @@ namespace IntegratedUniversityInformationSystem.Forms
             try
             {
                 _tuitions = _tuitionRepo.GetAll();
+
+                // Recalculate all tuitions based on payments
+                RecalculateAllTuitions();
+
                 _displayedList = _tuitions;
                 DisplayTuitions(_displayedList);
                 UpdateSummary(); // update summary after loading
@@ -69,6 +73,41 @@ namespace IntegratedUniversityInformationSystem.Forms
             {
                 MessageBox.Show($"Error loading tuitions: {ex.Message}", "Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // recalculates AmountPaid, Balance, and Status for ALL tuition records
+        private void RecalculateAllTuitions()
+        {
+            if (_tuitions == null || _tuitions.Count == 0) return;
+
+            // get all payments once
+            var allPayments = _paymentRepo.GetAll();
+
+            // use for loop instead of foreach para hindi mag-error
+            for (int i = 0; i < _tuitions.Count; i++)
+            {
+                var tuition = _tuitions[i];
+
+                // get total payments for this student
+                decimal totalPaid = allPayments
+                    .Where(p => p.StudentId == tuition.StudentId)
+                    .Sum(p => p.Amount);
+
+                // update tuition
+                tuition.AmountPaid = totalPaid;
+                tuition.Balance = tuition.TotalAmount - totalPaid;
+
+                // update status based on balance
+                if (tuition.Balance <= 0)
+                    tuition.Status = "Paid";
+                else if (totalPaid > 0 && tuition.Balance > 0)
+                    tuition.Status = "Partial";
+                else
+                    tuition.Status = "Pending";
+
+                // save changes to JSON
+                _tuitionRepo.Update(t => t.Id == tuition.Id, tuition);
             }
         }
 
@@ -446,26 +485,34 @@ namespace IntegratedUniversityInformationSystem.Forms
                     return;
                 }
 
-                // compute values
-                decimal totalAmount = totalUnits * unitFee;
-                decimal amountPaid = tuition.AmountPaid;
-                decimal balance = totalAmount - amountPaid;
-
-                // update tuition
+                // update only the fields that are editable
                 tuition.StudentId = (int)cmbStudent.SelectedValue;
                 tuition.Semester = cmbSemester.Text;
                 tuition.SchoolYear = cmbSchoolYear.Text;
                 tuition.TotalUnits = totalUnits;
                 tuition.UnitFee = unitFee;
-                tuition.TotalAmount = totalAmount;
-                tuition.AmountPaid = amountPaid;
-                tuition.Balance = balance;
+                tuition.TotalAmount = totalUnits * unitFee;
                 tuition.Status = cmbStatus.Text;
 
-                // save and refresh
+                // Recalculate AmountPaid and Balance based on payments
+                decimal totalPaid = _paymentRepo.GetAll()
+                    .Where(p => p.StudentId == tuition.StudentId)
+                    .Sum(p => p.Amount);
+
+                tuition.AmountPaid = totalPaid;
+                tuition.Balance = tuition.TotalAmount - totalPaid;
+
+                // Auto-update status if needed
+                if (tuition.Balance <= 0)
+                    tuition.Status = "Paid";
+                else if (totalPaid > 0 && tuition.Balance > 0)
+                    tuition.Status = "Partial";
+                // else keep the selected status
+
                 _tuitionRepo.Update(t => t.Id == id, tuition);
                 LoadTuitions();
                 ClearFields();
+
                 MessageBox.Show("Tuition updated successfully.", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -524,6 +571,11 @@ namespace IntegratedUniversityInformationSystem.Forms
             txtSearch.Clear();
             cmbSortColumn.SelectedIndex = 0;
             cmbSortOrder.SelectedIndex = 0;
+
+            // Refresh all data
+            _tuitionRepo.Refresh();
+            _paymentRepo.Refresh();
+
             LoadTuitions();
             ClearFields();
         }
@@ -553,20 +605,8 @@ namespace IntegratedUniversityInformationSystem.Forms
                     t.Status.ToLower().Contains(keyword)
                 ).ToList();
 
-                dgvTuitions.DataSource = null;
-                dgvTuitions.DataSource = filtered.Select(t => new
-                {
-                    t.Id,
-                    Student = GetStudentName(t.StudentId),
-                    t.Semester,
-                    t.SchoolYear,
-                    t.TotalUnits,
-                    t.UnitFee,
-                    t.TotalAmount,
-                    t.AmountPaid,
-                    t.Balance,
-                    t.Status
-                }).ToList();
+                _displayedList = filtered;
+                DisplayTuitions(_displayedList);
             }
             catch (Exception)
             {
